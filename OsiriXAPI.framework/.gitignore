@@ -1,0 +1,5 @@
+# ignore everything in this directory except this file
+# (essentially, have this folder as a placeholder for the API)
+*
+*/
+!.gitignore
