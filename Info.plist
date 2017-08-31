@@ -20,7 +20,7 @@
 	<string>BidsOutputFilter</string>
 	<key>MenuTitles</key>
 	<array>
-		<string>MyNewPlugin</string>
+		<string>BIDS output</string>
 	</array>
 	<key>pluginType</key>
 	<string>Database</string>
