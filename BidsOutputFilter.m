@@ -11,6 +11,8 @@
 #import <OsiriXAPI/DicomSeries.h>
 #import <OsiriXAPI/BrowserController.h>
 
+#import "OBOCollectedData.h"
+
 @implementation BidsOutputFilter
 
 - (void) initPlugin
@@ -44,16 +46,30 @@
         }
     }
     
-    // see if it worked - display the series using a simple NSAlert
-    NSMutableString *chainedStudies = [[NSMutableString alloc] init];
+    // initialise the singleton shared data storage
+    OBOCollectedData *sharedData = [OBOCollectedData sharedManager];
+    
+    // store the selected studies for later access
+    [sharedData.listOfStudies addObjectsFromArray:selectedStudies];
+    
+    // create a "template" description (empty strings in all fields)
+    NSMutableDictionary *descriptionTemplate = [NSMutableDictionary dictionary];
+    
+    [descriptionTemplate setValue:@"" forKey:@"suffix"];
+    [descriptionTemplate setValue:@"" forKey:@"session"];
+    [descriptionTemplate setValue:@"" forKey:@"task"];
+    [descriptionTemplate setValue:@"" forKey:@"run"];
+    
+    // Add series descriptions to the dictionary
     for (NSString *name in uniqueStudyNames) {
-        [chainedStudies appendString:name];
-        [chainedStudies appendString:@"\n"];
+        [sharedData.seriesDescription setObject:[NSMutableDictionary dictionaryWithDictionary:descriptionTemplate] forKey:name];
     }
+    
+    // check if that worked
     NSAlert *alert = [[NSAlert alloc] init];
     [alert addButtonWithTitle:@"OK"];
-    [alert setMessageText:@"Found the following study names"];
-    [alert setInformativeText:chainedStudies];
+    [alert setMessageText:@"Created so many entries"];
+    [alert setInformativeText:[@([sharedData.seriesDescription count]) stringValue]];
     [alert runModal];
 
     return 0;

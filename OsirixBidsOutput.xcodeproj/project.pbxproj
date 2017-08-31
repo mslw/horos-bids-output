@@ -10,6 +10,8 @@
 		8420023212E829A200E1E9CE /* OsiriXAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8420023112E829A200E1E9CE /* OsiriXAPI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		8D5B49B0048680CD000E48DA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C167DFE841241C02AAC07 /* InfoPlist.strings */; };
 		8D5B49B4048680CD000E48DA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
+		9027F62F1F58A98700189BE8 /* OBOCollectedData.h in Headers */ = {isa = PBXBuildFile; fileRef = 9027F62D1F58A98700189BE8 /* OBOCollectedData.h */; };
+		9027F6301F58A98700189BE8 /* OBOCollectedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9027F62E1F58A98700189BE8 /* OBOCollectedData.m */; };
 		9036C7781F56169B00693F76 /* OsirixBidsOutput_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 9036C7771F56169B00693F76 /* OsirixBidsOutput_Prefix.pch */; };
 		90DD764D1F57868F003B0679 /* GeneralMappingWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 90DD764B1F57868F003B0679 /* GeneralMappingWindowController.h */; };
 		90DD764E1F57868F003B0679 /* GeneralMappingWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DD764C1F57868F003B0679 /* GeneralMappingWindowController.m */; };
@@ -24,6 +26,8 @@
 		1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		8420023112E829A200E1E9CE /* OsiriXAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OsiriXAPI.framework; sourceTree = "<group>"; };
 		8D5B49B7048680CD000E48DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9027F62D1F58A98700189BE8 /* OBOCollectedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBOCollectedData.h; sourceTree = "<group>"; };
+		9027F62E1F58A98700189BE8 /* OBOCollectedData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBOCollectedData.m; sourceTree = "<group>"; };
 		9036C7771F56169B00693F76 /* OsirixBidsOutput_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OsirixBidsOutput_Prefix.pch; sourceTree = "<group>"; };
 		90DD764B1F57868F003B0679 /* GeneralMappingWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralMappingWindowController.h; sourceTree = "<group>"; };
 		90DD764C1F57868F003B0679 /* GeneralMappingWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralMappingWindowController.m; sourceTree = "<group>"; };
@@ -80,6 +84,8 @@
 			isa = PBXGroup;
 			children = (
 				AB2C26750677B0C400A08910 /* BidsOutputFilter */,
+				9027F62D1F58A98700189BE8 /* OBOCollectedData.h */,
+				9027F62E1F58A98700189BE8 /* OBOCollectedData.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -136,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				90DD764D1F57868F003B0679 /* GeneralMappingWindowController.h in Headers */,
+				9027F62F1F58A98700189BE8 /* OBOCollectedData.h in Headers */,
 				9036C7781F56169B00693F76 /* OsirixBidsOutput_Prefix.pch in Headers */,
 				ABA48A650680BB600089EB4F /* BidsOutputFilter.h in Headers */,
 			);
@@ -218,6 +225,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				90DD764E1F57868F003B0679 /* GeneralMappingWindowController.m in Sources */,
+				9027F6301F58A98700189BE8 /* OBOCollectedData.m in Sources */,
 				ABA48A670680BB690089EB4F /* BidsOutputFilter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
