@@ -12,6 +12,7 @@
 		8D5B49B4048680CD000E48DA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
 		9027F62F1F58A98700189BE8 /* OBOCollectedData.h in Headers */ = {isa = PBXBuildFile; fileRef = 9027F62D1F58A98700189BE8 /* OBOCollectedData.h */; };
 		9027F6301F58A98700189BE8 /* OBOCollectedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9027F62E1F58A98700189BE8 /* OBOCollectedData.m */; };
+		9027F6381F58CE7900189BE8 /* GeneralMappingWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9027F6371F58CE7900189BE8 /* GeneralMappingWindow.xib */; };
 		9036C7781F56169B00693F76 /* OsirixBidsOutput_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 9036C7771F56169B00693F76 /* OsirixBidsOutput_Prefix.pch */; };
 		90DD764D1F57868F003B0679 /* GeneralMappingWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 90DD764B1F57868F003B0679 /* GeneralMappingWindowController.h */; };
 		90DD764E1F57868F003B0679 /* GeneralMappingWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DD764C1F57868F003B0679 /* GeneralMappingWindowController.m */; };
@@ -28,6 +29,7 @@
 		8D5B49B7048680CD000E48DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9027F62D1F58A98700189BE8 /* OBOCollectedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBOCollectedData.h; sourceTree = "<group>"; };
 		9027F62E1F58A98700189BE8 /* OBOCollectedData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBOCollectedData.m; sourceTree = "<group>"; };
+		9027F6371F58CE7900189BE8 /* GeneralMappingWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GeneralMappingWindow.xib; sourceTree = "<group>"; };
 		9036C7771F56169B00693F76 /* OsirixBidsOutput_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OsirixBidsOutput_Prefix.pch; sourceTree = "<group>"; };
 		90DD764B1F57868F003B0679 /* GeneralMappingWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralMappingWindowController.h; sourceTree = "<group>"; };
 		90DD764C1F57868F003B0679 /* GeneralMappingWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralMappingWindowController.m; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				ABA48A660680BB690089EB4F /* BidsOutputFilter.m */,
 				90DD764B1F57868F003B0679 /* GeneralMappingWindowController.h */,
 				90DD764C1F57868F003B0679 /* GeneralMappingWindowController.m */,
+				9027F6371F58CE7900189BE8 /* GeneralMappingWindow.xib */,
 			);
 			name = BidsOutputFilter;
 			sourceTree = "<group>";
@@ -204,6 +207,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D5B49B0048680CD000E48DA /* InfoPlist.strings in Resources */,
+				9027F6381F58CE7900189BE8 /* GeneralMappingWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

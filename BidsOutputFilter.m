@@ -13,6 +13,12 @@
 
 #import "OBOCollectedData.h"
 
+@interface BidsOutputFilter()
+
+@property (nonatomic, strong) NSWindowController *TableWindow;
+
+@end
+
 @implementation BidsOutputFilter
 
 - (void) initPlugin
@@ -65,12 +71,16 @@
         [sharedData.seriesDescription setObject:[NSMutableDictionary dictionaryWithDictionary:descriptionTemplate] forKey:name];
     }
     
-    // check if that worked
-    NSAlert *alert = [[NSAlert alloc] init];
-    [alert addButtonWithTitle:@"OK"];
-    [alert setMessageText:@"Created so many entries"];
-    [alert setInformativeText:[@([sharedData.seriesDescription count]) stringValue]];
-    [alert runModal];
+    // show the general mapping window
+    _TableWindow = [[NSWindowController alloc] initWithWindowNibName:@"GeneralMappingWindow" owner:self];
+    [_TableWindow showWindow:self];
+    
+//    // check if that worked
+//    NSAlert *alert = [[NSAlert alloc] init];
+//    [alert addButtonWithTitle:@"OK"];
+//    [alert setMessageText:@"Created so many entries"];
+//    [alert setInformativeText:[@([sharedData.seriesDescription count]) stringValue]];
+//    [alert runModal];
 
     return 0;
 }
