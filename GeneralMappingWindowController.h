@@ -14,6 +14,8 @@
 @property (weak) IBOutlet NSTableView *tableView;
 
 - (IBAction)updateSuffix:(id)sender;
+- (IBAction)itemTextFieldUpdated:(id)sender;
+- (IBAction)saveMapping:(id)sender;
 
 //@property(nonatomic) NSMutableArray *sequenceDescriptions;  // not sure if I want it - perhaps just run with the global one
 

@@ -70,6 +70,31 @@
 
 }
 
+
+-(IBAction)itemTextFieldUpdated:(id)sender{
+    NSInteger selectedRow = [self.tableView rowForView:sender];
+    NSString *newValue = [sender stringValue];
+    NSInteger columnIndex = [self.tableView columnForView:sender];
+    
+    OBOCollectedData *sharedData = [OBOCollectedData sharedManager];
+    NSArray *sequenceNames = [sharedData.seriesDescription allKeys]; // this prob should be class variable
+    NSString *currentName = [sequenceNames objectAtIndex:selectedRow];
+    
+    if (columnIndex == 2){
+        // session
+        [[sharedData.seriesDescription objectForKey:currentName] setValue:newValue forKey:@"session"];
+    }
+    else if (columnIndex == 3){
+        // task
+        [[sharedData.seriesDescription objectForKey:currentName] setValue:newValue forKey:@"task"];
+    }
+    else if (columnIndex == 4){
+        //run
+        [[sharedData.seriesDescription objectForKey:currentName] setValue:newValue forKey:@"run"];
+    }
+    
+}
+
 - (IBAction)updateSuffix:(id)sender {
     OBOCollectedData *sharedData = [OBOCollectedData sharedManager];
     
@@ -81,9 +106,23 @@
     
     NSDictionary * currentItem = [sharedData.seriesDescription objectForKey:currentName];
     [currentItem setValue:selectedSuffix forKey:@"suffix"];
+    
+    // TODO: set run to empty if non-BOLD was chosen - probably has to be done here
 
     [self.tableView abortEditing]; // in case editing of a text field was not finished
     [self.tableView reloadData];
+}
+
+-(IBAction)saveMapping:(id)sender{
+    // just a placeholder for now - not implemented
+    
+    //OBOCollectedData *sharedData = [OBOCollectedData sharedManager];
+    
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert addButtonWithTitle:@"OK"];
+    [alert setMessageText:@"Save and continue"];
+    [alert setInformativeText:@"Not implemented yet"];
+    [alert runModal];
 }
 
 @end
