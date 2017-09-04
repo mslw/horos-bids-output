@@ -12,6 +12,7 @@
 #import <OsiriXAPI/BrowserController.h>
 
 #import "OBOCollectedData.h"
+#import "OBOSeries.h"
 
 @interface BidsOutputFilter()
 
@@ -83,6 +84,19 @@
 //    [alert runModal];
 
     return 0;
+}
+
+-(void) annotateAllSeries {
+    // TODO: account for runs in case of repeated series names
+    OBOCollectedData *sharedData = [OBOCollectedData sharedManager];
+    for (DicomStudy *currentStudy in sharedData.listOfStudies) {
+        for (DicomSeries *currentSeries in [currentStudy imageSeries]) {
+            
+            OBOSeries *decoratedSeries = [[OBOSeries alloc] initWithSeries:currentSeries params:[sharedData.seriesDescription objectForKey:currentSeries.name]];
+            [decoratedSeries setValue:currentStudy.patientID forKey:@"participant"];
+            [sharedData.listOfSeries addObject:decoratedSeries];
+        }
+    }
 }
 
 @end

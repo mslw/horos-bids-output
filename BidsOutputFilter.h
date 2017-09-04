@@ -13,5 +13,6 @@
 }
 
 - (long) filterImage:(NSString*) menuName;
+- (void) annotateAllSeries;
 
 @end

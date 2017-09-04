@@ -18,6 +18,9 @@
 @property (nonatomic) NSString *task;
 @property (nonatomic) NSString * run;
 
+-(instancetype)initWithSeries:(DicomSeries *) originalSeries;
+-(instancetype)initWithSeries:(DicomSeries *) originalSeries params:(NSDictionary *)params;
+
 -(NSString*) getBidsPath;
 
 @end

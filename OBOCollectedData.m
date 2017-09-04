@@ -12,6 +12,7 @@
 
 @synthesize listOfStudies;
 @synthesize seriesDescription;
+@synthesize listOfSeries;
 
 +(id)sharedManager{
     static OBOCollectedData *sharedCollectedData = nil;

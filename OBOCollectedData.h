@@ -12,6 +12,7 @@
 
 @property (nonatomic, retain) NSMutableArray *listOfStudies;
 @property (nonatomic, retain) NSMutableDictionary *seriesDescription;
+@property (nonatomic, retain) NSMutableArray *listOfSeries;
 
 +(id) sharedManager;
 
