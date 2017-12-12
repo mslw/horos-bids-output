@@ -14,6 +14,9 @@
 		9027F6301F58A98700189BE8 /* OBOCollectedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9027F62E1F58A98700189BE8 /* OBOCollectedData.m */; };
 		9027F6381F58CE7900189BE8 /* GeneralMappingWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9027F6371F58CE7900189BE8 /* GeneralMappingWindow.xib */; };
 		9036C7781F56169B00693F76 /* OsirixBidsOutput_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 9036C7771F56169B00693F76 /* OsirixBidsOutput_Prefix.pch */; };
+		906726151FE032510029F23C /* MappingSummaryWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 906726141FE032510029F23C /* MappingSummaryWindow.xib */; };
+		906726181FE036390029F23C /* MappingSummaryController.h in Headers */ = {isa = PBXBuildFile; fileRef = 906726161FE036390029F23C /* MappingSummaryController.h */; };
+		906726191FE036390029F23C /* MappingSummaryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 906726171FE036390029F23C /* MappingSummaryController.m */; };
 		907F9B151F5D818500D6FA88 /* OBOSeries.h in Headers */ = {isa = PBXBuildFile; fileRef = 907F9B131F5D818500D6FA88 /* OBOSeries.h */; };
 		907F9B161F5D818500D6FA88 /* OBOSeries.m in Sources */ = {isa = PBXBuildFile; fileRef = 907F9B141F5D818500D6FA88 /* OBOSeries.m */; };
 		90DD764D1F57868F003B0679 /* GeneralMappingWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 90DD764B1F57868F003B0679 /* GeneralMappingWindowController.h */; };
@@ -33,6 +36,9 @@
 		9027F62E1F58A98700189BE8 /* OBOCollectedData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBOCollectedData.m; sourceTree = "<group>"; };
 		9027F6371F58CE7900189BE8 /* GeneralMappingWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GeneralMappingWindow.xib; sourceTree = "<group>"; };
 		9036C7771F56169B00693F76 /* OsirixBidsOutput_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OsirixBidsOutput_Prefix.pch; sourceTree = "<group>"; };
+		906726141FE032510029F23C /* MappingSummaryWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MappingSummaryWindow.xib; sourceTree = "<group>"; };
+		906726161FE036390029F23C /* MappingSummaryController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MappingSummaryController.h; sourceTree = "<group>"; };
+		906726171FE036390029F23C /* MappingSummaryController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MappingSummaryController.m; sourceTree = "<group>"; };
 		907F9B131F5D818500D6FA88 /* OBOSeries.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBOSeries.h; sourceTree = "<group>"; };
 		907F9B141F5D818500D6FA88 /* OBOSeries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBOSeries.m; sourceTree = "<group>"; };
 		90DD764B1F57868F003B0679 /* GeneralMappingWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralMappingWindowController.h; sourceTree = "<group>"; };
@@ -138,7 +144,10 @@
 				ABA48A660680BB690089EB4F /* BidsOutputFilter.m */,
 				90DD764B1F57868F003B0679 /* GeneralMappingWindowController.h */,
 				90DD764C1F57868F003B0679 /* GeneralMappingWindowController.m */,
+				906726161FE036390029F23C /* MappingSummaryController.h */,
+				906726171FE036390029F23C /* MappingSummaryController.m */,
 				9027F6371F58CE7900189BE8 /* GeneralMappingWindow.xib */,
+				906726141FE032510029F23C /* MappingSummaryWindow.xib */,
 			);
 			name = BidsOutputFilter;
 			sourceTree = "<group>";
@@ -150,6 +159,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				906726181FE036390029F23C /* MappingSummaryController.h in Headers */,
 				90DD764D1F57868F003B0679 /* GeneralMappingWindowController.h in Headers */,
 				9027F62F1F58A98700189BE8 /* OBOCollectedData.h in Headers */,
 				9036C7781F56169B00693F76 /* OsirixBidsOutput_Prefix.pch in Headers */,
@@ -213,6 +223,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				906726151FE032510029F23C /* MappingSummaryWindow.xib in Resources */,
 				8D5B49B0048680CD000E48DA /* InfoPlist.strings in Resources */,
 				9027F6381F58CE7900189BE8 /* GeneralMappingWindow.xib in Resources */,
 			);
@@ -235,6 +246,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				906726191FE036390029F23C /* MappingSummaryController.m in Sources */,
 				90DD764E1F57868F003B0679 /* GeneralMappingWindowController.m in Sources */,
 				907F9B161F5D818500D6FA88 /* OBOSeries.m in Sources */,
 				9027F6301F58A98700189BE8 /* OBOCollectedData.m in Sources */,

@@ -27,6 +27,7 @@
     if (self = [super init]) {
         listOfStudies = [[NSMutableArray alloc] init];
         seriesDescription = [NSMutableDictionary dictionary];
+        listOfSeries = [[NSMutableArray alloc] init];
     }
     return self;
 }

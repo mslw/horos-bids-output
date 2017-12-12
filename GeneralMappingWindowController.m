@@ -12,6 +12,7 @@
 #import <OsiriXAPI/BrowserController.h>
 
 #import "OBOCollectedData.h"
+#import "OBOSeries.h"
 
 @implementation GeneralMappingWindowController
 
@@ -114,15 +115,27 @@
 }
 
 -(IBAction)saveMapping:(id)sender{
-    // just a placeholder for now - not implemented
+    [self annotateAllSeries];
     
-    //OBOCollectedData *sharedData = [OBOCollectedData sharedManager];
+    _SummaryWindow = [[NSWindowController alloc] initWithWindowNibName:@"MappingSummaryWindow" owner:self];
+    // not sure about who should be the owner, but for now it's this class
+    [_SummaryWindow showWindow:self];
     
-    NSAlert *alert = [[NSAlert alloc] init];
-    [alert addButtonWithTitle:@"OK"];
-    [alert setMessageText:@"Save and continue"];
-    [alert setInformativeText:@"Not implemented yet"];
-    [alert runModal];
+}
+
+-(void) annotateAllSeries {
+    // TODO: filter out meaningless series (reports etc)
+    // TODO: account for runs in case of repeated series names
+    OBOCollectedData *sharedData = [OBOCollectedData sharedManager];
+    for (DicomStudy *currentStudy in sharedData.listOfStudies) {
+        for (DicomSeries *currentSeries in [currentStudy imageSeries]) {
+
+            OBOSeries *decoratedSeries = [[OBOSeries alloc] initWithSeries:currentSeries params:[sharedData.seriesDescription objectForKey:currentSeries.name]];
+            [decoratedSeries setValue:currentStudy.name forKey:@"participant"];
+            // ENH: possibly store in originalName field and allow changing participant field
+            [sharedData.listOfSeries addObject:decoratedSeries];
+        }
+    }
 }
 
 @end
