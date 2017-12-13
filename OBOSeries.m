@@ -19,6 +19,7 @@
 - (instancetype)init {
     if (self = [super init]) {
         _series = nil;
+        _originalName = @"";
         _participant = @"";
         _suffix = @"";
         _session = @"";
@@ -31,6 +32,7 @@
 - (instancetype)initWithSeries:(DicomSeries *)originalSeries {
     if (self = [super init]) {
         _series = originalSeries;
+        _originalName = [originalSeries name];
         _participant = @""; // read from original series
         _suffix = @"";
         _session = @"";
@@ -43,6 +45,7 @@
 -(instancetype)initWithSeries:(DicomSeries *)originalSeries params:(NSDictionary *)params {
     if (self = [super init]) {
         _series = originalSeries;
+        _originalName = [originalSeries name];
         _participant = @""; // read from original series
         _suffix = [params valueForKey:@"suffix"];
         _session = [params valueForKey:@"session"];

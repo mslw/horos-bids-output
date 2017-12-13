@@ -130,15 +130,42 @@
     // TODO: account for runs in case of repeated series names
     OBOCollectedData *sharedData = [OBOCollectedData sharedManager];
     NSPredicate *takeOnlyMR = [NSPredicate predicateWithFormat:@"modality = %@", @"MR"];
+    NSMutableArray *decoratedFromCurrentStudy = [[NSMutableArray alloc] init];
+    NSCountedSet *namesFromCurrentStudy = [[NSCountedSet alloc] init];  // to keep track of repetitions
     
     for (DicomStudy *currentStudy in sharedData.listOfStudies) {
+        [decoratedFromCurrentStudy removeAllObjects];
+        [namesFromCurrentStudy removeAllObjects];
         for (DicomSeries *currentSeries in [[currentStudy imageSeries] filteredArrayUsingPredicate:takeOnlyMR]) {
 
             OBOSeries *decoratedSeries = [[OBOSeries alloc] initWithSeries:currentSeries params:[sharedData.seriesDescription objectForKey:currentSeries.name]];
             [decoratedSeries setValue:currentStudy.name forKey:@"participant"];
             // ENH: possibly store in originalName field and allow changing participant field
-            [sharedData.listOfSeries addObject:decoratedSeries];
+            //[sharedData.listOfSeries addObject:decoratedSeries];
+            [decoratedFromCurrentStudy addObject:decoratedSeries];
+            [namesFromCurrentStudy addObject:currentSeries.name];  // probably should treat fmaps separately
         }
+        
+        // add run number for series which had the same sequence name
+        for (NSString *studyName in [namesFromCurrentStudy objectEnumerator]) {
+            if ([namesFromCurrentStudy countForObject:studyName] > 1) { // series with this name has been repeated
+                // get (decorated) series matching this name
+                NSArray *repeated = [decoratedFromCurrentStudy filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"originalName=%@", studyName]];
+                // sort them by acquisition date
+                repeated = [repeated sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+                    NSDate *first = [[(OBOSeries*)obj1 series] date];
+                    NSDate *second = [[(OBOSeries*)obj2 series] date];
+                    return [first compare:second];
+                }];
+                // insert run numbers
+                // TODO: if run was given, remove all but the last and raise an error
+                for (int i = 0; i < [repeated count]; i++){
+                    [[repeated objectAtIndex:i] setValue:[@(i+1) stringValue] forKey:@"run"];
+                }
+            }
+        }
+        
+        [sharedData.listOfSeries addObjectsFromArray:decoratedFromCurrentStudy];
     }
 }
 
