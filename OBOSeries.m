@@ -8,6 +8,12 @@
 
 #import "OBOSeries.h"
 
+@interface OBOSeries()
+
+-(NSString*) createSubjectLabel;
+
+@end
+
 @implementation OBOSeries
 
 - (instancetype)init {
@@ -52,33 +58,85 @@
                                 @"SWImagandphase"];
     NSMutableString *path = [[NSMutableString alloc] init];
     if ([self.suffix isEqualToString:@"bold"]){
+        
         [path appendString:@"func/"];
+        if ([self.session length] > 0){
+            [path appendString:@"ses-"];
+            [path appendString:self.session];
+            [path appendString:@"/"];
+        }
+        
+        // subject
         [path appendString:@"sub-"];
-        [path appendString:@"<label>"]; // work out label
-        // ADD ses
+        [path appendString: [self createSubjectLabel]];
+        
+        // session (optional)
+        if ([self.session length] > 0){
+            [path appendString:@"_ses-"];
+            [path appendString:self.session];
+        }
+        
+        // task
         [path appendString:@"_task-"];
         [path appendString:self.task];
-        // ADD acq
-        // ADD rec
-        // ADD run
-        // ADD echo
+        
+        // ADD acq (optional) - not yet in nib
+        // ADD rec (optional) - not yet in nib
+        
+        // run (optional)
+        if ([self.run length] > 0){
+            [path appendString:@"_run-"];
+            [path appendString:self.run];
+        }
+        
+        // ADD echo (optional) - not yet in nib
+        
         [path appendString:@"_bold"];
     }
     else if ([anatSuffixList containsObject:self.suffix]){
+        
         [path appendString:@"anat/"];
+        if ([self.session length] > 0){
+            [path appendString:@"ses-"];
+            [path appendString:self.session];
+            [path appendString:@"/"];
+        }
+        
+        //subject
         [path appendString:@"sub-"];
-        [path appendString:@"<label>"]; // work out label
-        // ADD ses
-        // ADD acq
-        // ADD ce
-        // ADD rec
-        // ADD run
-        // ADD mod
+        [path appendString:[self createSubjectLabel]];
+        
+        // session (optional)
+        if ([self.session length] > 0){
+            [path appendString:@"_ses-"];
+            [path appendString:self.session];
+        }
+        
+        // ADD acq (optional) - not yet in nib
+        // ADD ce (optional) - not yet in nib
+        // ADD rec (optional) - not yet in nib
+        
+        // run (optional)
+        if ([self.run length] > 0){
+            [path appendString:@"_run-"];
+            [path appendString:self.run];
+        }
+        // ADD mod (optional) - not yet in nib
+        
+        // modality label
         [path appendString:@"_"];
         [path appendString:self.suffix];
     }
     
     return path;
+}
+
+-(NSString*)createSubjectLabel{
+    // take participant and remove non-alphanumeric character
+    NSCharacterSet *nonAlphanumericSet = [[NSCharacterSet alphanumericCharacterSet] invertedSet];
+    NSArray *components = [self.participant componentsSeparatedByCharactersInSet:nonAlphanumericSet];
+    components = [components filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self <> ''"]];
+    return [components componentsJoinedByString:@""];
 }
 
 @end
