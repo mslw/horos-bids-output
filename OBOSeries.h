@@ -13,11 +13,15 @@
 
 @property (nonatomic) DicomSeries *series;
 @property (nonatomic) NSString *originalName;
+
 @property (nonatomic) NSString *participant;
 @property (nonatomic) NSString *suffix;
 @property (nonatomic) NSString *session;
 @property (nonatomic) NSString *task;
 @property (nonatomic) NSString *run;
+
+@property (nonatomic, assign) BOOL discard;
+@property (nonatomic) NSString *comment;
 
 -(instancetype)initWithSeries:(DicomSeries *) originalSeries;
 -(instancetype)initWithSeries:(DicomSeries *) originalSeries params:(NSDictionary *)params;

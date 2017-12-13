@@ -127,7 +127,6 @@
 }
 
 -(void) annotateAllSeries {
-    // TODO: account for runs in case of repeated series names
     OBOCollectedData *sharedData = [OBOCollectedData sharedManager];
     NSPredicate *takeOnlyMR = [NSPredicate predicateWithFormat:@"modality = %@", @"MR"];
     NSMutableArray *decoratedFromCurrentStudy = [[NSMutableArray alloc] init];
@@ -146,21 +145,30 @@
             [namesFromCurrentStudy addObject:currentSeries.name];  // probably should treat fmaps separately
         }
         
-        // add run number for series which had the same sequence name
-        for (NSString *studyName in [namesFromCurrentStudy objectEnumerator]) {
-            if ([namesFromCurrentStudy countForObject:studyName] > 1) { // series with this name has been repeated
+        // handle series which had the same series name: add run numbers (if not given) or discard all but the last
+        for (NSString *seriesName in [namesFromCurrentStudy objectEnumerator]) {
+            if ([namesFromCurrentStudy countForObject:seriesName] > 1) { // series with this name has been repeated
                 // get (decorated) series matching this name
-                NSArray *repeated = [decoratedFromCurrentStudy filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"originalName=%@", studyName]];
+                NSArray *repeated = [decoratedFromCurrentStudy filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"originalName=%@", seriesName]];
                 // sort them by acquisition date
                 repeated = [repeated sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
                     NSDate *first = [[(OBOSeries*)obj1 series] date];
                     NSDate *second = [[(OBOSeries*)obj2 series] date];
                     return [first compare:second];
                 }];
-                // insert run numbers
-                // TODO: if run was given, remove all but the last and raise an error
-                for (int i = 0; i < [repeated count]; i++){
-                    [[repeated objectAtIndex:i] setValue:[@(i+1) stringValue] forKey:@"run"];
+                
+                if ([[[sharedData.seriesDescription objectForKey:seriesName] objectForKey:@"run"] length] > 0) {
+                    // run number was specified for this study name, assume it's a repeat and discard all but latest
+                    for (int i = 0; i < [repeated count] - 1; i++){
+                        [[repeated objectAtIndex:i] setDiscard:YES];  // turns out this is the way to set bool flag :/
+                        [[repeated objectAtIndex:i] setValue:@"Discard - repeated" forKey:@"comment"];
+                    }
+                }
+                else {
+                    // create and insert run numbers
+                    for (int i = 0; i < [repeated count]; i++){
+                        [[repeated objectAtIndex:i] setValue:[@(i+1) stringValue] forKey:@"run"];
+                    }
                 }
             }
         }

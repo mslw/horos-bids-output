@@ -25,6 +25,9 @@
         _session = @"";
         _task = @"";
         _run = @"";
+        
+        _discard = NO;
+        _comment = @"";
     }
     return self;
 }
@@ -38,6 +41,9 @@
         _session = @"";
         _task = @"";
         _run = @"";
+        
+        _discard = NO;
+        _comment = @"";
     }
     return self;
 }
@@ -51,6 +57,9 @@
         _session = [params valueForKey:@"session"];
         _task = [params valueForKey:@"task"];
         _run = [params valueForKey:@"run"];
+        
+        _discard = NO;
+        _comment = @"";
     }
     return self;
 }
@@ -60,7 +69,10 @@
                                 @"PD", @"PDmap", @"PDT2", @"inplaneT1", @"inplaneT2", @"angio", @"defacemask",
                                 @"SWImagandphase"];
     NSMutableString *path = [[NSMutableString alloc] init];
-    if ([self.suffix isEqualToString:@"bold"]){
+    if ([self discard]){
+        return path;
+    }
+    else if ([self.suffix isEqualToString:@"bold"]){
         
         [path appendString:@"func/"];
         if ([self.session length] > 0){
