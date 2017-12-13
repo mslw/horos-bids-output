@@ -115,6 +115,9 @@
 }
 
 -(IBAction)saveMapping:(id)sender{
+    OBOCollectedData *sharedData = [OBOCollectedData sharedManager];
+    [sharedData.listOfSeries removeAllObjects];
+    
     [self annotateAllSeries];
     
     _SummaryWindow = [[NSWindowController alloc] initWithWindowNibName:@"MappingSummaryWindow" owner:self];
@@ -124,11 +127,12 @@
 }
 
 -(void) annotateAllSeries {
-    // TODO: filter out meaningless series (reports etc)
     // TODO: account for runs in case of repeated series names
     OBOCollectedData *sharedData = [OBOCollectedData sharedManager];
+    NSPredicate *takeOnlyMR = [NSPredicate predicateWithFormat:@"modality = %@", @"MR"];
+    
     for (DicomStudy *currentStudy in sharedData.listOfStudies) {
-        for (DicomSeries *currentSeries in [currentStudy imageSeries]) {
+        for (DicomSeries *currentSeries in [[currentStudy imageSeries] filteredArrayUsingPredicate:takeOnlyMR]) {
 
             OBOSeries *decoratedSeries = [[OBOSeries alloc] initWithSeries:currentSeries params:[sharedData.seriesDescription objectForKey:currentSeries.name]];
             [decoratedSeries setValue:currentStudy.name forKey:@"participant"];
