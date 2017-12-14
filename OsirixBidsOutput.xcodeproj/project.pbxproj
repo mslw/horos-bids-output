@@ -19,6 +19,8 @@
 		906726191FE036390029F23C /* MappingSummaryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 906726171FE036390029F23C /* MappingSummaryController.m */; };
 		907F9B151F5D818500D6FA88 /* OBOSeries.h in Headers */ = {isa = PBXBuildFile; fileRef = 907F9B131F5D818500D6FA88 /* OBOSeries.h */; };
 		907F9B161F5D818500D6FA88 /* OBOSeries.m in Sources */ = {isa = PBXBuildFile; fileRef = 907F9B141F5D818500D6FA88 /* OBOSeries.m */; };
+		90C755661FE2E8F500AD735B /* OBOExporter.h in Headers */ = {isa = PBXBuildFile; fileRef = 90C755641FE2E8F500AD735B /* OBOExporter.h */; };
+		90C755671FE2E8F500AD735B /* OBOExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C755651FE2E8F500AD735B /* OBOExporter.m */; };
 		90DD764D1F57868F003B0679 /* GeneralMappingWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 90DD764B1F57868F003B0679 /* GeneralMappingWindowController.h */; };
 		90DD764E1F57868F003B0679 /* GeneralMappingWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DD764C1F57868F003B0679 /* GeneralMappingWindowController.m */; };
 		ABA48A650680BB600089EB4F /* BidsOutputFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = ABA48A640680BB600089EB4F /* BidsOutputFilter.h */; };
@@ -41,6 +43,8 @@
 		906726171FE036390029F23C /* MappingSummaryController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MappingSummaryController.m; sourceTree = "<group>"; };
 		907F9B131F5D818500D6FA88 /* OBOSeries.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBOSeries.h; sourceTree = "<group>"; };
 		907F9B141F5D818500D6FA88 /* OBOSeries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBOSeries.m; sourceTree = "<group>"; };
+		90C755641FE2E8F500AD735B /* OBOExporter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OBOExporter.h; sourceTree = "<group>"; };
+		90C755651FE2E8F500AD735B /* OBOExporter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OBOExporter.m; sourceTree = "<group>"; };
 		90DD764B1F57868F003B0679 /* GeneralMappingWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralMappingWindowController.h; sourceTree = "<group>"; };
 		90DD764C1F57868F003B0679 /* GeneralMappingWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralMappingWindowController.m; sourceTree = "<group>"; };
 		AB5D36050680E57E00F4007A /* OsirixBidsOutput.osirixplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OsirixBidsOutput.osirixplugin; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,6 +146,8 @@
 			children = (
 				ABA48A640680BB600089EB4F /* BidsOutputFilter.h */,
 				ABA48A660680BB690089EB4F /* BidsOutputFilter.m */,
+				90C755641FE2E8F500AD735B /* OBOExporter.h */,
+				90C755651FE2E8F500AD735B /* OBOExporter.m */,
 				90DD764B1F57868F003B0679 /* GeneralMappingWindowController.h */,
 				90DD764C1F57868F003B0679 /* GeneralMappingWindowController.m */,
 				906726161FE036390029F23C /* MappingSummaryController.h */,
@@ -161,6 +167,7 @@
 			files = (
 				906726181FE036390029F23C /* MappingSummaryController.h in Headers */,
 				90DD764D1F57868F003B0679 /* GeneralMappingWindowController.h in Headers */,
+				90C755661FE2E8F500AD735B /* OBOExporter.h in Headers */,
 				9027F62F1F58A98700189BE8 /* OBOCollectedData.h in Headers */,
 				9036C7781F56169B00693F76 /* OsirixBidsOutput_Prefix.pch in Headers */,
 				ABA48A650680BB600089EB4F /* BidsOutputFilter.h in Headers */,
@@ -251,6 +258,7 @@
 				907F9B161F5D818500D6FA88 /* OBOSeries.m in Sources */,
 				9027F6301F58A98700189BE8 /* OBOCollectedData.m in Sources */,
 				ABA48A670680BB690089EB4F /* BidsOutputFilter.m in Sources */,
+				90C755671FE2E8F500AD735B /* OBOExporter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
