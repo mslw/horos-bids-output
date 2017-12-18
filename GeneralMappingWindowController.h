@@ -20,6 +20,7 @@
 - (IBAction)saveMapping:(id)sender;
 
 - (void) annotateAllSeries;
+- (void) assignFieldMapSuffixes:(NSArray*)fieldMapTriplet;
 
 //@property(nonatomic) NSMutableArray *sequenceDescriptions;  // not sure if I want it - perhaps just run with the global one
 

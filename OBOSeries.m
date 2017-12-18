@@ -68,6 +68,7 @@
     NSArray *anatSuffixList = @[@"T1w", @"T2w", @"T1rho", @"T1map", @"T2map", @"T2star", @"FLAIR", @"FLASH",
                                 @"PD", @"PDmap", @"PDT2", @"inplaneT1", @"inplaneT2", @"angio", @"defacemask",
                                 @"SWImagandphase"];
+    NSArray *fmapSuffixList = @[@"phasediff", @"magnitude1", @"magnitude2"];
     NSMutableString *path = [[NSMutableString alloc] init];
     if ([self discard]){
         return path;
@@ -149,6 +150,41 @@
         // ADD mod (optional) - not yet in nib
         
         // modality label
+        [path appendString:@"_"];
+        [path appendString:self.suffix];
+    }
+    else if ([fmapSuffixList containsObject:self.suffix]){
+        
+        // folders
+        [path appendString:@"sub-"];
+        [path appendString: [self createSubjectLabel]];
+        [path appendString:@"/"];
+        
+        [path appendString:@"fmap/"];
+        if ([self.session length] > 0){
+            [path appendString:@"ses-"];
+            [path appendString:self.session];
+            [path appendString:@"/"];
+        }
+        
+        //subject
+        [path appendString:@"sub-"];
+        [path appendString:[self createSubjectLabel]];
+        
+        // session (optional)
+        if ([self.session length] > 0){
+            [path appendString:@"_ses-"];
+            [path appendString:self.session];
+        }
+        
+        // ADD acq (optional) - not yet in nib
+        
+        // run (optional)
+        if ([self.run length] > 0){
+            [path appendString:@"_run-"];
+            [path appendString:self.run];
+        }
+        
         [path appendString:@"_"];
         [path appendString:self.suffix];
     }

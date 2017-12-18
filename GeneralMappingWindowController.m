@@ -14,6 +14,10 @@
 #import "OBOCollectedData.h"
 #import "OBOSeries.h"
 
+#import "DCM Framework/DCMObject.h"
+#import "DCM Framework/DCMAttribute.h"
+#import "DCM Framework/DCMAttributeTag.h"
+
 @implementation GeneralMappingWindowController
 
 -(NSInteger)numberOfRowsInTableView:(NSTableView *)tableView{
@@ -157,7 +161,33 @@
                     return [first compare:second];
                 }];
                 
-                if ([[[sharedData.seriesDescription objectForKey:seriesName] objectForKey:@"run"] length] > 0) {
+                if ([[[sharedData.seriesDescription objectForKey:seriesName] objectForKey:@"suffix"] isEqualToString:@"(fmap)"]) {
+                    // give field maps special treatment (they come in threes, at least from our Siemens)
+                    if ([[[sharedData.seriesDescription objectForKey:seriesName] objectForKey:@"run"] length] > 0) {
+                        // if run number was specified, assume it's a repeat
+                        // discard all but the last three, leave last three for further work
+                        for(int i = 0; i < [repeated count] - 3; i++){
+                            [[repeated objectAtIndex:i] setDiscard:YES];
+                            [[repeated objectAtIndex:i] setValue:@"Discard - repeated" forKey:@"comment"];
+                        }
+                        repeated = [repeated subarrayWithRange:NSMakeRange([repeated count]-3, 3)];
+                    }
+                    // handle them by threes
+                    for (int i = 0; i < [repeated count]; i=i+3) {
+                        NSArray *triplet = [repeated subarrayWithRange:NSMakeRange(i, 3)];
+                        [self assignFieldMapSuffixes:triplet];
+                        for (OBOSeries *series in triplet){
+                            if ([repeated count] == 3) {
+                                // run number was given or there was only one run
+                                [series setValue:[[sharedData.seriesDescription objectForKey:seriesName] objectForKey:@"run"] forKey:@"run"];
+                            }
+                            else {
+                                [series setValue:[@(i/3 + 1) stringValue] forKey:@"run"];
+                            }
+                        }
+                    }
+                }
+                else if ([[[sharedData.seriesDescription objectForKey:seriesName] objectForKey:@"run"] length] > 0) {
                     // run number was specified for this study name, assume it's a repeat and discard all but latest
                     for (int i = 0; i < [repeated count] - 1; i++){
                         [[repeated objectAtIndex:i] setDiscard:YES];  // turns out this is the way to set bool flag :/
@@ -174,6 +204,73 @@
         }
         
         [sharedData.listOfSeries addObjectsFromArray:decoratedFromCurrentStudy];
+    }
+}
+
+-(void)assignFieldMapSuffixes:(NSArray*)fieldMapTriplet{
+    
+    DCMAttributeTag *echoTimeTag  = [DCMAttributeTag tagWithTagString:@"0018, 0081"]; // EchoTime
+    DCMAttributeTag *imageTypeTag = [DCMAttributeTag tagWithTagString:@"0008, 0008"]; // ImageType
+    
+    // ORIGINAL, PRIMARY, M, ND - Magnitude
+    // ORIGINAL, PRIMARY, P, ND - Phasediff
+    
+    double shorterTE = 0;
+    double longerTE = 0;
+    
+    double echoTime;
+    NSString *imageType;
+    
+    DCMAttribute *attr;
+    
+    // first run - get shorter and longer TE
+    for (OBOSeries *fieldMapSeries in fieldMapTriplet){
+        DicomSeries *series = [fieldMapSeries series];
+        NSArray *imagesArray = [[[series paths] allObjects] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+        NSString *firstImagePath = [imagesArray objectAtIndex:0];
+        DCMObject *dcmObj = [DCMObject objectWithContentsOfFile:firstImagePath decodingPixelData:NO];
+        
+        attr = [dcmObj attributeForTag:imageTypeTag];
+        imageType = [[attr values] objectAtIndex:2];
+        
+        attr = [dcmObj attributeForTag:echoTimeTag];
+        echoTime = [[attr value] doubleValue];
+        
+        if ([imageType isEqualToString:@"M"]){
+            if (echoTime > shorterTE){
+                shorterTE = longerTE;
+                longerTE = echoTime;
+            }
+            else {
+                shorterTE = echoTime;
+            }
+        }
+    }
+    
+    // second run - assign suffix
+    for (OBOSeries *fieldMapSeries in fieldMapTriplet){
+        DicomSeries *series = [fieldMapSeries series];
+        NSArray *imagesArray = [[[series paths] allObjects] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+        NSString *firstImagePath = [imagesArray objectAtIndex:0];
+        DCMObject *dcmObj = [DCMObject objectWithContentsOfFile:firstImagePath decodingPixelData:NO];
+        
+        attr = [dcmObj attributeForTag:imageTypeTag];
+        imageType = [[attr values] objectAtIndex:2];
+        
+        attr = [dcmObj attributeForTag:echoTimeTag];
+        echoTime = [[attr value] doubleValue];
+        
+        if ([imageType isEqualToString:@"P"]){
+            [fieldMapSeries setValue:@"phasediff" forKey:@"suffix"];
+        }
+        else if ([imageType isEqualToString:@"M"]){
+            if (echoTime == shorterTE){
+                [fieldMapSeries setValue:@"magnitude1" forKey:@"suffix"];
+            }
+            else {
+                [fieldMapSeries setValue:@"magnitude2" forKey:@"suffix"];
+            }
+        }
     }
 }
 
