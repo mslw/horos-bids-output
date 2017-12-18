@@ -19,6 +19,9 @@
 		906726191FE036390029F23C /* MappingSummaryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 906726171FE036390029F23C /* MappingSummaryController.m */; };
 		907F9B151F5D818500D6FA88 /* OBOSeries.h in Headers */ = {isa = PBXBuildFile; fileRef = 907F9B131F5D818500D6FA88 /* OBOSeries.h */; };
 		907F9B161F5D818500D6FA88 /* OBOSeries.m in Sources */ = {isa = PBXBuildFile; fileRef = 907F9B141F5D818500D6FA88 /* OBOSeries.m */; };
+		9089D0831FE824F1009C2B4A /* DCMAttributeTag.h in Headers */ = {isa = PBXBuildFile; fileRef = 9089D0801FE824F1009C2B4A /* DCMAttributeTag.h */; };
+		9089D0841FE824F1009C2B4A /* DCMAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = 9089D0811FE824F1009C2B4A /* DCMAttribute.h */; };
+		9089D0861FE827AE009C2B4A /* DCMObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 9089D0851FE827AE009C2B4A /* DCMObject.h */; };
 		90C755661FE2E8F500AD735B /* OBOExporter.h in Headers */ = {isa = PBXBuildFile; fileRef = 90C755641FE2E8F500AD735B /* OBOExporter.h */; };
 		90C755671FE2E8F500AD735B /* OBOExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C755651FE2E8F500AD735B /* OBOExporter.m */; };
 		90DD764D1F57868F003B0679 /* GeneralMappingWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 90DD764B1F57868F003B0679 /* GeneralMappingWindowController.h */; };
@@ -43,6 +46,9 @@
 		906726171FE036390029F23C /* MappingSummaryController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MappingSummaryController.m; sourceTree = "<group>"; };
 		907F9B131F5D818500D6FA88 /* OBOSeries.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBOSeries.h; sourceTree = "<group>"; };
 		907F9B141F5D818500D6FA88 /* OBOSeries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBOSeries.m; sourceTree = "<group>"; };
+		9089D0801FE824F1009C2B4A /* DCMAttributeTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCMAttributeTag.h; sourceTree = "<group>"; };
+		9089D0811FE824F1009C2B4A /* DCMAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCMAttribute.h; sourceTree = "<group>"; };
+		9089D0851FE827AE009C2B4A /* DCMObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCMObject.h; sourceTree = "<group>"; };
 		90C755641FE2E8F500AD735B /* OBOExporter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OBOExporter.h; sourceTree = "<group>"; };
 		90C755651FE2E8F500AD735B /* OBOExporter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OBOExporter.m; sourceTree = "<group>"; };
 		90DD764B1F57868F003B0679 /* GeneralMappingWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralMappingWindowController.h; sourceTree = "<group>"; };
@@ -68,6 +74,7 @@
 		089C166AFE841209C02AAC07 /* MyNewPlugin */ = {
 			isa = PBXGroup;
 			children = (
+				9089D07E1FE8248B009C2B4A /* DCM Framework */,
 				08FB77AFFE84173DC02AAC07 /* Classes */,
 				32C88E010371C26100C91783 /* Other Sources */,
 				089C167CFE841241C02AAC07 /* Resources */,
@@ -141,6 +148,16 @@
 			name = "Other Sources";
 			sourceTree = "<group>";
 		};
+		9089D07E1FE8248B009C2B4A /* DCM Framework */ = {
+			isa = PBXGroup;
+			children = (
+				9089D0851FE827AE009C2B4A /* DCMObject.h */,
+				9089D0811FE824F1009C2B4A /* DCMAttribute.h */,
+				9089D0801FE824F1009C2B4A /* DCMAttributeTag.h */,
+			);
+			path = "DCM Framework";
+			sourceTree = "<group>";
+		};
 		AB2C26750677B0C400A08910 /* BidsOutputFilter */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,12 +182,15 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9089D0861FE827AE009C2B4A /* DCMObject.h in Headers */,
 				906726181FE036390029F23C /* MappingSummaryController.h in Headers */,
 				90DD764D1F57868F003B0679 /* GeneralMappingWindowController.h in Headers */,
 				90C755661FE2E8F500AD735B /* OBOExporter.h in Headers */,
+				9089D0831FE824F1009C2B4A /* DCMAttributeTag.h in Headers */,
 				9027F62F1F58A98700189BE8 /* OBOCollectedData.h in Headers */,
 				9036C7781F56169B00693F76 /* OsirixBidsOutput_Prefix.pch in Headers */,
 				ABA48A650680BB600089EB4F /* BidsOutputFilter.h in Headers */,
+				9089D0841FE824F1009C2B4A /* DCMAttribute.h in Headers */,
 				907F9B151F5D818500D6FA88 /* OBOSeries.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
