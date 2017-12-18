@@ -80,12 +80,13 @@
         [path appendString: [self createSubjectLabel]];
         [path appendString:@"/"];
         
-        [path appendString:@"func/"];
         if ([self.session length] > 0){
             [path appendString:@"ses-"];
             [path appendString:self.session];
             [path appendString:@"/"];
         }
+        
+        [path appendString:@"func/"];
         
         // subject
         [path appendString:@"sub-"];
@@ -121,12 +122,13 @@
         [path appendString: [self createSubjectLabel]];
         [path appendString:@"/"];
         
-        [path appendString:@"anat/"];
         if ([self.session length] > 0){
             [path appendString:@"ses-"];
             [path appendString:self.session];
             [path appendString:@"/"];
         }
+        
+        [path appendString:@"anat/"];
         
         //subject
         [path appendString:@"sub-"];
@@ -160,12 +162,13 @@
         [path appendString: [self createSubjectLabel]];
         [path appendString:@"/"];
         
-        [path appendString:@"fmap/"];
         if ([self.session length] > 0){
             [path appendString:@"ses-"];
             [path appendString:self.session];
             [path appendString:@"/"];
         }
+        
+        [path appendString:@"fmap/"];
         
         //subject
         [path appendString:@"sub-"];
