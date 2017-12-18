@@ -12,4 +12,6 @@
 @property (weak) IBOutlet NSWindow *window;
 @property (weak) IBOutlet NSTableView *tableView;
 
+- (IBAction)exportToBids:(id)sender;
+
 @end

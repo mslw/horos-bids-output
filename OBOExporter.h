@@ -8,8 +8,10 @@
 #import <Foundation/Foundation.h>
 #import <OsiriXAPI/DicomSeries.h>
 
+#import "OBOSeries.h"
+
 @interface OBOExporter : NSObject
 
-+(void) exportSeries:(DicomSeries*) series;
++(void) exportSeries:(OBOSeries*) series;
 
 @end

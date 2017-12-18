@@ -11,6 +11,7 @@
 
 #import "OBOCollectedData.h"
 #import "OBOSeries.h"
+#import "OBOExporter.h"
 
 @implementation MappingSummaryController
 
@@ -48,6 +49,24 @@
     }
     
     return nil;
+}
+
+-(IBAction)exportToBids:(id)sender{
+    OBOCollectedData *sharedData = [OBOCollectedData sharedManager];
+    for (OBOSeries *currentSeries in [sharedData listOfSeries]) {
+        if ( ![currentSeries discard] && [[currentSeries getBidsPath] length] > 0) {
+            [OBOExporter exportSeries:currentSeries];
+        }
+    }
+    // TODO: start & stop the spinner
+    
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert addButtonWithTitle:@"OK"];
+    [alert setMessageText:@"Finished"];
+    [alert runModal];
+    
+    // copying dicoms worked, conversion did not
+    
 }
 
 @end
