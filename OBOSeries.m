@@ -74,6 +74,11 @@
     }
     else if ([self.suffix isEqualToString:@"bold"]){
         
+        // folders
+        [path appendString:@"sub-"];
+        [path appendString: [self createSubjectLabel]];
+        [path appendString:@"/"];
+        
         [path appendString:@"func/"];
         if ([self.session length] > 0){
             [path appendString:@"ses-"];
@@ -109,6 +114,11 @@
         [path appendString:@"_bold"];
     }
     else if ([anatSuffixList containsObject:self.suffix]){
+        
+        // folders
+        [path appendString:@"sub-"];
+        [path appendString: [self createSubjectLabel]];
+        [path appendString:@"/"];
         
         [path appendString:@"anat/"];
         if ([self.session length] > 0){
