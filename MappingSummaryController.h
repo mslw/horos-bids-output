@@ -11,6 +11,7 @@
 
 @property (weak) IBOutlet NSWindow *window;
 @property (weak) IBOutlet NSTableView *tableView;
+@property (weak) IBOutlet NSProgressIndicator *spinner;
 
 - (IBAction)exportToBids:(id)sender;
 

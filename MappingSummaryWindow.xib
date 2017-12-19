@@ -206,6 +206,7 @@
         </window>
         <customObject id="p7C-7X-6ZQ" customClass="MappingSummaryController">
             <connections>
+                <outlet property="spinner" destination="Bwr-TH-BwF" id="4j0-jV-2TD"/>
                 <outlet property="tableView" destination="Pw8-xL-rQt" id="TyS-eG-kcF"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="7ZZ-HB-LmI"/>
             </connections>

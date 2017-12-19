@@ -52,20 +52,21 @@
 }
 
 -(IBAction)exportToBids:(id)sender{
+    [[self spinner] startAnimation:self];
+    
     OBOCollectedData *sharedData = [OBOCollectedData sharedManager];
     for (OBOSeries *currentSeries in [sharedData listOfSeries]) {
         if ( ![currentSeries discard] && [[currentSeries getBidsPath] length] > 0) {
             [OBOExporter exportSeries:currentSeries];
         }
     }
-    // TODO: start & stop the spinner
+    
+    [[self spinner] stopAnimation:self];
     
     NSAlert *alert = [[NSAlert alloc] init];
     [alert addButtonWithTitle:@"OK"];
     [alert setMessageText:@"Finished"];
     [alert runModal];
-    
-    // copying dicoms worked, conversion did not
     
 }
 
