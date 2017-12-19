@@ -1,4 +1,4 @@
-# Osirix Bids Output Extension
+# Horos (Osirix) Bids Output Extension
 OsiriX plugin for BIDS output. Created during Stanford Center for Reproducible Neuroscience coding sprint 2017.
 Work in progress.
 
