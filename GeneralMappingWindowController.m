@@ -155,6 +155,7 @@
             if ([[decoratedSeries suffix] isEqualToString:@"bold"]){
                 if ([[[decoratedSeries series] numberOfImages] isLessThan:minimum]){
                     [decoratedSeries setDiscard:YES];
+                    [decoratedSeries setValue:@"TooShort" forKey:@"comment"];
                 }
             }
         }

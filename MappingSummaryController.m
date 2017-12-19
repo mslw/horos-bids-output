@@ -42,6 +42,11 @@
         [cellView.textField setStringValue:[[currentSeries series] valueForKey:@"id"]];
         return cellView;
     }
+    else if ([identifier isEqualToString:@"CommentCol"]){
+        NSTableCellView *cellView = [tableView makeViewWithIdentifier:@"CommentCell" owner:self];
+        [cellView.textField setStringValue:[currentSeries comment]];
+        return cellView;
+    }
     else if ([identifier isEqualToString:@"BidsCol"]) {
         NSTableCellView *cellView = [tableView makeViewWithIdentifier:@"BidsCell" owner:self];
         [cellView.textField setStringValue:[currentSeries getBidsPath]];
