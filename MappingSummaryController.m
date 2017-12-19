@@ -52,12 +52,15 @@
 }
 
 -(IBAction)exportToBids:(id)sender{
+    
+    BOOL compress = ([[self gzCheckBox] state] == NSOnState);
+    
     [[self spinner] startAnimation:self];
     
     OBOCollectedData *sharedData = [OBOCollectedData sharedManager];
     for (OBOSeries *currentSeries in [sharedData listOfSeries]) {
         if ( ![currentSeries discard] && [[currentSeries getBidsPath] length] > 0) {
-            [OBOExporter exportSeries:currentSeries];
+            [OBOExporter exportSeries:currentSeries useCompression:&compress];
         }
     }
     

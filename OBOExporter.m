@@ -9,7 +9,7 @@
 
 @implementation OBOExporter
 
-+(void)exportSeries:(OBOSeries*) series{
++(void)exportSeries:(OBOSeries*) series useCompression:(BOOL *)answer{
     
     NSString *bidsPath = [series getBidsPath];
     NSString *bidsFolder = [bidsPath stringByDeletingLastPathComponent];  // deletes separator as well
@@ -37,6 +37,14 @@
     // append slash - probably not necessary
     // outputDirectory = [outputDirectory stringByAppendingString:@"/"];
     
+    NSString *compression;
+    if (answer){
+        compression = @"y";  // y - pigz, i - internal
+    }
+    else {
+        compression = @"n";
+    }
+    
     // convert DICOM into that directory
     NSTask *conversionTask = [[NSTask alloc] init];
     
@@ -47,7 +55,7 @@
     NSArray *args = [NSArray arrayWithObjects:
                      @"-o", outputDirectory,
                      @"-f", bidsFileName,
-                     @"-z", @"n",
+                     @"-z", compression,
                      [NSString pathWithComponents:@[destinationFolder, @"dicom", bidsPath]],
                      nil];
     // todo: allow toggling conversion, for now using -z n (dcm2niix default)
