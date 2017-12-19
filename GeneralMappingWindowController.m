@@ -149,7 +149,18 @@
             [namesFromCurrentStudy addObject:currentSeries.name];  // probably should treat fmaps separately
         }
         
+        // discard BOLD series from current study if they have less volumes than requested minimum
+        NSNumber *minimum = [NSNumber numberWithInteger:[[self minimumBoldField] integerValue]];
+        for (OBOSeries *decoratedSeries in decoratedFromCurrentStudy){
+            if ([[decoratedSeries suffix] isEqualToString:@"bold"]){
+                if ([[[decoratedSeries series] numberOfImages] isLessThan:minimum]){
+                    [decoratedSeries setDiscard:YES];
+                }
+            }
+        }
+        
         // handle series which had the same series name: add run numbers (if not given) or discard all but the last
+        NSNumber *runNumber;
         for (NSString *seriesName in [namesFromCurrentStudy objectEnumerator]) {
             if ([namesFromCurrentStudy countForObject:seriesName] > 1) { // series with this name has been repeated
                 // get (decorated) series matching this name
@@ -196,8 +207,12 @@
                 }
                 else {
                     // create and insert run numbers
+                    runNumber = [NSNumber numberWithInt:1];  // keep it separate from iterator because some runs may have been discarded for different reasons
                     for (int i = 0; i < [repeated count]; i++){
-                        [[repeated objectAtIndex:i] setValue:[@(i+1) stringValue] forKey:@"run"];
+                        if (! [[repeated objectAtIndex:i] discard]) {
+                            [[repeated objectAtIndex:i] setValue:[runNumber stringValue] forKey:@"run"];
+                            runNumber = [NSNumber numberWithInt:[runNumber intValue]+1];
+                        }
                     }
                 }
             }
