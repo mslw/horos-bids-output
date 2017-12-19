@@ -200,10 +200,10 @@
                         <rect key="frame" x="953" y="23" width="16" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </progressIndicator>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EVd-Hi-ezb">
-                        <rect key="frame" x="599" y="21" width="127" height="18"/>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eb1-Fd-Maf">
+                        <rect key="frame" x="597" y="22" width="127" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="check" title="Use compression" bezelStyle="regularSquare" imagePosition="left" inset="2" id="XR1-or-JHr">
+                        <buttonCell key="cell" type="check" title="Use compression" bezelStyle="regularSquare" imagePosition="left" inset="2" id="L7c-bx-VqA">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
@@ -214,6 +214,7 @@
         </window>
         <customObject id="p7C-7X-6ZQ" customClass="MappingSummaryController">
             <connections>
+                <outlet property="gzCheckBox" destination="eb1-Fd-Maf" id="7Un-gp-GCd"/>
                 <outlet property="spinner" destination="Bwr-TH-BwF" id="4j0-jV-2TD"/>
                 <outlet property="tableView" destination="Pw8-xL-rQt" id="TyS-eG-kcF"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="7ZZ-HB-LmI"/>

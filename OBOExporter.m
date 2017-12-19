@@ -9,7 +9,7 @@
 
 @implementation OBOExporter
 
-+(void)exportSeries:(OBOSeries*) series useCompression:(BOOL *)answer{
++(void)exportSeries:(OBOSeries*) series useCompression:(BOOL)answer{
     
     NSString *bidsPath = [series getBidsPath];
     NSString *bidsFolder = [bidsPath stringByDeletingLastPathComponent];  // deletes separator as well

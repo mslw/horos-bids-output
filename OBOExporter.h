@@ -12,6 +12,6 @@
 
 @interface OBOExporter : NSObject
 
-+(void) exportSeries:(OBOSeries*) series useCompression:(BOOL*)answer;
++(void) exportSeries:(OBOSeries*) series useCompression:(BOOL)answer;
 
 @end

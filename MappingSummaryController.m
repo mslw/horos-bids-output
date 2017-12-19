@@ -60,7 +60,7 @@
     OBOCollectedData *sharedData = [OBOCollectedData sharedManager];
     for (OBOSeries *currentSeries in [sharedData listOfSeries]) {
         if ( ![currentSeries discard] && [[currentSeries getBidsPath] length] > 0) {
-            [OBOExporter exportSeries:currentSeries useCompression:&compress];
+            [OBOExporter exportSeries:currentSeries useCompression:compress];
         }
     }
     
