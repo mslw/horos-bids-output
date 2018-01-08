@@ -13,6 +13,7 @@
 
 #import "OBOCollectedData.h"
 #import "OBOSeries.h"
+#import "MappingSummaryWindowController.h"
 
 #import "DCM Framework/DCMObject.h"
 #import "DCM Framework/DCMAttribute.h"
@@ -124,8 +125,7 @@
     
     [self annotateAllSeries];
     
-    _SummaryWindow = [[NSWindowController alloc] initWithWindowNibName:@"MappingSummaryWindow" owner:self];
-    // not sure about who should be the owner, but for now it's this class
+    _SummaryWindow = [[MappingSummaryWindowController alloc] initWithWindowNibName:@"MappingSummaryWindow"];
     [_SummaryWindow showWindow:self];
     
 }

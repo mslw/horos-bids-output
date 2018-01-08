@@ -26,6 +26,8 @@
 		90C755671FE2E8F500AD735B /* OBOExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C755651FE2E8F500AD735B /* OBOExporter.m */; };
 		90DD764D1F57868F003B0679 /* GeneralMappingWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 90DD764B1F57868F003B0679 /* GeneralMappingWindowController.h */; };
 		90DD764E1F57868F003B0679 /* GeneralMappingWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DD764C1F57868F003B0679 /* GeneralMappingWindowController.m */; };
+		90E60D672003A04F0052610C /* MappingSummaryWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 90E60D652003A04F0052610C /* MappingSummaryWindowController.h */; };
+		90E60D682003A04F0052610C /* MappingSummaryWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E60D662003A04F0052610C /* MappingSummaryWindowController.m */; };
 		ABA48A650680BB600089EB4F /* BidsOutputFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = ABA48A640680BB600089EB4F /* BidsOutputFilter.h */; };
 		ABA48A670680BB690089EB4F /* BidsOutputFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA48A660680BB690089EB4F /* BidsOutputFilter.m */; };
 /* End PBXBuildFile section */
@@ -53,6 +55,8 @@
 		90C755651FE2E8F500AD735B /* OBOExporter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OBOExporter.m; sourceTree = "<group>"; };
 		90DD764B1F57868F003B0679 /* GeneralMappingWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralMappingWindowController.h; sourceTree = "<group>"; };
 		90DD764C1F57868F003B0679 /* GeneralMappingWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralMappingWindowController.m; sourceTree = "<group>"; };
+		90E60D652003A04F0052610C /* MappingSummaryWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MappingSummaryWindowController.h; sourceTree = "<group>"; };
+		90E60D662003A04F0052610C /* MappingSummaryWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MappingSummaryWindowController.m; sourceTree = "<group>"; };
 		AB5D36050680E57E00F4007A /* OsirixBidsOutput.osirixplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OsirixBidsOutput.osirixplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABA48A640680BB600089EB4F /* BidsOutputFilter.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = BidsOutputFilter.h; sourceTree = "<group>"; };
 		ABA48A660680BB690089EB4F /* BidsOutputFilter.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = BidsOutputFilter.m; sourceTree = "<group>"; };
@@ -171,6 +175,8 @@
 				906726171FE036390029F23C /* MappingSummaryController.m */,
 				9027F6371F58CE7900189BE8 /* GeneralMappingWindow.xib */,
 				906726141FE032510029F23C /* MappingSummaryWindow.xib */,
+				90E60D652003A04F0052610C /* MappingSummaryWindowController.h */,
+				90E60D662003A04F0052610C /* MappingSummaryWindowController.m */,
 			);
 			name = BidsOutputFilter;
 			sourceTree = "<group>";
@@ -187,6 +193,7 @@
 				90DD764D1F57868F003B0679 /* GeneralMappingWindowController.h in Headers */,
 				90C755661FE2E8F500AD735B /* OBOExporter.h in Headers */,
 				9089D0831FE824F1009C2B4A /* DCMAttributeTag.h in Headers */,
+				90E60D672003A04F0052610C /* MappingSummaryWindowController.h in Headers */,
 				9027F62F1F58A98700189BE8 /* OBOCollectedData.h in Headers */,
 				9036C7781F56169B00693F76 /* OsirixBidsOutput_Prefix.pch in Headers */,
 				ABA48A650680BB600089EB4F /* BidsOutputFilter.h in Headers */,
@@ -273,6 +280,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90E60D682003A04F0052610C /* MappingSummaryWindowController.m in Sources */,
 				906726191FE036390029F23C /* MappingSummaryController.m in Sources */,
 				90DD764E1F57868F003B0679 /* GeneralMappingWindowController.m in Sources */,
 				907F9B161F5D818500D6FA88 /* OBOSeries.m in Sources */,
