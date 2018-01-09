@@ -19,7 +19,6 @@
 
 - (void)windowDidLoad {
     [super windowDidLoad];
-    // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
     
     NSString* defaultConverterPath = [NSHomeDirectory() stringByAppendingPathComponent:@"dcm2niix"];
     
@@ -59,14 +58,20 @@
 
 -(IBAction)exportToBids:(id)sender{
     
+    // get parameters from the UI
     BOOL compress = ([[self gzCheckBox] state] == NSOnState);
+    NSString *converterPath = [_converterTextField stringValue];
+    NSString *bidsRootPath = [_bidsRootTextField stringValue];
     
     [[self spinner] startAnimation:self];
     
     OBOCollectedData *sharedData = [OBOCollectedData sharedManager];
     for (OBOSeries *currentSeries in [sharedData listOfSeries]) {
         if ( ![currentSeries discard] && [[currentSeries getBidsPath] length] > 0) {
-            [OBOExporter exportSeries:currentSeries useCompression:compress];
+            [OBOExporter exportSeries:currentSeries
+                     usingConverterAt:converterPath
+                             toFolder:bidsRootPath
+                      withCompression:compress];
         }
     }
     
