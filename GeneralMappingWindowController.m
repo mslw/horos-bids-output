@@ -144,9 +144,8 @@
             OBOSeries *decoratedSeries = [[OBOSeries alloc] initWithSeries:currentSeries params:[sharedData.seriesDescription objectForKey:currentSeries.name]];
             [decoratedSeries setValue:currentStudy.name forKey:@"participant"];
             // ENH: possibly store in originalName field and allow changing participant field
-            //[sharedData.listOfSeries addObject:decoratedSeries];
             [decoratedFromCurrentStudy addObject:decoratedSeries];
-            [namesFromCurrentStudy addObject:currentSeries.name];  // probably should treat fmaps separately
+            [namesFromCurrentStudy addObject:currentSeries.name];
         }
         
         // discard BOLD series from current study if they have less volumes than requested minimum
