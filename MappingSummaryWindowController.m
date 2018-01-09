@@ -7,6 +7,10 @@
 
 #import "MappingSummaryWindowController.h"
 
+#import "OBOCollectedData.h"
+#import "OBOSeries.h"
+#import "OBOExporter.h"
+
 @interface MappingSummaryWindowController ()
 
 @end
@@ -51,6 +55,28 @@
         bidsRootPath = [bidsRootPath stringByReplacingOccurrencesOfString:@"file://" withString:@""];
         [_bidsRootTextField setStringValue:bidsRootPath];
     }
+}
+
+-(IBAction)exportToBids:(id)sender{
+    
+    BOOL compress = ([[self gzCheckBox] state] == NSOnState);
+    
+    [[self spinner] startAnimation:self];
+    
+    OBOCollectedData *sharedData = [OBOCollectedData sharedManager];
+    for (OBOSeries *currentSeries in [sharedData listOfSeries]) {
+        if ( ![currentSeries discard] && [[currentSeries getBidsPath] length] > 0) {
+            [OBOExporter exportSeries:currentSeries useCompression:compress];
+        }
+    }
+    
+    [[self spinner] stopAnimation:self];
+    
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert addButtonWithTitle:@"OK"];
+    [alert setMessageText:@"Finished"];
+    [alert runModal];
+    
 }
 
 @end

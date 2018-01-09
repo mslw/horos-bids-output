@@ -11,9 +11,5 @@
 
 @property (weak) IBOutlet NSWindow *window;
 @property (weak) IBOutlet NSTableView *tableView;
-@property (weak) IBOutlet NSProgressIndicator *spinner;
-@property (weak) IBOutlet NSButton *gzCheckBox;
-
-- (IBAction)exportToBids:(id)sender;
 
 @end
