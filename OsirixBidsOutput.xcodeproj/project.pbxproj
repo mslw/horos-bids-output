@@ -17,6 +17,29 @@
 		906726151FE032510029F23C /* MappingSummaryWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 906726141FE032510029F23C /* MappingSummaryWindow.xib */; };
 		906726181FE036390029F23C /* MappingSummaryController.h in Headers */ = {isa = PBXBuildFile; fileRef = 906726161FE036390029F23C /* MappingSummaryController.h */; };
 		906726191FE036390029F23C /* MappingSummaryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 906726171FE036390029F23C /* MappingSummaryController.m */; };
+		907554562006115300751E15 /* DCMObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 9089D0851FE827AE009C2B4A /* DCMObject.h */; };
+		907554572006115300751E15 /* MappingSummaryController.h in Headers */ = {isa = PBXBuildFile; fileRef = 906726161FE036390029F23C /* MappingSummaryController.h */; };
+		907554582006115300751E15 /* GeneralMappingWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 90DD764B1F57868F003B0679 /* GeneralMappingWindowController.h */; };
+		907554592006115300751E15 /* OBOExporter.h in Headers */ = {isa = PBXBuildFile; fileRef = 90C755641FE2E8F500AD735B /* OBOExporter.h */; };
+		9075545A2006115300751E15 /* DCMAttributeTag.h in Headers */ = {isa = PBXBuildFile; fileRef = 9089D0801FE824F1009C2B4A /* DCMAttributeTag.h */; };
+		9075545B2006115300751E15 /* MappingSummaryWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 90E60D652003A04F0052610C /* MappingSummaryWindowController.h */; };
+		9075545C2006115300751E15 /* OBOCollectedData.h in Headers */ = {isa = PBXBuildFile; fileRef = 9027F62D1F58A98700189BE8 /* OBOCollectedData.h */; };
+		9075545D2006115300751E15 /* OsirixBidsOutput_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 9036C7771F56169B00693F76 /* OsirixBidsOutput_Prefix.pch */; };
+		9075545E2006115300751E15 /* BidsOutputFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = ABA48A640680BB600089EB4F /* BidsOutputFilter.h */; };
+		9075545F2006115300751E15 /* DCMAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = 9089D0811FE824F1009C2B4A /* DCMAttribute.h */; };
+		907554602006115300751E15 /* OBOSeries.h in Headers */ = {isa = PBXBuildFile; fileRef = 907F9B131F5D818500D6FA88 /* OBOSeries.h */; };
+		907554622006115300751E15 /* MappingSummaryWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 906726141FE032510029F23C /* MappingSummaryWindow.xib */; };
+		907554632006115300751E15 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C167DFE841241C02AAC07 /* InfoPlist.strings */; };
+		907554642006115300751E15 /* GeneralMappingWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9027F6371F58CE7900189BE8 /* GeneralMappingWindow.xib */; };
+		907554662006115300751E15 /* MappingSummaryWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E60D662003A04F0052610C /* MappingSummaryWindowController.m */; };
+		907554672006115300751E15 /* MappingSummaryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 906726171FE036390029F23C /* MappingSummaryController.m */; };
+		907554682006115300751E15 /* GeneralMappingWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DD764C1F57868F003B0679 /* GeneralMappingWindowController.m */; };
+		907554692006115300751E15 /* OBOSeries.m in Sources */ = {isa = PBXBuildFile; fileRef = 907F9B141F5D818500D6FA88 /* OBOSeries.m */; };
+		9075546A2006115300751E15 /* OBOCollectedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9027F62E1F58A98700189BE8 /* OBOCollectedData.m */; };
+		9075546B2006115300751E15 /* BidsOutputFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA48A660680BB690089EB4F /* BidsOutputFilter.m */; };
+		9075546C2006115300751E15 /* OBOExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C755651FE2E8F500AD735B /* OBOExporter.m */; };
+		9075546E2006115300751E15 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
+		9075546F2006115300751E15 /* OsiriXAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8420023112E829A200E1E9CE /* OsiriXAPI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		907F9B151F5D818500D6FA88 /* OBOSeries.h in Headers */ = {isa = PBXBuildFile; fileRef = 907F9B131F5D818500D6FA88 /* OBOSeries.h */; };
 		907F9B161F5D818500D6FA88 /* OBOSeries.m in Sources */ = {isa = PBXBuildFile; fileRef = 907F9B141F5D818500D6FA88 /* OBOSeries.m */; };
 		9089D0831FE824F1009C2B4A /* DCMAttributeTag.h in Headers */ = {isa = PBXBuildFile; fileRef = 9089D0801FE824F1009C2B4A /* DCMAttributeTag.h */; };
@@ -46,6 +69,8 @@
 		906726141FE032510029F23C /* MappingSummaryWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MappingSummaryWindow.xib; sourceTree = "<group>"; };
 		906726161FE036390029F23C /* MappingSummaryController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MappingSummaryController.h; sourceTree = "<group>"; };
 		906726171FE036390029F23C /* MappingSummaryController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MappingSummaryController.m; sourceTree = "<group>"; };
+		907554742006115300751E15 /* HorosBidsOutput.plugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HorosBidsOutput.plugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		907554752006115300751E15 /* HorosBidsOutput-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "HorosBidsOutput-Info.plist"; path = "/Users/michal/Documents/osirix-bids-output/HorosBidsOutput-Info.plist"; sourceTree = "<absolute>"; };
 		907F9B131F5D818500D6FA88 /* OBOSeries.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBOSeries.h; sourceTree = "<group>"; };
 		907F9B141F5D818500D6FA88 /* OBOSeries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBOSeries.m; sourceTree = "<group>"; };
 		9089D0801FE824F1009C2B4A /* DCMAttributeTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCMAttributeTag.h; sourceTree = "<group>"; };
@@ -72,6 +97,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9075546D2006115300751E15 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9075546E2006115300751E15 /* Cocoa.framework in Frameworks */,
+				9075546F2006115300751E15 /* OsiriXAPI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -84,6 +118,7 @@
 				089C167CFE841241C02AAC07 /* Resources */,
 				089C1671FE841209C02AAC07 /* Frameworks and Libraries */,
 				19C28FB8FE9D52D311CA2CBB /* Products */,
+				907554752006115300751E15 /* HorosBidsOutput-Info.plist */,
 			);
 			name = MyNewPlugin;
 			sourceTree = "<group>";
@@ -140,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				AB5D36050680E57E00F4007A /* OsirixBidsOutput.osirixplugin */,
+				907554742006115300751E15 /* HorosBidsOutput.plugin */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -202,6 +238,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		907554552006115300751E15 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				907554562006115300751E15 /* DCMObject.h in Headers */,
+				907554572006115300751E15 /* MappingSummaryController.h in Headers */,
+				907554582006115300751E15 /* GeneralMappingWindowController.h in Headers */,
+				907554592006115300751E15 /* OBOExporter.h in Headers */,
+				9075545A2006115300751E15 /* DCMAttributeTag.h in Headers */,
+				9075545B2006115300751E15 /* MappingSummaryWindowController.h in Headers */,
+				9075545C2006115300751E15 /* OBOCollectedData.h in Headers */,
+				9075545D2006115300751E15 /* OsirixBidsOutput_Prefix.pch in Headers */,
+				9075545E2006115300751E15 /* BidsOutputFilter.h in Headers */,
+				9075545F2006115300751E15 /* DCMAttribute.h in Headers */,
+				907554602006115300751E15 /* OBOSeries.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -223,6 +277,26 @@
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = Invert;
 			productReference = AB5D36050680E57E00F4007A /* OsirixBidsOutput.osirixplugin */;
+			productType = "com.apple.product-type.bundle";
+		};
+		907554542006115300751E15 /* HorosBidsOutput */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 907554712006115300751E15 /* Build configuration list for PBXNativeTarget "HorosBidsOutput" */;
+			buildPhases = (
+				907554552006115300751E15 /* Headers */,
+				907554612006115300751E15 /* Resources */,
+				907554652006115300751E15 /* Sources */,
+				9075546D2006115300751E15 /* Frameworks */,
+				907554702006115300751E15 /* Rez */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HorosBidsOutput;
+			productInstallPath = "$(HOME)/Library/Bundles";
+			productName = Invert;
+			productReference = 907554742006115300751E15 /* HorosBidsOutput.plugin */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -248,6 +322,7 @@
 			projectRoot = "";
 			targets = (
 				8D5B49AC048680CD000E48DA /* OsirixBidsOutput */,
+				907554542006115300751E15 /* HorosBidsOutput */,
 			);
 		};
 /* End PBXProject section */
@@ -263,10 +338,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		907554612006115300751E15 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				907554622006115300751E15 /* MappingSummaryWindow.xib in Resources */,
+				907554632006115300751E15 /* InfoPlist.strings in Resources */,
+				907554642006115300751E15 /* GeneralMappingWindow.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXRezBuildPhase section */
 		8D5B49B5048680CD000E48DA /* Rez */ = {
+			isa = PBXRezBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		907554702006115300751E15 /* Rez */ = {
 			isa = PBXRezBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -290,6 +382,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		907554652006115300751E15 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				907554662006115300751E15 /* MappingSummaryWindowController.m in Sources */,
+				907554672006115300751E15 /* MappingSummaryController.m in Sources */,
+				907554682006115300751E15 /* GeneralMappingWindowController.m in Sources */,
+				907554692006115300751E15 /* OBOSeries.m in Sources */,
+				9075546A2006115300751E15 /* OBOCollectedData.m in Sources */,
+				9075546B2006115300751E15 /* BidsOutputFilter.m in Sources */,
+				9075546C2006115300751E15 /* OBOExporter.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
@@ -304,6 +410,86 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		907554722006115300751E15 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = OsirixBidsOutput_Prefix.pch;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "HorosBidsOutput-Info.plist";
+				INSTALL_PATH = "@executable_path/../Plug-ins";
+				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_STYLE = Bundle;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-undefined",
+					dynamic_lookup,
+				);
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = horosplugin;
+				ZERO_LINK = NO;
+			};
+			name = Development;
+		};
+		907554732006115300751E15 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = OsirixBidsOutput_Prefix.pch;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "HorosBidsOutput-Info.plist";
+				INSTALL_PATH = "@executable_path/../Plug-ins";
+				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_STYLE = Bundle;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-undefined",
+					dynamic_lookup,
+				);
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = horosplugin;
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
 		CE6A9A9108AC841300D0C1EE /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -441,6 +627,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		907554712006115300751E15 /* Build configuration list for PBXNativeTarget "HorosBidsOutput" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				907554722006115300751E15 /* Development */,
+				907554732006115300751E15 /* Deployment */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Development;
+		};
 		CE6A9A9008AC841300D0C1EE /* Build configuration list for PBXNativeTarget "OsirixBidsOutput" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
