@@ -1,11 +1,12 @@
 # Horos (Osirix) Bids Output Extension
-OsiriX / Horos plugin for BIDS output. Created during Stanford Center for Reproducible Neuroscience coding sprint 2017.
-Work in progress.
+OsiriX / Horos plugin for BIDS output. Created during Stanford Center for Reproducible Neuroscience coding sprint 2017. The plugin allows creation of fundamental BIDS structure from within Horos GUI, based on a mapping between sequence name and BIDS terms entered by user.
+
+![Plugin interface](/images/BOE_screenshot.png)
 
 ## Information for users
 
 ### Installation
-Download the HorosBidsOutput.horosplugin from releases page (not available yet). If you have Horos installed, double-clicking the .horosplugin file should launch horos with a prompt and install the plugin for the current user.
+Download the HorosBidsOutput.horosplugin from releases page. If you have Horos installed, double-clicking the .horosplugin file should launch horos with a prompt and install the plugin for the current user.
 
 Alternatively, the file can be manually placed in: `~/Library/Application Support/OsiriX/Plugins/`. Regardless of the installation method, the plugin can then be made available to all users through Horos' Plugins Manager.
 
@@ -23,6 +24,9 @@ OsiriX and Horos are DICOM image viewers / database browsers. Horos is based upo
 **Horos**: [website](https://www.horosproject.org), [github](https://github.com/horosproject/horos)
 
 **OsiriX**: [website](http://www.osirix-viewer.com), [github](https://github.com/pixmeo/osirix)
+
+### About Brain Imaging Data Structure
+See [bids.neuroimaging.io](bids.neuroimaging.io)
 
 ## Information for developers
 
