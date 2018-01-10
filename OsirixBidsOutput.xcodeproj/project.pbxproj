@@ -69,7 +69,7 @@
 		906726141FE032510029F23C /* MappingSummaryWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MappingSummaryWindow.xib; sourceTree = "<group>"; };
 		906726161FE036390029F23C /* MappingSummaryController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MappingSummaryController.h; sourceTree = "<group>"; };
 		906726171FE036390029F23C /* MappingSummaryController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MappingSummaryController.m; sourceTree = "<group>"; };
-		907554742006115300751E15 /* HorosBidsOutput.plugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HorosBidsOutput.plugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		907554742006115300751E15 /* HorosBidsOutput.plugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = HorosBidsOutput.plugin; path = HorosBidsOutput.horosplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		907554752006115300751E15 /* HorosBidsOutput-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "HorosBidsOutput-Info.plist"; path = "/Users/michal/Documents/osirix-bids-output/HorosBidsOutput-Info.plist"; sourceTree = "<absolute>"; };
 		907F9B131F5D818500D6FA88 /* OBOSeries.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBOSeries.h; sourceTree = "<group>"; };
 		907F9B141F5D818500D6FA88 /* OBOSeries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBOSeries.m; sourceTree = "<group>"; };
