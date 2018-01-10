@@ -70,6 +70,14 @@
     // initialise the singleton shared data storage
     OBOCollectedData *sharedData = [OBOCollectedData sharedManager];
     
+    // clean up possible leftovers from previous usages
+    // (closing plugin window doesn't clear the underlying data, possibly should implement a delegate
+    if ([sharedData.listOfStudies count] > 0) {
+        [sharedData.listOfStudies removeAllObjects];
+        [sharedData.seriesDescription removeAllObjects];
+        [sharedData.listOfSeries removeAllObjects];
+    }
+    
     // store the selected studies for later access
     [sharedData.listOfStudies addObjectsFromArray:selectedStudies];
     
