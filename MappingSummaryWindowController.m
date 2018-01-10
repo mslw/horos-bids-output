@@ -77,6 +77,24 @@
     NSString *converterPath = [_converterTextField stringValue];
     NSString *bidsRootPath = [_bidsRootTextField stringValue];
     
+    // check if paths seem ok
+    if ([bidsRootPath length] == 0 || ![[NSFileManager defaultManager] isExecutableFileAtPath:converterPath]){
+        NSAlert *warningAlert = [[NSAlert alloc] init];
+        [warningAlert addButtonWithTitle:@"OK"];
+        [warningAlert setAlertStyle:NSWarningAlertStyle];
+        
+        if ([bidsRootPath length] == 0){
+            [warningAlert setMessageText:@"Empty BIDS root path"];
+            [warningAlert setInformativeText:@"Specify the path where BIDS root should be."];
+        } else {
+            [warningAlert setMessageText:@"Invalid dcm2niix executable"];
+            [warningAlert setInformativeText:@"Either path is incorrect or the chosen file can't be executed by the user."];
+        }
+        
+        [warningAlert runModal];
+        return;
+    }
+    
     [[self spinner] startAnimation:self];
     
     OBOCollectedData *sharedData = [OBOCollectedData sharedManager];
