@@ -28,4 +28,14 @@
 
 +(void) exportSeries:(OBOSeries*) series usingConverterAt:(NSString*) converterPath toFolder:(NSString*) bidsRoot withCompression:(BOOL)answer;
 
++(BOOL) createTemporaryDicomDirectoryAtPath:(NSString*) path;
+/** Create a .dicom folder inside a given directory if it didn't exist before
+ *
+ * @return YES if the dictionary was created, NO if it existed before
+ */
+
++(void) removeTemporaryDicomDirectoryAtPath:(NSString*) path;
+/** Remove .dicom folder inside a given directory
+ */
+
 @end

@@ -95,6 +95,37 @@
         return;
     }
     
+    // create a temporary directory for dicoms, do not run conversion if directory already exists
+    BOOL createdDicomDir;
+    createdDicomDir = [OBOExporter createTemporaryDicomDirectoryAtPath:bidsRootPath];
+    
+    if (!createdDicomDir) {
+        // run an NSAlert asking for permission to delete .dicom and create it again
+        NSAlert *warningAlert = [[NSAlert alloc] init];
+        [warningAlert setAlertStyle:NSWarningAlertStyle];
+        [warningAlert addButtonWithTitle:@"Clear .dicom and proceed"];
+        [warningAlert addButtonWithTitle:@"Cancel"];
+        [warningAlert setMessageText:@"Error when creating temporary .dicom directory"];
+        [warningAlert setInformativeText:@"It appears that .dicom directory in your Bids Root already exists and may cause export conflicts. Make sure to remove it before converting.\n This error may also occur if the directory didn't exist, but could not be created."];
+        
+        if ([warningAlert runModal] == NSAlertFirstButtonReturn) {
+            // user chose to remove dicomdir, try removing & creating again
+            [OBOExporter removeTemporaryDicomDirectoryAtPath:bidsRootPath];
+            createdDicomDir = [OBOExporter createTemporaryDicomDirectoryAtPath:bidsRootPath];
+            if (!createdDicomDir) {
+                // still unable to create directory, possibly because of access rights
+                NSAlert *alert = [[NSAlert alloc] init];
+                [alert addButtonWithTitle:@"OK"];
+                [alert setMessageText:@"Could not proceed"];
+                [alert runModal];
+                return;
+            }
+        } else {
+            // user chose not to proceed, do nothing
+            return;
+        }
+    }
+    
     [[self spinner] startAnimation:self];
     
     OBOCollectedData *sharedData = [OBOCollectedData sharedManager];
@@ -106,6 +137,8 @@
                       withCompression:compress];
         }
     }
+    
+    [OBOExporter removeTemporaryDicomDirectoryAtPath:bidsRootPath];
     
     [[self spinner] stopAnimation:self];
     

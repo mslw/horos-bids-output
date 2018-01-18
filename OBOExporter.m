@@ -34,11 +34,11 @@
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
     // create bids-like directory within folder called dicom
-    [fileManager createDirectoryAtPath:[NSString pathWithComponents:@[bidsRoot, @"dicom", bidsPath]] withIntermediateDirectories:YES attributes:nil error:nil];
+    [fileManager createDirectoryAtPath:[NSString pathWithComponents:@[bidsRoot, @".dicom", bidsPath]] withIntermediateDirectories:YES attributes:nil error:nil];
     
     // copy dicom files there
     for (NSString *path in [[[series series] paths] objectEnumerator]) {
-        [fileManager copyItemAtPath:path toPath:[NSString pathWithComponents:@[bidsRoot, @"dicom", bidsPath, [path lastPathComponent]]] error:nil];
+        [fileManager copyItemAtPath:path toPath:[NSString pathWithComponents:@[bidsRoot, @".dicom", bidsPath, [path lastPathComponent]]] error:nil];
         // here I am using bids path (since it has no extension) as dicom folder name
     }
     
@@ -66,7 +66,7 @@
                      @"-o", outputDirectory,
                      @"-f", bidsFileName,
                      @"-z", compression,
-                     [NSString pathWithComponents:@[bidsRoot, @"dicom", bidsPath]],
+                     [NSString pathWithComponents:@[bidsRoot, @".dicom", bidsPath]],
                      nil];
     
     [conversionTask setArguments:args];
@@ -74,6 +74,30 @@
     [conversionTask launch];
     [conversionTask waitUntilExit];  // also see docs with example of getting status
     
+    // remove the dicoms copied for this series to avoid bloating disk usage for large studies
+    [fileManager removeItemAtPath:[NSString pathWithComponents:@[bidsRoot, @".dicom", bidsPath]] error:nil];
+    
+}
+
++(BOOL) createTemporaryDicomDirectoryAtPath:(NSString *)path {
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *dicomPath = [NSString pathWithComponents:@[path, @".dicom"]];
+    
+    if ([fileManager fileExistsAtPath:dicomPath]) {
+        return NO;
+    } else {
+        return [fileManager createDirectoryAtPath:dicomPath
+                      withIntermediateDirectories:YES
+                                       attributes:nil
+                                            error:nil];
+        // createDirectoryAtPath should return YES if the directory was created and NO if an error occurred
+    }
+}
+
++(void) removeTemporaryDicomDirectoryAtPath:(NSString *)path {
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *dicomPath = [NSString pathWithComponents:@[path, @".dicom"]];
+    [fileManager removeItemAtPath:dicomPath error:nil];
 }
 
 @end
