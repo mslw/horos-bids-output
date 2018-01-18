@@ -8,7 +8,7 @@ and this project versioning is based on [Semantic Versioning](http://semver.org/
 ## [0.1.1] - 2018-01-18
 ### Added
 - Make the temporary folder hidden (bids_root/.dicom), clear it during use and remove after export ends.
-- Fix links in readme.
+- Fix links in README.
 
 ## [0.1] - 2018-01-10
 ### Added

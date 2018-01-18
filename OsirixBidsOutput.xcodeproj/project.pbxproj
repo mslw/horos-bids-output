@@ -10,6 +10,8 @@
 		8420023212E829A200E1E9CE /* OsiriXAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8420023112E829A200E1E9CE /* OsiriXAPI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		8D5B49B0048680CD000E48DA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C167DFE841241C02AAC07 /* InfoPlist.strings */; };
 		8D5B49B4048680CD000E48DA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
+		9009C8A22010DD5B007D0B7E /* HorosBidsOutput-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9009C8A12010DD5B007D0B7E /* HorosBidsOutput-Info.plist */; };
+		9009C8A42010DD71007D0B7E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 9009C8A32010DD71007D0B7E /* README.md */; };
 		9027F62F1F58A98700189BE8 /* OBOCollectedData.h in Headers */ = {isa = PBXBuildFile; fileRef = 9027F62D1F58A98700189BE8 /* OBOCollectedData.h */; };
 		9027F6301F58A98700189BE8 /* OBOCollectedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9027F62E1F58A98700189BE8 /* OBOCollectedData.m */; };
 		9027F6381F58CE7900189BE8 /* GeneralMappingWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9027F6371F58CE7900189BE8 /* GeneralMappingWindow.xib */; };
@@ -63,6 +65,8 @@
 		8420023112E829A200E1E9CE /* OsiriXAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OsiriXAPI.framework; sourceTree = "<group>"; };
 		8D5B49B7048680CD000E48DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9009C8A02010DA3D007D0B7E /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
+		9009C8A12010DD5B007D0B7E /* HorosBidsOutput-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "HorosBidsOutput-Info.plist"; sourceTree = "<group>"; };
+		9009C8A32010DD71007D0B7E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		9027F62D1F58A98700189BE8 /* OBOCollectedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBOCollectedData.h; sourceTree = "<group>"; };
 		9027F62E1F58A98700189BE8 /* OBOCollectedData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBOCollectedData.m; sourceTree = "<group>"; };
 		9027F6371F58CE7900189BE8 /* GeneralMappingWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GeneralMappingWindow.xib; sourceTree = "<group>"; };
@@ -71,7 +75,6 @@
 		906726161FE036390029F23C /* MappingSummaryController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MappingSummaryController.h; sourceTree = "<group>"; };
 		906726171FE036390029F23C /* MappingSummaryController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MappingSummaryController.m; sourceTree = "<group>"; };
 		907554742006115300751E15 /* HorosBidsOutput.plugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = HorosBidsOutput.plugin; path = HorosBidsOutput.horosplugin; sourceTree = BUILT_PRODUCTS_DIR; };
-		907554752006115300751E15 /* HorosBidsOutput-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "HorosBidsOutput-Info.plist"; path = "/Users/michal/Documents/osirix-bids-output/HorosBidsOutput-Info.plist"; sourceTree = "<absolute>"; };
 		907F9B131F5D818500D6FA88 /* OBOSeries.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBOSeries.h; sourceTree = "<group>"; };
 		907F9B141F5D818500D6FA88 /* OBOSeries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBOSeries.m; sourceTree = "<group>"; };
 		9089D0801FE824F1009C2B4A /* DCMAttributeTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCMAttributeTag.h; sourceTree = "<group>"; };
@@ -119,7 +122,6 @@
 				089C167CFE841241C02AAC07 /* Resources */,
 				089C1671FE841209C02AAC07 /* Frameworks and Libraries */,
 				19C28FB8FE9D52D311CA2CBB /* Products */,
-				907554752006115300751E15 /* HorosBidsOutput-Info.plist */,
 			);
 			name = MyNewPlugin;
 			sourceTree = "<group>";
@@ -137,6 +139,8 @@
 		089C167CFE841241C02AAC07 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9009C8A32010DD71007D0B7E /* README.md */,
+				9009C8A12010DD5B007D0B7E /* HorosBidsOutput-Info.plist */,
 				8D5B49B7048680CD000E48DA /* Info.plist */,
 				089C167DFE841241C02AAC07 /* InfoPlist.strings */,
 				9009C8A02010DA3D007D0B7E /* CHANGELOG.md */,
@@ -336,7 +340,9 @@
 			files = (
 				906726151FE032510029F23C /* MappingSummaryWindow.xib in Resources */,
 				8D5B49B0048680CD000E48DA /* InfoPlist.strings in Resources */,
+				9009C8A42010DD71007D0B7E /* README.md in Resources */,
 				9027F6381F58CE7900189BE8 /* GeneralMappingWindow.xib in Resources */,
+				9009C8A22010DD5B007D0B7E /* HorosBidsOutput-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
