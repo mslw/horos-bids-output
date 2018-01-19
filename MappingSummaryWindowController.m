@@ -140,11 +140,25 @@
     
     [OBOExporter removeTemporaryDicomDirectoryAtPath:bidsRootPath];
     
+    // write dataset_description.json
+    // TODO get User Input for dataset name (and, possibly, other fields)
+    NSMutableDictionary *datasetDescription = [[NSMutableDictionary alloc] init];
+    [datasetDescription setValue:@"Horos Exported Dataset" forKey:@"Name"];
+    [datasetDescription setValue:@"1.0.2" forKey:@"BIDSVersion"];
+    
+    if ([NSJSONSerialization isValidJSONObject:datasetDescription]){
+        NSString *jsonPath = [NSString pathWithComponents:@[bidsRootPath, @"dataset_description.json"]];
+        NSData *datasetDescriptionData = [NSJSONSerialization dataWithJSONObject:datasetDescription options:NSJSONWritingPrettyPrinted error:nil];
+        [datasetDescriptionData writeToFile:jsonPath atomically:NO];
+    }
+    
+    // report the export as finished
+    
     [[self spinner] stopAnimation:self];
     
     NSAlert *alert = [[NSAlert alloc] init];
     [alert addButtonWithTitle:@"OK"];
-    [alert setMessageText:@"Finished"];
+    [alert setMessageText:@"Finished exporting files."];
     [alert runModal];
     
 }
