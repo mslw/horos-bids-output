@@ -46,15 +46,15 @@
     NSString *outputDirectory = [NSString pathWithComponents:@[bidsRoot, bidsFolder]];
     [fileManager createDirectoryAtPath:outputDirectory withIntermediateDirectories:YES attributes:nil error:nil];
     
-    // append slash - probably not necessary
-    // outputDirectory = [outputDirectory stringByAppendingString:@"/"];
-    
     NSString *compression;
+    NSString *ext;  // used for fieldmap file name manipulations, not by dcm2niix
     if (answer){
         compression = @"y";  // y - pigz, i - internal
+        ext = @"nii.gz";
     }
     else {
         compression = @"n";
+        ext = @"nii";
     }
     
     // convert DICOM into that directory
@@ -73,6 +73,27 @@
     
     [conversionTask launch];
     [conversionTask waitUntilExit];  // also see docs with example of getting status
+    
+    // fix path for field maps
+    // dcm2niix always appends _e2 to the series with longer echo
+    // we accounted for that with BIDS "_magnitude2" suffix, so we have to remove _e2
+    NSString *correctPath;
+    NSString *incorrectPath;
+    NSString *incorrectSuffix;
+    if ([series.suffix isEqualToString:@"phasediff"] || [series.suffix isEqualToString:@"magnitude1"] || [series.suffix isEqualToString:@"magnitude2"]) {
+        
+        incorrectSuffix = [series.suffix stringByAppendingString:@"_e2"];
+        
+        for (NSString *extension in @[ext, @"json"]) {
+            correctPath = [[NSString pathWithComponents:@[outputDirectory, bidsFileName]] stringByAppendingPathExtension:extension];
+            incorrectPath = [correctPath stringByReplacingOccurrencesOfString:series.suffix withString:incorrectSuffix];
+            
+            if ([fileManager fileExistsAtPath:incorrectPath]) {
+                [fileManager moveItemAtPath:incorrectPath toPath:correctPath error:nil];
+            }
+        }
+        
+    }
     
     // remove the dicoms copied for this series to avoid bloating disk usage for large studies
     [fileManager removeItemAtPath:[NSString pathWithComponents:@[bidsRoot, @".dicom", bidsPath]] error:nil];
