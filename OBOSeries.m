@@ -28,6 +28,8 @@
         
         _discard = NO;
         _comment = @"";
+        
+        _fieldmapParams = [[NSMutableDictionary alloc] init];
     }
     return self;
 }
@@ -44,6 +46,8 @@
         
         _discard = NO;
         _comment = @"";
+        
+        _fieldmapParams = [[NSMutableDictionary alloc] init];
     }
     return self;
 }
@@ -60,6 +64,8 @@
         
         _discard = NO;
         _comment = @"";
+        
+        _fieldmapParams = [[NSMutableDictionary alloc] init];
     }
     return self;
 }

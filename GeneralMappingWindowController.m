@@ -290,6 +290,9 @@
         
         if ([imageType isEqualToString:@"P"]){
             [fieldMapSeries setValue:@"phasediff" forKey:@"suffix"];
+            // also store TE in seconds (DICOM values are in ms) to be written in json sidecar
+            [[fieldMapSeries fieldmapParams] setObject:[NSNumber numberWithDouble:shorterTE*0.001] forKey:@"EchoTime1"];
+            [[fieldMapSeries fieldmapParams] setValue:[NSNumber numberWithDouble:longerTE*0.001] forKey:@"EchoTime2"];
         }
         else if ([imageType isEqualToString:@"M"]){
             if (echoTime == shorterTE){

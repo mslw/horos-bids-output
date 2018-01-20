@@ -92,7 +92,22 @@
                 [fileManager moveItemAtPath:incorrectPath toPath:correctPath error:nil];
             }
         }
-        
+    }
+    
+    // edit or remove jsons for field maps
+    NSString *jsonPath = [[NSString pathWithComponents:@[outputDirectory, bidsFileName]] stringByAppendingPathExtension:@"json"];
+    if ([series.suffix isEqualToString:@"phasediff"]) {
+        // phasediff: edit json (keeping all old fields and adding new)
+        NSData *data = [NSData dataWithContentsOfFile:jsonPath];
+        NSMutableDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        [json addEntriesFromDictionary:series.fieldmapParams];
+        data = [NSJSONSerialization dataWithJSONObject:json options:NSJSONWritingPrettyPrinted error:nil];
+        [data writeToFile:jsonPath atomically:YES];
+    } else if ([series.suffix containsString:@"magnitude"]) {
+        // magnitude 1 & 2: remove json
+        if ([fileManager fileExistsAtPath:jsonPath]) {
+            [fileManager removeItemAtPath:jsonPath error:nil];
+        }
     }
     
     // remove the dicoms copied for this series to avoid bloating disk usage for large studies

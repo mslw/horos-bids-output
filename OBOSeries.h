@@ -23,6 +23,8 @@
 @property (nonatomic, assign) BOOL discard;
 @property (nonatomic) NSString *comment;
 
+@property (nonatomic) NSMutableDictionary *fieldmapParams;
+
 -(instancetype)initWithSeries:(DicomSeries *) originalSeries;
 -(instancetype)initWithSeries:(DicomSeries *) originalSeries params:(NSDictionary *)params;
 
