@@ -94,7 +94,7 @@
         }
     }
     
-    // edit or remove jsons for field maps
+    // edit or remove jsons for field maps and bold
     NSString *jsonPath = [[NSString pathWithComponents:@[outputDirectory, bidsFileName]] stringByAppendingPathExtension:@"json"];
     if ([series.suffix isEqualToString:@"phasediff"]) {
         // phasediff: edit json (keeping all old fields and adding new)
@@ -108,6 +108,13 @@
         if ([fileManager fileExistsAtPath:jsonPath]) {
             [fileManager removeItemAtPath:jsonPath error:nil];
         }
+    } else if ([series.suffix isEqualToString:@"bold"]) {
+        // bold: add TaskName
+        NSData *data = [NSData dataWithContentsOfFile:jsonPath];
+        NSMutableDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        [json setValue:series.task forKey:@"TaskName"];
+        data = [NSJSONSerialization dataWithJSONObject:json options:NSJSONWritingPrettyPrinted error:nil];
+        [data writeToFile:jsonPath atomically:YES];
     }
     
     // remove the dicoms copied for this series to avoid bloating disk usage for large studies

@@ -11,6 +11,7 @@
 @interface OBOSeries()
 
 -(NSString*) createSubjectLabel;
+-(NSString*) createTaskLabel;
 
 @end
 
@@ -106,7 +107,7 @@
         
         // task
         [path appendString:@"_task-"];
-        [path appendString:self.task];
+        [path appendString:[self createTaskLabel]];
         
         // ADD acq (optional) - not yet in nib
         // ADD rec (optional) - not yet in nib
@@ -201,11 +202,17 @@
     return path;
 }
 
--(NSString*)createSubjectLabel{
+-(NSString*) createSubjectLabel {
     // take participant and remove non-alphanumeric character
     NSCharacterSet *nonAlphanumericSet = [[NSCharacterSet alphanumericCharacterSet] invertedSet];
     NSArray *components = [self.participant componentsSeparatedByCharactersInSet:nonAlphanumericSet];
     components = [components filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self <> ''"]];
+    return [components componentsJoinedByString:@""];
+}
+
+-(NSString*) createTaskLabel {
+    NSCharacterSet *nonAlphanumericSet = [[NSCharacterSet alphanumericCharacterSet] invertedSet];
+    NSArray *components = [self.task componentsSeparatedByCharactersInSet:nonAlphanumericSet];
     return [components componentsJoinedByString:@""];
 }
 
