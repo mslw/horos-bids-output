@@ -5,6 +5,17 @@ and this project versioning is based on [Semantic Versioning](http://semver.org/
 
 ## [Unreleased]
 
+## [0.2.0] - 2018-01-21
+### Added
+- New input field for the dataset name in the GUI.
+- Creation of the `dataset_description.json` file with basic (obligatory) contents.
+- Removal of JSON sidecars for fieldmap magnitude images.
+
+### Changed
+- Fieldmap files now don't have the _e2 suffix from dcm2niix.
+- General Mapping Window task column was changed to task name column, and the task label is now derived from its content by removing non-alphanumeric characters (rather than taken literally).
+
+
 ## [0.1.1] - 2018-01-18
 ### Added
 - Make the temporary folder hidden (bids_root/.dicom), clear it during use and remove after export ends.
