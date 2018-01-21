@@ -137,6 +137,8 @@
     [sharedData.listOfSeries removeAllObjects];
     
     [self annotateAllSeries];
+
+    [sharedData setValue:[_datasetNameField stringValue] forKey:@"datasetName"];
     
     _SummaryWindow = [[MappingSummaryWindowController alloc] initWithWindowNibName:@"MappingSummaryWindow"];
     [_SummaryWindow showWindow:self];

@@ -26,6 +26,7 @@
 @property (weak) IBOutlet NSWindow *window;
 @property (weak) IBOutlet NSTableView *tableView;
 @property (weak) IBOutlet NSTextField *minimumBoldField;
+@property (weak) IBOutlet NSTextField *datasetNameField;
 
 @property (nonatomic, strong) NSWindowController *SummaryWindow;
 

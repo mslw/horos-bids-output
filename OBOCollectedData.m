@@ -13,6 +13,7 @@
 @synthesize listOfStudies;
 @synthesize seriesDescription;
 @synthesize listOfSeries;
+@synthesize datasetName;
 
 +(id)sharedManager{
     static OBOCollectedData *sharedCollectedData = nil;
@@ -28,6 +29,8 @@
         listOfStudies = [[NSMutableArray alloc] init];
         seriesDescription = [NSMutableDictionary dictionary];
         listOfSeries = [[NSMutableArray alloc] init];
+        
+        datasetName = [[NSString alloc] init];
     }
     return self;
 }
