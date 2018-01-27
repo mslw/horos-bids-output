@@ -20,8 +20,8 @@
 //  along with BIDS Output Extension. If not, see <http://www.gnu.org/licenses/>.
 
 #import "GeneralMappingWindowController.h"
-#import <OsiriXAPI/DicomStudy.h>
-#import <OsiriXAPI/DicomSeries.h>
+//#import <OsiriXAPI/DicomStudy.h>
+//#import <OsiriXAPI/DicomSeries.h>
 #import <OsiriXAPI/BrowserController.h>
 
 #import "OBOCollectedData.h"
@@ -33,6 +33,10 @@
 #import "DCM Framework/DCMAttributeTag.h"
 
 @implementation GeneralMappingWindowController
+
+@synthesize sessionPopover = _sessionPopover;
+@synthesize sessionMethod = _sessionMethod;
+@synthesize sessionPattern = _sessionPattern;
 
 -(NSInteger)numberOfRowsInTableView:(NSTableView *)tableView{
     OBOCollectedData *sharedData = [OBOCollectedData sharedManager];
@@ -145,6 +149,10 @@
     
 }
 
+- (IBAction)showSessionPopover:(id)sender {
+    [_sessionPopover showRelativeToRect:[sender bounds] ofView:sender preferredEdge:NSMaxYEdge];
+}
+
 -(void) annotateAllSeries {
     OBOCollectedData *sharedData = [OBOCollectedData sharedManager];
     NSPredicate *takeOnlyMR = [NSPredicate predicateWithFormat:@"modality = %@", @"MR"];
@@ -158,6 +166,8 @@
 
             OBOSeries *decoratedSeries = [[OBOSeries alloc] initWithSeries:currentSeries params:[sharedData.seriesDescription objectForKey:currentSeries.name]];
             [decoratedSeries setValue:currentStudy.name forKey:@"participant"];
+            // TODO: setValue: sessionlabel forKey session
+            // TODO: remove setting session label in init...
             // ENH: possibly store in originalName field and allow changing participant field
             [decoratedFromCurrentStudy addObject:decoratedSeries];
             [namesFromCurrentStudy addObject:currentSeries.name];
@@ -304,6 +314,51 @@
                 [fieldMapSeries setValue:@"magnitude2" forKey:@"suffix"];
             }
         }
+    }
+}
+
+-(NSString*) createSessionLabelForStudy:(DicomStudy *)study {
+    
+    NSString *pattern = [_sessionPattern stringValue];
+    NSString *method = [_sessionMethod titleOfSelectedItem];
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:nil];
+    
+    if ([method containsString:@"subject"]) {
+        
+        NSString *subjectName = study.name;
+        NSTextCheckingResult *match = [regex firstMatchInString:subjectName options:0 range:NSMakeRange(0, [subjectName length])];
+        NSString *result;
+        
+        if (match){
+            result = [subjectName substringWithRange:[match rangeAtIndex:1]];
+        } else {
+            result = @"unknown";
+        }
+        
+        return result;
+        
+    } else if ([method containsString:@"session"]) {
+        
+        NSTextCheckingResult *match;
+        NSString *result;
+        for (DicomSeries *currentSeries in [study imageSeries]) {
+            match = [regex firstMatchInString:[currentSeries name] options:0 range:NSMakeRange(0, [[currentSeries name] length])];
+            if (match) {
+                result = [[currentSeries name] substringWithRange:[match rangeAtIndex:1]];
+                break;
+            }
+        }
+        
+        if ([result length] == 0) {
+            result = @"unknown";
+        }
+        
+        return result;
+        
+    } else if ([method isEqualToString:@"Fixed"]) {
+        return pattern;
+    } else {
+        return @"";
     }
 }
 

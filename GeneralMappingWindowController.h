@@ -21,6 +21,9 @@
 
 #import <Foundation/Foundation.h>
 
+#import <OsiriXAPI/DicomStudy.h>
+#import <OsiriXAPI/DicomSeries.h>
+
 @interface GeneralMappingWindowController : NSObject <NSTableViewDataSource, NSTableViewDelegate>
 
 @property (weak) IBOutlet NSWindow *window;
@@ -28,13 +31,20 @@
 @property (weak) IBOutlet NSTextField *minimumBoldField;
 @property (weak) IBOutlet NSTextField *datasetNameField;
 
+@property (weak) IBOutlet NSPopover *sessionPopover;
+@property (weak) IBOutlet NSTextField *sessionPattern;
+@property (weak) IBOutlet NSPopUpButton *sessionMethod;
+
 @property (nonatomic, strong) NSWindowController *SummaryWindow;
+
 
 - (IBAction)updateSuffix:(id)sender;
 - (IBAction)itemTextFieldUpdated:(id)sender;
 - (IBAction)saveMapping:(id)sender;
+- (IBAction)showSessionPopover:(id)sender;
 
 - (void) annotateAllSeries;
 - (void) assignFieldMapSuffixes:(NSArray*)fieldMapTriplet;
+- (NSString*) createSessionLabelForStudy:(DicomStudy*)study;
 
 @end

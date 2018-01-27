@@ -46,11 +46,11 @@
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                             <prototypeCellViews>
                                                 <tableCellView identifier="NameCell" id="7Oj-dd-dgH">
-                                                    <rect key="frame" x="1" y="1" width="200" height="17"/>
+                                                    <rect key="frame" x="1" y="1" width="199" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xzy-0l-UMB">
-                                                            <rect key="frame" x="0.0" y="0.0" width="200" height="17"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="199" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="ocM-HL-r3n">
                                                                 <font key="font" metaFont="system"/>
@@ -127,11 +127,11 @@
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                             <prototypeCellViews>
                                                 <tableCellView identifier="SessionCell" id="Fkc-aG-h2f">
-                                                    <rect key="frame" x="302" y="1" width="74" height="17"/>
+                                                    <rect key="frame" x="302" y="1" width="73" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nbh-6q-xW4">
-                                                            <rect key="frame" x="0.0" y="0.0" width="74" height="17"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="73" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" id="5ni-EX-Knf">
                                                                 <font key="font" metaFont="system"/>
@@ -290,6 +290,17 @@
                             <action selector="saveMapping:" target="xZ5-Nf-8RU" id="L7f-5B-7CA"/>
                         </connections>
                     </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fQY-l1-glk">
+                        <rect key="frame" x="247" y="45" width="143" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Set session rules" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="z0e-vx-qod">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="showSessionPopover:" target="xZ5-Nf-8RU" id="NM0-UX-8t7"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <point key="canvasLocation" x="298" y="157"/>
@@ -298,9 +309,62 @@
             <connections>
                 <outlet property="datasetNameField" destination="6i0-uR-1dc" id="kX2-kw-V7S"/>
                 <outlet property="minimumBoldField" destination="ona-NM-yFX" id="Spx-aV-Xpw"/>
+                <outlet property="sessionMethod" destination="DmZ-Zn-Jv8" id="98c-nB-RXL"/>
+                <outlet property="sessionPattern" destination="DPm-gc-8HG" id="rGV-OM-5Cg"/>
+                <outlet property="sessionPopover" destination="ODh-Rz-oTU" id="TMd-D5-0A6"/>
                 <outlet property="tableView" destination="cDh-eS-5PH" id="ddn-wI-6qt"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="Tf0-Hd-7Jt"/>
             </connections>
         </customObject>
+        <viewController id="r8d-pO-g8C" userLabel="Popover View Controller">
+            <connections>
+                <outlet property="view" destination="Huz-HL-CeF" id="vrP-UK-IwM"/>
+            </connections>
+        </viewController>
+        <popover behavior="t" id="ODh-Rz-oTU">
+            <connections>
+                <outlet property="contentViewController" destination="r8d-pO-g8C" id="eAk-n3-zJ3"/>
+            </connections>
+        </popover>
+        <customView id="Huz-HL-CeF">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DmZ-Zn-Jv8">
+                    <rect key="frame" x="27" y="156" width="76" height="26"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <popUpButtonCell key="cell" type="push" title="Fixed" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="euP-fd-WJx" id="vxq-dY-qyj">
+                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="menu"/>
+                        <menu key="menu" id="qhw-YL-H2e">
+                            <items>
+                                <menuItem title="Fixed" state="on" id="euP-fd-WJx"/>
+                                <menuItem title="Infer from subject name" id="8CW-nM-OFu"/>
+                                <menuItem title="Infer from series name" id="fQ7-ba-ur7"/>
+                            </items>
+                        </menu>
+                    </popUpButtonCell>
+                </popUpButton>
+                <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DPm-gc-8HG">
+                    <rect key="frame" x="29" y="95" width="222" height="22"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="WUY-vA-pIh">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K6e-eU-n6D">
+                    <rect key="frame" x="29" y="119" width="190" height="17"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Expression, e.g. _ses-([a-z]*)$" id="lWe-H7-CWB">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <point key="canvasLocation" x="73" y="640"/>
+        </customView>
     </objects>
 </document>
