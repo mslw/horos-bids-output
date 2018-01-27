@@ -59,7 +59,7 @@
         _originalName = [originalSeries name];
         _participant = @""; // read from original series
         _suffix = [params valueForKey:@"suffix"];
-        _session = [params valueForKey:@"session"];
+        _session = @""; // set after initialisation
         _task = [params valueForKey:@"task"];
         _run = [params valueForKey:@"run"];
         

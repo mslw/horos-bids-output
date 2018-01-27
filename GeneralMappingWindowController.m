@@ -62,12 +62,6 @@
         NSTableCellView *cellView = [tableView makeViewWithIdentifier:@"SuffixCell" owner:self];
         return cellView;
     }
-    //session
-    else if ([identifier isEqualToString:@"SessionCol"]){
-        NSTableCellView *cellView = [tableView makeViewWithIdentifier:@"SessionCell" owner:self];
-        [cellView.textField setEditable:TRUE];
-        return cellView;
-    }
     // run
     else if ([identifier isEqualToString:@"RunCol"]){
         NSTableCellView *cellView = [tableView makeViewWithIdentifier:@"RunCell" owner:self];
@@ -104,14 +98,10 @@
     NSString *currentName = [sequenceNames objectAtIndex:selectedRow];
     
     if (columnIndex == 2){
-        // session
-        [[sharedData.seriesDescription objectForKey:currentName] setValue:newValue forKey:@"session"];
-    }
-    else if (columnIndex == 3){
         // task
         [[sharedData.seriesDescription objectForKey:currentName] setValue:newValue forKey:@"task"];
     }
-    else if (columnIndex == 4){
+    else if (columnIndex == 3){
         //run
         [[sharedData.seriesDescription objectForKey:currentName] setValue:newValue forKey:@"run"];
     }
@@ -158,16 +148,19 @@
     NSPredicate *takeOnlyMR = [NSPredicate predicateWithFormat:@"modality = %@", @"MR"];
     NSMutableArray *decoratedFromCurrentStudy = [[NSMutableArray alloc] init];
     NSCountedSet *namesFromCurrentStudy = [[NSCountedSet alloc] init];  // to keep track of repetitions
+    NSString *sessionLabel = [[NSString alloc] init];
     
     for (DicomStudy *currentStudy in sharedData.listOfStudies) {
         [decoratedFromCurrentStudy removeAllObjects];
         [namesFromCurrentStudy removeAllObjects];
+        sessionLabel = [self createSessionLabelForStudy:currentStudy];
+        
         for (DicomSeries *currentSeries in [[currentStudy imageSeries] filteredArrayUsingPredicate:takeOnlyMR]) {
 
             OBOSeries *decoratedSeries = [[OBOSeries alloc] initWithSeries:currentSeries params:[sharedData.seriesDescription objectForKey:currentSeries.name]];
             [decoratedSeries setValue:currentStudy.name forKey:@"participant"];
-            // TODO: setValue: sessionlabel forKey session
-            // TODO: remove setting session label in init...
+            [decoratedSeries setValue:sessionLabel forKey:@"session"];
+            // TODO: update subject name (create function - createSubjectName
             // ENH: possibly store in originalName field and allow changing participant field
             [decoratedFromCurrentStudy addObject:decoratedSeries];
             [namesFromCurrentStudy addObject:currentSeries.name];
@@ -337,7 +330,7 @@
         
         return result;
         
-    } else if ([method containsString:@"session"]) {
+    } else if ([method containsString:@"series"]) {
         
         NSTextCheckingResult *match;
         NSString *result;
