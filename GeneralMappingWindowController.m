@@ -149,18 +149,19 @@
     NSMutableArray *decoratedFromCurrentStudy = [[NSMutableArray alloc] init];
     NSCountedSet *namesFromCurrentStudy = [[NSCountedSet alloc] init];  // to keep track of repetitions
     NSString *sessionLabel = [[NSString alloc] init];
+    NSString *subjectName = [[NSString alloc] init];
     
     for (DicomStudy *currentStudy in sharedData.listOfStudies) {
         [decoratedFromCurrentStudy removeAllObjects];
         [namesFromCurrentStudy removeAllObjects];
         sessionLabel = [self createSessionLabelForStudy:currentStudy];
+        subjectName = [self createSubjectNameForStudy:currentStudy];
         
         for (DicomSeries *currentSeries in [[currentStudy imageSeries] filteredArrayUsingPredicate:takeOnlyMR]) {
 
             OBOSeries *decoratedSeries = [[OBOSeries alloc] initWithSeries:currentSeries params:[sharedData.seriesDescription objectForKey:currentSeries.name]];
-            [decoratedSeries setValue:currentStudy.name forKey:@"participant"];
+            [decoratedSeries setValue:subjectName forKey:@"participant"];
             [decoratedSeries setValue:sessionLabel forKey:@"session"];
-            // TODO: update subject name (create function - createSubjectName
             // ENH: possibly store in originalName field and allow changing participant field
             [decoratedFromCurrentStudy addObject:decoratedSeries];
             [namesFromCurrentStudy addObject:currentSeries.name];
@@ -353,6 +354,27 @@
     } else {
         return @"";
     }
+}
+
+-(NSString*) createSubjectNameForStudy:(DicomStudy *)study {
+    NSString *subjectName = study.name;
+    
+    // 1 - if session is taken from subject name, remove the bit that was used
+    if ([[_sessionMethod titleOfSelectedItem] containsString:@"subject"]) {
+        
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:[_sessionPattern stringValue] options:NSRegularExpressionCaseInsensitive error:nil];
+        NSTextCheckingResult *match = [regex firstMatchInString:subjectName options:0 range:NSMakeRange(0, [subjectName length])];
+        
+        if (match) {
+            if ([match numberOfRanges] >= 2){
+                subjectName = [subjectName stringByReplacingCharactersInRange:[match rangeAtIndex:1] withString:@""];
+            }
+        }
+    }
+    
+    // 2 - possibly add another, user - defined replacement
+    
+    return subjectName;
 }
 
 @end
