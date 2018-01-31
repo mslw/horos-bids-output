@@ -37,6 +37,9 @@
 @synthesize sessionPopover = _sessionPopover;
 @synthesize sessionMethod = _sessionMethod;
 @synthesize sessionPattern = _sessionPattern;
+@synthesize sessionMethodLabel = _sessionMethodLabel;
+@synthesize subjectReplaceLabel1 = _subjectReplaceLabel1;
+@synthesize subjectReplaceLabel2 = _subjectReplaceLabel2;
 
 -(NSInteger)numberOfRowsInTableView:(NSTableView *)tableView{
     OBOCollectedData *sharedData = [OBOCollectedData sharedManager];
@@ -143,6 +146,14 @@
     [_sessionPopover showRelativeToRect:[sender bounds] ofView:sender preferredEdge:NSMaxYEdge];
 }
 
+- (IBAction)sessionMethodChanged:(id)sender {
+    if ([[_sessionMethod titleOfSelectedItem] isEqualToString:@"Fixed"]) {
+        [_sessionMethodLabel setStringValue:@"Session label"];
+    } else {
+        [_sessionMethodLabel setStringValue:@"Regular expression, e.g. _ses-([a-z]*) \nMUST contain one capture group"];
+    }
+}
+
 -(void) annotateAllSeries {
     OBOCollectedData *sharedData = [OBOCollectedData sharedManager];
     NSPredicate *takeOnlyMR = [NSPredicate predicateWithFormat:@"modality = %@", @"MR"];
@@ -162,7 +173,7 @@
             OBOSeries *decoratedSeries = [[OBOSeries alloc] initWithSeries:currentSeries params:[sharedData.seriesDescription objectForKey:currentSeries.name]];
             [decoratedSeries setValue:subjectName forKey:@"participant"];
             [decoratedSeries setValue:sessionLabel forKey:@"session"];
-            // ENH: possibly store in originalName field and allow changing participant field
+            // ENH: possibly store in originalName field (for display purposes?)
             [decoratedFromCurrentStudy addObject:decoratedSeries];
             [namesFromCurrentStudy addObject:currentSeries.name];
         }
@@ -372,7 +383,13 @@
         }
     }
     
-    // 2 - possibly add another, user - defined replacement
+    // 2 - perform additional, user - defined replacement
+    if ([[_subjectReplaceLabel1 stringValue] length] > 0) {
+        NSString *before = [_subjectReplaceLabel1 stringValue];
+        NSString *after = [_subjectReplaceLabel2 stringValue];
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:before options:0 error:nil];
+        subjectName = [regex stringByReplacingMatchesInString:subjectName options:0 range:NSMakeRange(0, [subjectName length]) withTemplate:after];
+    }
     
     return subjectName;
 }

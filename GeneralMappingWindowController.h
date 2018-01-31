@@ -34,6 +34,9 @@
 @property (weak) IBOutlet NSPopover *sessionPopover;
 @property (weak) IBOutlet NSTextField *sessionPattern;
 @property (weak) IBOutlet NSPopUpButton *sessionMethod;
+@property (weak) IBOutlet NSTextFieldCell *sessionMethodLabel;
+@property (weak) IBOutlet NSTextField *subjectReplaceLabel1;
+@property (weak) IBOutlet NSTextField *subjectReplaceLabel2;
 
 @property (nonatomic, strong) NSWindowController *SummaryWindow;
 
@@ -42,6 +45,7 @@
 - (IBAction)itemTextFieldUpdated:(id)sender;
 - (IBAction)saveMapping:(id)sender;
 - (IBAction)showSessionPopover:(id)sender;
+- (IBAction)sessionMethodChanged:(id)sender;
 
 - (void) annotateAllSeries;
 - (void) assignFieldMapSuffixes:(NSArray*)fieldMapTriplet;
