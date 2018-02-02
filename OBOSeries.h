@@ -21,11 +21,13 @@
 
 #import <Foundation/Foundation.h>
 #import <OsiriXAPI/DicomSeries.h>
+#import <OsiriXAPI/DicomStudy.h>
 
 @interface OBOSeries : NSObject
 
 @property (nonatomic) DicomSeries *series;
 @property (nonatomic) NSString *originalName;
+@property (nonatomic) NSString *originalSubjectName;
 
 @property (nonatomic) NSString *participant;
 @property (nonatomic) NSString *suffix;

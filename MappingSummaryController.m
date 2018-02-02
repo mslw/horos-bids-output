@@ -42,7 +42,7 @@
     
     if ([identifier isEqualToString:@"SubjectCol"]) {
         NSTableCellView *cellView = [tableView makeViewWithIdentifier:@"SubjectCell" owner:self];
-        [cellView.textField setStringValue:[currentSeries participant]];
+        [cellView.textField setStringValue:[currentSeries originalSubjectName]];
         return cellView;
     }
     else if ([identifier isEqualToString:@"NameCol"]) {

@@ -34,6 +34,7 @@
     if (self = [super init]) {
         _series = nil;
         _originalName = @"";
+        _originalSubjectName = @"";
         _participant = @"";
         _suffix = @"";
         _session = @"";
@@ -53,6 +54,7 @@
     if (self = [super init]) {
         _series = originalSeries;
         _originalName = [originalSeries name];
+        _originalSubjectName = [[originalSeries study] name];
         _participant = @""; // read from original series
         _suffix = @"";
         _session = @"";
@@ -72,7 +74,8 @@
     if (self = [super init]) {
         _series = originalSeries;
         _originalName = [originalSeries name];
-        _participant = @""; // read from original series
+        _originalSubjectName = [[originalSeries study] name];
+        _participant = @""; // set after initialisation - depends on user-specified rules
         _suffix = [params valueForKey:@"suffix"];
         _session = @""; // set after initialisation
         _task = [params valueForKey:@"task"];
