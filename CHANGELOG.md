@@ -4,6 +4,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project versioning is based on [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Session label can be entered by user or taken from ether subject name or series name using regular expressions.
+- Subjects can be renamed using regular expressions.
+
+### Changed
+- Session label no longer can be filled in the table, but it now has a dedicated popover.
 
 ## [0.2.0] - 2018-01-21
 ### Added

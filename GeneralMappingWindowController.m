@@ -148,9 +148,9 @@
 
 - (IBAction)sessionMethodChanged:(id)sender {
     if ([[_sessionMethod titleOfSelectedItem] isEqualToString:@"Fixed"]) {
-        [_sessionMethodLabel setStringValue:@"Session label"];
+        [_sessionMethodLabel setStringValue:@"Session label. Empty if no sessions."];
     } else {
-        [_sessionMethodLabel setStringValue:@"Regular expression, e.g. _ses-([a-z]*) \nMUST contain one capture group"];
+        [_sessionMethodLabel setStringValue:@"Regular expression, e.g. _ses-([a-z]*) \nMUST contain one capture group \nThe capture group will be removed from subject label and used as session label."];
     }
 }
 
