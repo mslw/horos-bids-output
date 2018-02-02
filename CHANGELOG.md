@@ -4,12 +4,21 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project versioning is based on [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.3.1] - 2018-01-21
+### Changed
+- Updated the version number
+- Updated this changelog
+
+## [0.3.0] - 2018-01-21
 ### Added
 - Session label can be entered by user or taken from ether subject name or series name using regular expressions.
 - Subjects can be renamed using regular expressions.
+- Acq label can be added
 
 ### Changed
 - Session label no longer can be filled in the table, but it now has a dedicated popover.
+- T2map was added to suffix list in the GUI
 
 ## [0.2.0] - 2018-01-21
 ### Added
@@ -20,7 +29,6 @@ and this project versioning is based on [Semantic Versioning](http://semver.org/
 ### Changed
 - Fieldmap files now don't have the _e2 suffix from dcm2niix.
 - General Mapping Window task column was changed to task name column, and the task label is now derived from its content by removing non-alphanumeric characters (rather than taken literally).
-
 
 ## [0.1.1] - 2018-01-18
 ### Added
