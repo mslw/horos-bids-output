@@ -102,6 +102,9 @@
                                                                         <menuItem title="T1map" id="TxJ-Pm-8Fa">
                                                                             <modifierMask key="keyEquivalentModifierMask"/>
                                                                         </menuItem>
+                                                                        <menuItem title="T2map" id="hYm-bi-el3">
+                                                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                                                        </menuItem>
                                                                     </items>
                                                                 </menu>
                                                             </popUpButtonCell>
