@@ -5,12 +5,12 @@ and this project versioning is based on [Semantic Versioning](http://semver.org/
 
 ## [Unreleased]
 
-## [0.3.1] - 2018-01-21
+## [0.3.1] - 2018-02-02
 ### Changed
 - Updated the version number
 - Updated this changelog
 
-## [0.3.0] - 2018-01-21
+## [0.3.0] - 2018-02-02
 ### Added
 - Session label can be entered by user or taken from ether subject name or series name using regular expressions.
 - Subjects can be renamed using regular expressions.
