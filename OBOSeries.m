@@ -38,6 +38,7 @@
         _suffix = @"";
         _session = @"";
         _task = @"";
+        _acq = @"";
         _run = @"";
         
         _discard = NO;
@@ -56,6 +57,7 @@
         _suffix = @"";
         _session = @"";
         _task = @"";
+        _acq = @"";
         _run = @"";
         
         _discard = NO;
@@ -74,6 +76,7 @@
         _suffix = [params valueForKey:@"suffix"];
         _session = @""; // set after initialisation
         _task = [params valueForKey:@"task"];
+        _acq = [params valueForKey:@"acq"];
         _run = [params valueForKey:@"run"];
         
         _discard = NO;
@@ -122,7 +125,11 @@
         [path appendString:@"_task-"];
         [path appendString:[self createTaskLabel]];
         
-        // ADD acq (optional) - not yet in nib
+        // acq (optional)
+        if ([self.acq length] > 0){
+            [path appendString:@"_acq-"];
+            [path appendString:self.acq];
+        }
         // ADD rec (optional) - not yet in nib
         
         // run (optional)

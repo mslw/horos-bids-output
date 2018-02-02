@@ -86,6 +86,12 @@
         }
         return cellView;
     }
+    // acq
+    else if ([identifier isEqualToString:@"AcqCol"]) {
+        NSTableCellView *cellView = [tableView makeViewWithIdentifier:@"AcqCell" owner:self];
+        [cellView.textField setEditable:TRUE];
+        return cellView;
+    }
     return nil;
 
 }
@@ -105,8 +111,12 @@
         [[sharedData.seriesDescription objectForKey:currentName] setValue:newValue forKey:@"task"];
     }
     else if (columnIndex == 3){
-        //run
+        // run
         [[sharedData.seriesDescription objectForKey:currentName] setValue:newValue forKey:@"run"];
+    }
+    else if (columnIndex == 4){
+        // acq
+        [[sharedData.seriesDescription objectForKey:currentName] setValue:newValue forKey:@"acq"];
     }
     
 }

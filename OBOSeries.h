@@ -31,6 +31,7 @@
 @property (nonatomic) NSString *suffix;
 @property (nonatomic) NSString *session;
 @property (nonatomic) NSString *task;
+@property (nonatomic) NSString *acq;
 @property (nonatomic) NSString *run;
 
 @property (nonatomic, assign) BOOL discard;
