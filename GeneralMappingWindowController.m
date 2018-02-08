@@ -35,11 +35,11 @@
 @implementation GeneralMappingWindowController
 
 @synthesize sessionPopover = _sessionPopover;
-@synthesize sessionMethod = _sessionMethod;
-@synthesize sessionPattern = _sessionPattern;
-@synthesize sessionMethodLabel = _sessionMethodLabel;
-@synthesize subjectReplaceLabel1 = _subjectReplaceLabel1;
-@synthesize subjectReplaceLabel2 = _subjectReplaceLabel2;
+@synthesize studyNameRegexpField = _studyNameRegexpField;
+@synthesize sessionLabelTemplateField = _sessionLabelTemplateField;
+@synthesize subjectLabelTemplateField = _subjectLabelTemplateField;
+@synthesize useSeriesLabelsCheckbox = _useSeriesLabelsCheckbox;
+@synthesize seriesCheckBoxIsEnabled = _seriesCheckboxIsEnabled;
 
 -(NSInteger)numberOfRowsInTableView:(NSTableView *)tableView{
     OBOCollectedData *sharedData = [OBOCollectedData sharedManager];
@@ -154,14 +154,6 @@
 
 - (IBAction)showSessionPopover:(id)sender {
     [_sessionPopover showRelativeToRect:[sender bounds] ofView:sender preferredEdge:NSMaxYEdge];
-}
-
-- (IBAction)sessionMethodChanged:(id)sender {
-    if ([[_sessionMethod titleOfSelectedItem] isEqualToString:@"Fixed"]) {
-        [_sessionMethodLabel setStringValue:@"Session label. Empty if no sessions."];
-    } else {
-        [_sessionMethodLabel setStringValue:@"Regular expression, e.g. _ses-([a-z]*) \nMUST contain one capture group \nThe capture group will be removed from subject label and used as session label."];
-    }
 }
 
 -(void) annotateAllSeries {
@@ -333,28 +325,28 @@
 
 -(NSString*) createSessionLabelForStudy:(DicomStudy *)study {
     
-    NSString *pattern = [_sessionPattern stringValue];
-    NSString *method = [_sessionMethod titleOfSelectedItem];
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:nil];
+    NSString *pattern = [_studyNameRegexpField stringValue];
+    NSString *template = [_sessionLabelTemplateField stringValue];
+    NSString *result;
     
-    if ([method containsString:@"subject"]) {
-        
+    if (!_seriesCheckboxIsEnabled) {
+        // derive from subject name
         NSString *subjectName = study.name;
-        NSTextCheckingResult *match = [regex firstMatchInString:subjectName options:0 range:NSMakeRange(0, [subjectName length])];
-        NSString *result;
         
-        if (match){
-            result = [subjectName substringWithRange:[match rangeAtIndex:1]];
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:nil];
+        result = [regex stringByReplacingMatchesInString:subjectName options:0 range:NSMakeRange(0, [subjectName length]) withTemplate:template];
+        NSTextCheckingResult *match = [regex firstMatchInString:subjectName options:0 range:NSMakeRange(0, [subjectName length])];
+        
+        if (match) {
+            result = [regex replacementStringForResult:match inString:subjectName offset:0 template:template];
         } else {
-            result = @"unknown";
+            result = template;
         }
         
-        return result;
-        
-    } else if ([method containsString:@"series"]) {
-        
+    } else {
+        // derive from series name
         NSTextCheckingResult *match;
-        NSString *result;
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"_ses-[a-zA-Z0-9]*" options:0 error:nil];
         for (DicomSeries *currentSeries in [study imageSeries]) {
             match = [regex firstMatchInString:[currentSeries name] options:0 range:NSMakeRange(0, [[currentSeries name] length])];
             if (match) {
@@ -366,41 +358,28 @@
         if ([result length] == 0) {
             result = @"unknown";
         }
-        
-        return result;
-        
-    } else if ([method isEqualToString:@"Fixed"]) {
-        return pattern;
-    } else {
-        return @"";
     }
+    
+    return result;
 }
 
 -(NSString*) createSubjectNameForStudy:(DicomStudy *)study {
+    NSString *result;
     NSString *subjectName = study.name;
+    NSString *pattern = [_studyNameRegexpField stringValue];
+    NSString *template = [_subjectLabelTemplateField stringValue];
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:nil];
     
-    // 1 - if session is taken from subject name, remove the bit that was used
-    if ([[_sessionMethod titleOfSelectedItem] containsString:@"subject"]) {
-        
-        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:[_sessionPattern stringValue] options:NSRegularExpressionCaseInsensitive error:nil];
-        NSTextCheckingResult *match = [regex firstMatchInString:subjectName options:0 range:NSMakeRange(0, [subjectName length])];
-        
-        if (match) {
-            if ([match numberOfRanges] >= 2){
-                subjectName = [subjectName stringByReplacingCharactersInRange:[match rangeAtIndex:1] withString:@""];
-            }
-        }
+    NSTextCheckingResult *match = [regex firstMatchInString:subjectName options:0 range:NSMakeRange(0, [subjectName length])];
+    
+    if (match) {
+        result = [regex replacementStringForResult:match inString:subjectName offset:0 template:template];
+    } else {
+        result = subjectName;
     }
     
-    // 2 - perform additional, user - defined replacement
-    if ([[_subjectReplaceLabel1 stringValue] length] > 0) {
-        NSString *before = [_subjectReplaceLabel1 stringValue];
-        NSString *after = [_subjectReplaceLabel2 stringValue];
-        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:before options:0 error:nil];
-        subjectName = [regex stringByReplacingMatchesInString:subjectName options:0 range:NSMakeRange(0, [subjectName length]) withTemplate:after];
-    }
+    return result;
     
-    return subjectName;
 }
 
 @end

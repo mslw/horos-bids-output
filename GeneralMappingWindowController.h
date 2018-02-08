@@ -32,20 +32,19 @@
 @property (weak) IBOutlet NSTextField *datasetNameField;
 
 @property (weak) IBOutlet NSPopover *sessionPopover;
-@property (weak) IBOutlet NSTextField *sessionPattern;
-@property (weak) IBOutlet NSPopUpButton *sessionMethod;
-@property (weak) IBOutlet NSTextFieldCell *sessionMethodLabel;
-@property (weak) IBOutlet NSTextField *subjectReplaceLabel1;
-@property (weak) IBOutlet NSTextField *subjectReplaceLabel2;
+@property (weak) IBOutlet NSTextField *studyNameRegexpField;
+@property (weak) IBOutlet NSTextField *sessionLabelTemplateField;
+@property (weak) IBOutlet NSTextField *subjectLabelTemplateField;
+@property (weak) IBOutlet NSButton *useSeriesLabelsCheckbox;
+
+@property BOOL seriesCheckBoxIsEnabled;
 
 @property (nonatomic, strong) NSWindowController *SummaryWindow;
-
 
 - (IBAction)updateSuffix:(id)sender;
 - (IBAction)itemTextFieldUpdated:(id)sender;
 - (IBAction)saveMapping:(id)sender;
 - (IBAction)showSessionPopover:(id)sender;
-- (IBAction)sessionMethodChanged:(id)sender;
 
 - (void) annotateAllSeries;
 - (void) assignFieldMapSuffixes:(NSArray*)fieldMapTriplet;
