@@ -34,13 +34,6 @@
 
 @implementation GeneralMappingWindowController
 
-@synthesize sessionPopover = _sessionPopover;
-@synthesize studyNameRegexpField = _studyNameRegexpField;
-@synthesize sessionLabelTemplateField = _sessionLabelTemplateField;
-@synthesize subjectLabelTemplateField = _subjectLabelTemplateField;
-@synthesize useSeriesLabelsCheckbox = _useSeriesLabelsCheckbox;
-@synthesize seriesCheckBoxIsEnabled = _seriesCheckboxIsEnabled;
-
 -(NSInteger)numberOfRowsInTableView:(NSTableView *)tableView{
     OBOCollectedData *sharedData = [OBOCollectedData sharedManager];
     return [sharedData.seriesDescription count];
@@ -333,7 +326,7 @@
     NSString *template = [_sessionLabelTemplateField stringValue];
     NSString *result;
     
-    if (!_seriesCheckboxIsEnabled) {
+    if (!_seriesCheckBoxIsEnabled) {
         // derive from subject name
         NSString *subjectName = study.name;
         
