@@ -156,6 +156,10 @@
     [_sessionPopover showRelativeToRect:[sender bounds] ofView:sender preferredEdge:NSMaxYEdge];
 }
 
+- (IBAction)showDescriptionPopover:(id)sender {
+    [_descriptionPopover showRelativeToRect:[sender bounds] ofView:sender preferredEdge:NSMinYEdge];
+}
+
 -(void) annotateAllSeries {
     OBOCollectedData *sharedData = [OBOCollectedData sharedManager];
     NSPredicate *takeOnlyMR = [NSPredicate predicateWithFormat:@"modality = %@", @"MR"];

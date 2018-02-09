@@ -37,6 +37,8 @@
 @property (weak) IBOutlet NSTextField *subjectLabelTemplateField;
 @property (weak) IBOutlet NSButton *useSeriesLabelsCheckbox;
 
+@property (weak) IBOutlet NSPopover *descriptionPopover;
+
 @property BOOL seriesCheckBoxIsEnabled;
 
 @property (nonatomic, strong) NSWindowController *SummaryWindow;
@@ -45,6 +47,7 @@
 - (IBAction)itemTextFieldUpdated:(id)sender;
 - (IBAction)saveMapping:(id)sender;
 - (IBAction)showSessionPopover:(id)sender;
+- (IBAction)showDescriptionPopover:(id)sender;
 
 - (void) annotateAllSeries;
 - (void) assignFieldMapSuffixes:(NSArray*)fieldMapTriplet;
