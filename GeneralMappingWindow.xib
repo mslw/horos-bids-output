@@ -303,9 +303,17 @@
         </window>
         <customObject id="xZ5-Nf-8RU" customClass="GeneralMappingWindowController">
             <connections>
+                <outlet property="acknowledgementsField" destination="MlC-yY-EkM" id="azL-z9-AvZ"/>
+                <outlet property="authorsField" destination="lmD-Xs-Ous" id="8c5-H4-Lmo"/>
+                <outlet property="bidsVersionField" destination="5Tz-do-Zct" id="IcY-nU-tue"/>
+                <outlet property="datasetDoiField" destination="mnR-2B-HUS" id="Jdh-BO-cNz"/>
                 <outlet property="datasetNameField" destination="xqn-eY-bJe" id="8Ca-DG-Ax0"/>
                 <outlet property="descriptionPopover" destination="inR-qG-pXP" id="SDA-cD-O5h"/>
+                <outlet property="fundingField" destination="kzK-5k-Mxu" id="USa-UW-hgE"/>
+                <outlet property="howToAcknowledgeField" destination="6YW-Vw-Tc7" id="qRv-Bm-rs1"/>
+                <outlet property="licenseField" destination="VI5-Pt-TBT" id="r3z-M8-68m"/>
                 <outlet property="minimumBoldField" destination="ona-NM-yFX" id="Spx-aV-Xpw"/>
+                <outlet property="referencesAndLinksField" destination="v2f-gR-aV8" id="mGS-yX-8tB"/>
                 <outlet property="sessionLabelTemplate" destination="GZo-qN-gvj" id="rbf-TJ-RPW"/>
                 <outlet property="sessionLabelTemplateField" destination="GZo-qN-gvj" id="wWy-JO-Bkk"/>
                 <outlet property="sessionPopover" destination="ODh-Rz-oTU" id="TMd-D5-0A6"/>

@@ -29,7 +29,6 @@
 @property (weak) IBOutlet NSWindow *window;
 @property (weak) IBOutlet NSTableView *tableView;
 @property (weak) IBOutlet NSTextField *minimumBoldField;
-@property (weak) IBOutlet NSTextField *datasetNameField;
 
 @property (weak) IBOutlet NSPopover *sessionPopover;
 @property (weak) IBOutlet NSTextField *studyNameRegexpField;
@@ -38,6 +37,15 @@
 @property (weak) IBOutlet NSButton *useSeriesLabelsCheckbox;
 
 @property (weak) IBOutlet NSPopover *descriptionPopover;
+@property (weak) IBOutlet NSTextField *datasetNameField;
+@property (weak) IBOutlet NSTextField *bidsVersionField;
+@property (weak) IBOutlet NSTextField *licenseField;
+@property (weak) IBOutlet NSTextField *authorsField;
+@property (weak) IBOutlet NSTextField *acknowledgementsField;
+@property (weak) IBOutlet NSTextField *howToAcknowledgeField;
+@property (weak) IBOutlet NSTextField *fundingField;
+@property (weak) IBOutlet NSTextField *referencesAndLinksField;
+@property (weak) IBOutlet NSTextField *datasetDoiField;
 
 @property BOOL seriesCheckBoxIsEnabled;
 
