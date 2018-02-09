@@ -368,7 +368,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jMR-Cn-3h0">
+                <textField toolTip="Regular expression to match subject names. If empty, no substitutions will be performed." verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jMR-Cn-3h0">
                     <rect key="frame" x="68" y="121" width="221" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="CPL-EU-ohK">
@@ -377,7 +377,7 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GZo-qN-gvj">
+                <textField toolTip="Pattern for session label. You can use $1, $2, etc to match capture groups. If empty, no sessions." verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GZo-qN-gvj">
                     <rect key="frame" x="103" y="61" width="186" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="nf3-VQ-lVX">
@@ -393,7 +393,7 @@
                         </binding>
                     </connections>
                 </textField>
-                <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IrW-Sj-LMo">
+                <textField toolTip="Subject label. You can use $1, $2, etc to match capture groups." verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IrW-Sj-LMo">
                     <rect key="frame" x="103" y="91" width="186" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="nyi-F4-yrF">
@@ -411,7 +411,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WxJ-Pb-FXB">
+                <button toolTip="Behaviour based on heudiconv. Requires at least one series name to match _ses-[a-zA-Z0-9]*" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WxJ-Pb-FXB">
                     <rect key="frame" x="15" y="18" width="281" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="Look for _ses-label in DICOM series names" bezelStyle="regularSquare" imagePosition="left" inset="2" id="1Hg-QB-DU4">
