@@ -46,6 +46,7 @@
 @property (weak) IBOutlet NSTextField *fundingField;
 @property (weak) IBOutlet NSTextField *referencesAndLinksField;
 @property (weak) IBOutlet NSTextField *datasetDoiField;
+@property (weak) IBOutlet NSButton *noDescriptionCheckBox;
 
 @property BOOL seriesCheckBoxIsEnabled;
 

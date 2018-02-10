@@ -28,6 +28,7 @@
 @property (nonatomic, retain) NSMutableArray *listOfSeries;
 
 @property (nonatomic, retain) NSMutableDictionary *datasetDescription;
+@property BOOL writeDatasetDescription;
 
 +(id) sharedManager;
 

@@ -13,7 +13,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="800" height="622"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1440"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="800"/>
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="800" height="622"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -79,7 +79,7 @@
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                             <prototypeCellViews>
                                                 <tableCellView identifier="SuffixCell" id="rlV-Jn-pbe">
-                                                    <rect key="frame" x="204" y="1" width="95" height="17"/>
+                                                    <rect key="frame" x="203.5" y="1" width="95" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fUd-JR-1s7">
@@ -233,7 +233,7 @@
                             </subviews>
                         </clipView>
                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="ly1-2v-ba0">
-                            <rect key="frame" x="1" y="7" width="0.0" height="16"/>
+                            <rect key="frame" x="1" y="8" width="0.0" height="15"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="4Sw-vN-LZj">
@@ -313,6 +313,7 @@
                 <outlet property="howToAcknowledgeField" destination="6YW-Vw-Tc7" id="qRv-Bm-rs1"/>
                 <outlet property="licenseField" destination="VI5-Pt-TBT" id="r3z-M8-68m"/>
                 <outlet property="minimumBoldField" destination="ona-NM-yFX" id="Spx-aV-Xpw"/>
+                <outlet property="noDescriptionCheckBox" destination="mz1-P1-aKf" id="xgc-bF-V06"/>
                 <outlet property="referencesAndLinksField" destination="v2f-gR-aV8" id="mGS-yX-8tB"/>
                 <outlet property="sessionLabelTemplate" destination="GZo-qN-gvj" id="rbf-TJ-RPW"/>
                 <outlet property="sessionLabelTemplateField" destination="GZo-qN-gvj" id="wWy-JO-Bkk"/>
@@ -618,6 +619,14 @@
                     <rect key="frame" x="32" y="328" width="259" height="5"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                 </box>
+                <button toolTip="Do not create dataset_description.json. Useful when adding files to an existing dataset." verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mz1-P1-aKf">
+                    <rect key="frame" x="206" y="6" width="95" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="check" title="don't create" bezelStyle="regularSquare" imagePosition="left" inset="2" id="8Bg-MD-gaS">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
             </subviews>
             <point key="canvasLocation" x="935" y="105"/>
         </customView>

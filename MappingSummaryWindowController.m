@@ -143,7 +143,7 @@
     // write dataset_description.json
     NSMutableDictionary *datasetDescription = [sharedData datasetDescription];
     
-    if ([NSJSONSerialization isValidJSONObject:datasetDescription]){
+    if ([sharedData writeDatasetDescription] && [NSJSONSerialization isValidJSONObject:datasetDescription]){
         NSString *jsonPath = [NSString pathWithComponents:@[bidsRootPath, @"dataset_description.json"]];
         NSData *datasetDescriptionData = [NSJSONSerialization dataWithJSONObject:datasetDescription options:NSJSONWritingPrettyPrinted error:nil];
         [datasetDescriptionData writeToFile:jsonPath atomically:NO];

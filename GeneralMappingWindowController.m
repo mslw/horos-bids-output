@@ -422,6 +422,13 @@
     if ([[_datasetDoiField stringValue] length] > 0) {
         [sharedData.datasetDescription setValue:[_datasetDoiField stringValue] forKey:@"DatasetDOI"];
     }
+    
+    // write or not
+    if ([_noDescriptionCheckBox state] == NSOnState) {
+        [sharedData setWriteDatasetDescription:NO];
+    } else {
+        [sharedData setWriteDatasetDescription:YES];
+    }
 }
 
 @end
