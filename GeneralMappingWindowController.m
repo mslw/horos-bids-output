@@ -330,7 +330,6 @@
         NSString *subjectName = study.name;
         
         NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:nil];
-        result = [regex stringByReplacingMatchesInString:subjectName options:0 range:NSMakeRange(0, [subjectName length]) withTemplate:template];
         NSTextCheckingResult *match = [regex firstMatchInString:subjectName options:0 range:NSMakeRange(0, [subjectName length])];
         
         if (match) {
@@ -342,7 +341,7 @@
     } else {
         // derive from series name
         NSTextCheckingResult *match;
-        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"_ses-[a-zA-Z0-9]*" options:0 error:nil];
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"_ses-([a-zA-Z0-9]*)" options:0 error:nil];
         for (DicomSeries *currentSeries in [study imageSeries]) {
             match = [regex firstMatchInString:[currentSeries name] options:0 range:NSMakeRange(0, [[currentSeries name] length])];
             if (match) {
