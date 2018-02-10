@@ -8,18 +8,18 @@ OsiriX / Horos plugin for BIDS output. Created during Stanford Center for Reprod
 ### Installation
 Download the HorosBidsOutput.horosplugin from the [releases](https://github.com/mslw/osirix-bids-output/releases) page above. If you have Horos installed, double-clicking the .horosplugin file should launch horos with a prompt and install the plugin for the current user.
 
-Alternatively, the file can be manually placed in: `~/Library/Application Support/OsiriX/Plugins/`. Regardless of the installation method, the plugin can then be made available to all users through Horos' Plugins Manager.
+Alternatively, the file can be manually placed in: `~/Library/Application Support/Horos/Plugins/`. Regardless of the installation method, the plugin can then be made available to all users through Horos' Plugins Manager.
 
 ### Dependencies: dcm2niix
-Bids Output Extension works by launching [dcm2niix](https://github.com/rordenlab/dcm2niix), which has to be available. To install dcm2niix, go to its releases page and download the executable. 
+Bids Output Extension works by launching [dcm2niix](https://github.com/rordenlab/dcm2niix), which has to be available. To install dcm2niix, go to [dcm2niix releases page](https://github.com/rordenlab/dcm2niix/releases) and download the executable.
 
-The dcm2niix executable can be placed anywhere on your computer. The location has to specified in the GUI before exporting. If an executable file named dcm2niix is found in your home directory, Bids Output Extension will use it by default.
+The dcm2niix executable can be placed anywhere on your computer. However, if an executable file named dcm2niix is found in your home directory, Bids Output Extension will use it by default.
 
 ### Usage
 For usage instructions, see the [project wiki](https://github.com/mslw/osirix-bids-output/wiki).
 
 ### About Osirix / Horos
-OsiriX and Horos are DICOM image viewers / database browsers. Horos is based upon OsiriX. The plugin development switched from OsiriX to Horos, but it should be compatible with both.
+OsiriX and Horos are DICOM image viewers / database browsers. Horos is based upon OsiriX. The plugin development switched from OsiriX to Horos prior to 0.1 release, but it is likely that the plugin will be compatible with both.
 
 **Horos**: [website](https://www.horosproject.org), [github](https://github.com/horosproject/horos)
 
@@ -38,6 +38,8 @@ Use the API taken from [here](https://github.com/pixmeo/osirixplugins/tree/devel
    2. In the Arguments tab, add the following argument passed on launch: `--LoadPlugin $(BUILT_PRODUCTS_DIR)/$(PRODUCT_NAME).$(WRAPPER_EXTENSION)`
 
 ### Useful resources
-* http://mrkonrad.github.io/MRKonrad/Horos-Plugin (tips on setting up the project)
+This materials helped me start writing the plugin and I am immensely grateful to their creators.
+* http://mrkonrad.github.io/MRKonrad/Horos-Plugin (tips on setting up the Xcode project by Konrad Werys)
 * https://github.com/pixmeo/osirixplugins (plugin template and multiple plugins)
 * https://github.com/horosproject/horosplugins (as above)
+* Excellent [video tutorials](https://www.youtube.com/watch?v=X_MJd8wqTBM&list=PLE83F832121568D36) on Cocoa Programing by Lucas Derraugh, with a [matching GitHub repository](https://github.com/lucasderraugh/AppleProg-Cocoa-Tutorials).
