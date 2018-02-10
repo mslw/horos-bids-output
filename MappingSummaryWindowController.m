@@ -141,13 +141,7 @@
     [OBOExporter removeTemporaryDicomDirectoryAtPath:bidsRootPath];
     
     // write dataset_description.json
-    NSMutableDictionary *datasetDescription = [[NSMutableDictionary alloc] init];
-    if ([sharedData.datasetName length] > 0){
-        [datasetDescription setValue:sharedData.datasetName forKey:@"Name"];
-    } else {
-        [datasetDescription setValue:@"Horos Exported Dataset" forKey:@"Name"];
-    }
-    [datasetDescription setValue:@"1.0.2" forKey:@"BIDSVersion"];
+    NSMutableDictionary *datasetDescription = [sharedData datasetDescription];
     
     if ([NSJSONSerialization isValidJSONObject:datasetDescription]){
         NSString *jsonPath = [NSString pathWithComponents:@[bidsRootPath, @"dataset_description.json"]];

@@ -59,6 +59,7 @@
 
 - (void) annotateAllSeries;
 - (void) assignFieldMapSuffixes:(NSArray*)fieldMapTriplet;
+- (void) createDatasetDescription;
 - (NSString*) createSessionLabelForStudy:(DicomStudy*)study;
 - (NSString*) createSubjectNameForStudy:(DicomStudy*)study;
 

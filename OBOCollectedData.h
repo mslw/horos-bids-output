@@ -27,7 +27,7 @@
 @property (nonatomic, retain) NSMutableDictionary *seriesDescription;
 @property (nonatomic, retain) NSMutableArray *listOfSeries;
 
-@property (nonatomic, retain) NSString *datasetName;
+@property (nonatomic, retain) NSMutableDictionary *datasetDescription;
 
 +(id) sharedManager;
 

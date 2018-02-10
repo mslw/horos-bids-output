@@ -137,8 +137,7 @@
     [sharedData.listOfSeries removeAllObjects];
     
     [self annotateAllSeries];
-
-    [sharedData setValue:[_datasetNameField stringValue] forKey:@"datasetName"];
+    [self createDatasetDescription];
     
     _SummaryWindow = [[MappingSummaryWindowController alloc] initWithWindowNibName:@"MappingSummaryWindow"];
     [_SummaryWindow showWindow:self];
@@ -377,6 +376,52 @@
     
     return result;
     
+}
+
+-(void) createDatasetDescription {
+    OBOCollectedData *sharedData = [OBOCollectedData sharedManager];
+    [sharedData.datasetDescription removeAllObjects];
+
+    // Name
+    if ([[_datasetNameField stringValue] length] > 0) {
+        [sharedData.datasetDescription setValue:[_datasetNameField stringValue] forKey:@"Name"];
+    } else {
+        [sharedData.datasetDescription setValue:@"Unnamed experiment" forKey:@"Name"];
+    }
+    // BIDSVersion
+    if ([[_bidsVersionField stringValue] length] > 0) {
+        [sharedData.datasetDescription setValue:[_bidsVersionField stringValue] forKey:@"BIDSVersion"];
+    } else {
+        [sharedData.datasetDescription setValue:@"1.0.2" forKey:@"BIDSVersion"];
+    }
+    // License
+    if ([[_licenseField stringValue] length] > 0) {
+        [sharedData.datasetDescription setValue:[_licenseField stringValue] forKey:@"License"];
+    }
+    // Authors
+    if ([[_authorsField stringValue] length] > 0) {
+        [sharedData.datasetDescription setValue:[[_authorsField stringValue] componentsSeparatedByString:@";"] forKey:@"Authors"];
+    }
+    // Acknowledgements
+    if ([[_acknowledgementsField stringValue] length] > 0) {
+        [sharedData.datasetDescription setValue:[_acknowledgementsField stringValue] forKey:@"Acknowledgements"];
+    }
+    // HowToAcknowledge
+    if ([[_howToAcknowledgeField stringValue] length] > 0) {
+        [sharedData.datasetDescription setValue:[_howToAcknowledgeField stringValue] forKey:@"HowToAcknowledge"];
+    }
+    // Funding
+    if ([[_fundingField stringValue] length] > 0) {
+        [sharedData.datasetDescription setValue:[_fundingField stringValue] forKey:@"Funding"];
+    }
+    // ReferencesAndLinks
+    if ([[_referencesAndLinksField stringValue] length] > 0) {
+        [sharedData.datasetDescription setValue:[[_referencesAndLinksField stringValue] componentsSeparatedByString:@";"] forKey:@"ReferencesAndLinks"];
+    }
+    // DatasetDOI
+    if ([[_datasetDoiField stringValue] length] > 0) {
+        [sharedData.datasetDescription setValue:[_datasetDoiField stringValue] forKey:@"DatasetDOI"];
+    }
 }
 
 @end
