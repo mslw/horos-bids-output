@@ -7,6 +7,9 @@ and this project versioning is based on [Semantic Versioning](http://semver.org/
 ### Added
 - Exporting dwi files is now possible
 
+### Changed
+- PD and dwi were added to suffix list in the GUI
+
 ### Fixed
 - Fix setting session label from sequence name
 - Include acq label in fmap and anat file names
