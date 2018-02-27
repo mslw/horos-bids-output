@@ -4,6 +4,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project versioning is based on [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Exporting dwi files is now possible
+
+### Fixed
+- Fix setting session label from sequence name
+- Include acq label in fmap and anat file names
 
 ## [0.4.0] - 2018-02-10
 ### Added

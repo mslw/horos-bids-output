@@ -170,7 +170,12 @@
             [path appendString:self.session];
         }
         
-        // ADD acq (optional) - not yet in nib
+        // acq (optional)
+        if ([self.acq length] > 0){
+            [path appendString:@"_acq-"];
+            [path appendString:self.acq];
+        }
+        
         // ADD ce (optional) - not yet in nib
         // ADD rec (optional) - not yet in nib
         
@@ -179,6 +184,7 @@
             [path appendString:@"_run-"];
             [path appendString:self.run];
         }
+        
         // ADD mod (optional) - not yet in nib
         
         // modality label
@@ -210,7 +216,11 @@
             [path appendString:self.session];
         }
         
-        // ADD acq (optional) - not yet in nib
+        // acq (optional)
+        if ([self.acq length] > 0){
+            [path appendString:@"_acq-"];
+            [path appendString:self.acq];
+        }
         
         // run (optional)
         if ([self.run length] > 0){
@@ -220,6 +230,48 @@
         
         [path appendString:@"_"];
         [path appendString:self.suffix];
+    }
+    else if ([self.suffix isEqualToString:@"dwi"]) {
+        
+        // folders
+        [path appendString:@"sub-"];
+        [path appendString: [self createSubjectLabel]];
+        [path appendString:@"/"];
+        
+        if ([self.session length] > 0){
+            [path appendString:@"ses-"];
+            [path appendString:self.session];
+            [path appendString:@"/"];
+        }
+        
+        [path appendString:@"dwi/"];
+        
+        // subject
+        [path appendString:@"sub-"];
+        [path appendString:[self createSubjectLabel]];
+        
+        // session (optional)
+        if ([self.session length] > 0){
+            [path appendString:@"_ses-"];
+            [path appendString:self.session];
+        }
+        
+        // acq (optional)
+        if ([self.acq length] > 0){
+            [path appendString:@"_acq-"];
+            [path appendString:self.acq];
+        }
+        
+        // run (optional)
+        if ([self.run length] > 0){
+            [path appendString:@"_run-"];
+            [path appendString:self.run];
+        }
+        
+        // suffix
+        [path appendString:@"_"];
+        [path appendString:self.suffix];
+        
     }
     
     return path;
