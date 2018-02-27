@@ -52,6 +52,7 @@
     if ( [openDlg runModal] == NSOKButton ) {
         converterPath = [[openDlg URL] relativeString];
         converterPath = [converterPath stringByReplacingOccurrencesOfString:@"file://" withString:@""];
+        converterPath = [converterPath stringByReplacingOccurrencesOfString:@"%20" withString:@" "];
         [_converterTextField setStringValue:converterPath];
     }
 }
@@ -66,6 +67,7 @@
     if ( [openDlg runModal] == NSOKButton ) {
         bidsRootPath = [[openDlg URL] relativeString];
         bidsRootPath = [bidsRootPath stringByReplacingOccurrencesOfString:@"file://" withString:@""];
+        bidsRootPath = [bidsRootPath stringByReplacingOccurrencesOfString:@"%20" withString:@" "];
         [_bidsRootTextField setStringValue:bidsRootPath];
     }
 }

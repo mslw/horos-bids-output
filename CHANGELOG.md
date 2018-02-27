@@ -13,6 +13,7 @@ and this project versioning is based on [Semantic Versioning](http://semver.org/
 ### Fixed
 - Fix setting session label from sequence name
 - Include acq label in fmap and anat file names
+- Properly format paths to dcm2niix and BIDS root (specified through the file selection window) if they contain spaces
 
 ## [0.4.0] - 2018-02-10
 ### Added
