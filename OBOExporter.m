@@ -31,7 +31,7 @@
     
     // bidsFolder starts with sub-label/... Trailing separator is removed.
 
-    NSString* temporaryDicomDirectory = [NSString pathWithComponents:@[NSHomeDirectory(), @"HorosBidsOutput", @"dicom"]]
+    NSString* temporaryDicomDirectory = [NSString pathWithComponents:@[NSHomeDirectory(), @"HorosBidsOutput", @"dicom"]];
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
     

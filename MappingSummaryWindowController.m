@@ -166,8 +166,6 @@
     
 }
 
-@end
-
 -(void)saveSummary {
   OBOCollectedData *sharedData = [OBOCollectedData sharedManager];
 
@@ -183,7 +181,7 @@
   NSString *row;
 
   // add header
-  row = [NSString stringWithFormat:@"%@;%@;%@;%@,%@\n",
+    row = [NSString stringWithFormat:@"%@;%@;%@;%@;%@\n",
 		  @"Subject Name",
 		  @"Series Name",
 		  @"Series ID",
@@ -194,7 +192,7 @@
   // add contents
   for (OBOSeries *currentSeries in [sharedData listOfSeries])
     {
-      row = [NSString stringWithFormat:@"%@;%@;%@;%@,%@\n",
+        row = [NSString stringWithFormat:@"%@;%@;%@;%@;%@\n",
 		      [currentSeries originalSubjectName],
 		      [[currentSeries series] valueForKey:@"name"],
 		      [[currentSeries series] valueForKey:@"id"],
@@ -206,3 +204,5 @@
   // write the file
   [csvRep writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
 }
+
+@end

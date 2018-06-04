@@ -4,8 +4,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project versioning is based on [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+### Added
+- Mapping summary (which series was exported to which file) is saved in a csv file
+
 ### Changed
-- Dicom files are symlinked rather than copied (thanks @malywladek for the suggestion)
+- Dicom files are symlinked rather than copied (thanks @malywladek for the suggestion)  
 - Mapping table scales with the window
 
 ## [0.4.1] - 2018-03-07
