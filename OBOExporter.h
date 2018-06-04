@@ -28,14 +28,16 @@
 
 +(void) exportSeries:(OBOSeries*) series usingConverterAt:(NSString*) converterPath toFolder:(NSString*) bidsRoot withCompression:(BOOL)answer;
 
-+(BOOL) createTemporaryDicomDirectoryAtPath:(NSString*) path;
-/** Create a .dicom folder inside a given directory if it didn't exist before
++(BOOL) createTemporaryDicomDirectory;
+/** Create a temporary folder for dicom files (symlinks) if it didn't exist before
  *
- * @return YES if the dictionary was created, NO if it existed before
+ * The folder is created in ~/HorosBidsOutput
+ *
+ * @return YES if the directory was created, NO if it existed before
  */
 
-+(void) removeTemporaryDicomDirectoryAtPath:(NSString*) path;
-/** Remove .dicom folder inside a given directory
++(void) removeTemporaryDicomDirectory;
+/** Remove the temporary dicom folder
  */
 
 @end

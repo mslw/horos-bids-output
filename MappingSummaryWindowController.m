@@ -99,22 +99,21 @@
     
     // create a temporary directory for dicoms, do not run conversion if directory already exists
     BOOL createdDicomDir;
-    temporaryDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"HorosBidsOutput"];
-    createdDicomDir = [OBOExporter createTemporaryDicomDirectoryAtPath:temporaryDirectory];
+    createdDicomDir = [OBOExporter createTemporaryDicomDirectory];
     
     if (!createdDicomDir) {
-        // run an NSAlert asking for permission to delete .dicom and create it again
+        // run an NSAlert asking for permission to delete temporary dicom folder and create it again
         NSAlert *warningAlert = [[NSAlert alloc] init];
         [warningAlert setAlertStyle:NSWarningAlertStyle];
-        [warningAlert addButtonWithTitle:@"Clear .dicom and proceed"];
+        [warningAlert addButtonWithTitle:@"Clear dicom and proceed"];
         [warningAlert addButtonWithTitle:@"Cancel"];
-        [warningAlert setMessageText:@"Error when creating temporary .dicom directory"];
-        [warningAlert setInformativeText:@"It appears that .dicom directory in ~/HorosBidsOutput folder already exists and may cause export conflicts. Make sure to remove the .dicom folder before converting.\n This error may also occur if the directory didn't exist, but could not be created."];
+        [warningAlert setMessageText:@"Error when creating temporary dicom directory"];
+        [warningAlert setInformativeText:@"It appears that temporary dicom directory in ~/HorosBidsOutput folder already exists and may cause export conflicts. Make sure to remove the dicom folder before converting.\n This error may also occur if the directory didn't exist, but could not be created."];
         
         if ([warningAlert runModal] == NSAlertFirstButtonReturn) {
             // user chose to remove dicomdir, try removing & creating again
-            [OBOExporter removeTemporaryDicomDirectoryAtPath:temporaryDirectory];
-            createdDicomDir = [OBOExporter createTemporaryDicomDirectoryAtPath:temporaryDirectory];
+            [OBOExporter removeTemporaryDicomDirectory];
+            createdDicomDir = [OBOExporter createTemporaryDicomDirectory];
             if (!createdDicomDir) {
                 // still unable to create directory, possibly because of access rights
                 NSAlert *alert = [[NSAlert alloc] init];
@@ -141,7 +140,7 @@
         }
     }
     
-    [OBOExporter removeTemporaryDicomDirectoryAtPath:temporaryDirectory];
+    [OBOExporter removeTemporaryDicomDirectory];
     
     // write dataset_description.json
     NSMutableDictionary *datasetDescription = [sharedData datasetDescription];

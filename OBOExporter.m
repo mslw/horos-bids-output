@@ -31,16 +31,16 @@
     
     // bidsFolder starts with sub-label/... Trailing separator is removed.
 
-    NSString* temporaryDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"HorosBidsOutput"];
+    NSString* temporaryDicomDirectory = [NSString pathWithComponents:@[NSHomeDirectory(), @"HorosBidsOutput", @"dicom"]]
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
     // create bids-like directory within ~/HorosBidsOutput/.dicom
-    [fileManager createDirectoryAtPath:[NSString pathWithComponents:@[temporaryDirectory, @".dicom", bidsPath]] withIntermediateDirectories:YES attributes:nil error:nil];
+    [fileManager createDirectoryAtPath:[NSString pathWithComponents:@[temporaryDicomDirectory, bidsPath]] withIntermediateDirectories:YES attributes:nil error:nil];
     
     // symlink dicom files there
     for (NSString *path in [[[series series] paths] objectEnumerator]) {
-	[fileManager createSymbolicLinkAtPath:[NSString pathWithComponents:@[temporaryDirectory, @".dicom", bidsPath, [path lastPathComponent]]]
+	[fileManager createSymbolicLinkAtPath:[NSString pathWithComponents:@[temporaryDicomDirectory, bidsPath, [path lastPathComponent]]]
 			  withDestinationPath:path
 					error:nil];
         // here I am using bids path (since it has no extension) as dicom folder name
@@ -70,7 +70,7 @@
                      @"-o", outputDirectory,
                      @"-f", bidsFileName,
                      @"-z", compression,
-                     [NSString pathWithComponents:@[temporaryDirectory, @".dicom", bidsPath]],
+                     [NSString pathWithComponents:@[temporaryDicomDirectory, bidsPath]],
                      nil];
     
     [conversionTask setArguments:args];
@@ -126,9 +126,9 @@
     
 }
 
-+(BOOL) createTemporaryDicomDirectoryAtPath:(NSString *)path {
++(BOOL) createTemporaryDicomDirectory {
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *dicomPath = [NSString pathWithComponents:@[path, @".dicom"]];
+    NSString *dicomPath = [NSString pathWithComponents:@[NSHomeDirectory(), @"HorosBidsOutput", @"dicom"]];
     
     if ([fileManager fileExistsAtPath:dicomPath]) {
         return NO;
@@ -141,9 +141,9 @@
     }
 }
 
-+(void) removeTemporaryDicomDirectoryAtPath:(NSString *)path {
++(void) removeTemporaryDicomDirectory {
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *dicomPath = [NSString pathWithComponents:@[path, @".dicom"]];
+    NSString *dicomPath = [NSString pathWithComponents:@[NSHomeDirectory(), @"HorosBidsOutput", @"dicom"]];
     [fileManager removeItemAtPath:dicomPath error:nil];
 }
 
