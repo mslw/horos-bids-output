@@ -30,15 +30,19 @@
     NSString *bidsFileName = [bidsPath lastPathComponent];
     
     // bidsFolder starts with sub-label/... Trailing separator is removed.
+
+    NSString* temporaryDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"HorosBidsOutput"];
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
-    // create bids-like directory within folder called dicom
-    [fileManager createDirectoryAtPath:[NSString pathWithComponents:@[bidsRoot, @".dicom", bidsPath]] withIntermediateDirectories:YES attributes:nil error:nil];
+    // create bids-like directory within ~/HorosBidsOutput/.dicom
+    [fileManager createDirectoryAtPath:[NSString pathWithComponents:@[temporaryDirectory, @".dicom", bidsPath]] withIntermediateDirectories:YES attributes:nil error:nil];
     
-    // copy dicom files there
+    // symlink dicom files there
     for (NSString *path in [[[series series] paths] objectEnumerator]) {
-        [fileManager copyItemAtPath:path toPath:[NSString pathWithComponents:@[bidsRoot, @".dicom", bidsPath, [path lastPathComponent]]] error:nil];
+	[fileManager createSymbolicLinkAtPath:[NSString pathWithComponents:@[temporaryDirectory, @".dicom", bidsPath, [path lastPathComponent]]]
+			  withDestinationPath:path
+					error:nil];
         // here I am using bids path (since it has no extension) as dicom folder name
     }
     
@@ -66,7 +70,7 @@
                      @"-o", outputDirectory,
                      @"-f", bidsFileName,
                      @"-z", compression,
-                     [NSString pathWithComponents:@[bidsRoot, @".dicom", bidsPath]],
+                     [NSString pathWithComponents:@[temporaryDirectory, @".dicom", bidsPath]],
                      nil];
     
     [conversionTask setArguments:args];
@@ -117,7 +121,7 @@
         [data writeToFile:jsonPath atomically:YES];
     }
     
-    // remove the dicoms copied for this series to avoid bloating disk usage for large studies
+    // remove the symlinks because they will not be needed any more
     [fileManager removeItemAtPath:[NSString pathWithComponents:@[bidsRoot, @".dicom", bidsPath]] error:nil];
     
 }

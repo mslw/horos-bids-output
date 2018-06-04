@@ -99,7 +99,8 @@
     
     // create a temporary directory for dicoms, do not run conversion if directory already exists
     BOOL createdDicomDir;
-    createdDicomDir = [OBOExporter createTemporaryDicomDirectoryAtPath:bidsRootPath];
+    temporaryDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"HorosBidsOutput"];
+    createdDicomDir = [OBOExporter createTemporaryDicomDirectoryAtPath:temporaryDirectory];
     
     if (!createdDicomDir) {
         // run an NSAlert asking for permission to delete .dicom and create it again
@@ -108,12 +109,12 @@
         [warningAlert addButtonWithTitle:@"Clear .dicom and proceed"];
         [warningAlert addButtonWithTitle:@"Cancel"];
         [warningAlert setMessageText:@"Error when creating temporary .dicom directory"];
-        [warningAlert setInformativeText:@"It appears that .dicom directory in your Bids Root already exists and may cause export conflicts. Make sure to remove it before converting.\n This error may also occur if the directory didn't exist, but could not be created."];
+        [warningAlert setInformativeText:@"It appears that .dicom directory in ~/HorosBidsOutput folder already exists and may cause export conflicts. Make sure to remove the .dicom folder before converting.\n This error may also occur if the directory didn't exist, but could not be created."];
         
         if ([warningAlert runModal] == NSAlertFirstButtonReturn) {
             // user chose to remove dicomdir, try removing & creating again
-            [OBOExporter removeTemporaryDicomDirectoryAtPath:bidsRootPath];
-            createdDicomDir = [OBOExporter createTemporaryDicomDirectoryAtPath:bidsRootPath];
+            [OBOExporter removeTemporaryDicomDirectoryAtPath:temporaryDirectory];
+            createdDicomDir = [OBOExporter createTemporaryDicomDirectoryAtPath:temporaryDirectory];
             if (!createdDicomDir) {
                 // still unable to create directory, possibly because of access rights
                 NSAlert *alert = [[NSAlert alloc] init];
@@ -140,7 +141,7 @@
         }
     }
     
-    [OBOExporter removeTemporaryDicomDirectoryAtPath:bidsRootPath];
+    [OBOExporter removeTemporaryDicomDirectoryAtPath:temporaryDirectory];
     
     // write dataset_description.json
     NSMutableDictionary *datasetDescription = [sharedData datasetDescription];
