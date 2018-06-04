@@ -32,4 +32,6 @@
 - (IBAction)changeBidsRoot:(id)sender;
 - (IBAction)exportToBids:(id)sender;
 
+-(void)saveSummary;
+
 @end

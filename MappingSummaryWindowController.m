@@ -129,7 +129,8 @@
     }
     
     [[self spinner] startAnimation:self];
-    
+
+    // run the conversion for each file
     OBOCollectedData *sharedData = [OBOCollectedData sharedManager];
     for (OBOSeries *currentSeries in [sharedData listOfSeries]) {
         if ( ![currentSeries discard] && [[currentSeries getBidsPath] length] > 0) {
@@ -141,6 +142,9 @@
     }
     
     [OBOExporter removeTemporaryDicomDirectory];
+
+    // save summary table to a csv file
+    [self saveSummary];
     
     // write dataset_description.json
     NSMutableDictionary *datasetDescription = [sharedData datasetDescription];
@@ -163,3 +167,42 @@
 }
 
 @end
+
+-(void)saveSummary {
+  OBOCollectedData *sharedData = [OBOCollectedData sharedManager];
+
+  // create file name containing date
+  NSDate *now = [NSDate date];
+  NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+  [dateFormatter setDateFormat:@"yyyy-MM-dd_HHmmss"];
+  NSString *fileName = [NSString stringWithFormat:@"export_%@.csv", [dateFormatter stringFromDate:now]];
+  NSString *filePath = [NSString pathWithComponents:@[NSHomeDirectory(), @"HorosBidsOutput", fileName]];
+
+  // prepare strings for csv content and row
+  NSMutableString * csvRep = [NSMutableString new];
+  NSString *row;
+
+  // add header
+  row = [NSString stringWithFormat:@"%@;%@;%@;%@,%@\n",
+		  @"Subject Name",
+		  @"Series Name",
+		  @"Series ID",
+		  @"Comment",
+		  @"BIDS path"];
+  [csvRep appendString:row];
+
+  // add contents
+  for (OBOSeries *currentSeries in [sharedData listOfSeries])
+    {
+      row = [NSString stringWithFormat:@"%@;%@;%@;%@,%@\n",
+		      [currentSeries originalSubjectName],
+		      [[currentSeries series] valueForKey:@"name"],
+		      [[currentSeries series] valueForKey:@"id"],
+		      [currentSeries comment],
+		      [currentSeries getBidsPath]];
+      [csvRep appendString:row];
+    }
+
+  // write the file
+  [csvRep writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
+}
