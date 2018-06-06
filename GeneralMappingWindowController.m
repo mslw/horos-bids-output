@@ -152,6 +152,44 @@
     [_descriptionPopover showRelativeToRect:[sender bounds] ofView:sender preferredEdge:NSMinYEdge];
 }
 
+
+- (IBAction)storeMappingForLater:(id)sender {
+    
+    OBOCollectedData *sharedData = [OBOCollectedData sharedManager];
+    NSData *mappingJson = [NSJSONSerialization dataWithJSONObject:sharedData.seriesDescription options:NSJSONWritingPrettyPrinted error:nil];
+
+    NSSavePanel *saveDlg = [NSSavePanel savePanel];
+    [saveDlg setTitle:@"Store mapping for later"];
+    [saveDlg setAllowedFileTypes:@[@"json"]];
+    
+    if ( [saveDlg runModal] == NSOKButton ) {
+        [mappingJson writeToURL:[saveDlg URL] atomically:YES];
+    }
+    
+}
+
+- (IBAction)useStoredMapping:(id)sender {
+    
+    OBOCollectedData *sharedData = [OBOCollectedData sharedManager];
+    
+    NSOpenPanel *openDlg = [NSOpenPanel openPanel];
+    [openDlg setTitle:@"Select mapping to be used"];
+    [openDlg setAllowedFileTypes:@[@"json"]];
+    
+    if ( [openDlg runModal] == NSOKButton ) {
+        NSData *mappingData = [NSData dataWithContentsOfURL:[openDlg URL]];
+        sharedData.seriesDescription = [NSJSONSerialization JSONObjectWithData:mappingData
+                                                                       options:NSJSONReadingMutableContainers error:nil];
+        
+        // do the same things as save mapping would do
+        [sharedData.listOfSeries removeAllObjects];
+        [self annotateAllSeries];
+        [self createDatasetDescription];
+        _SummaryWindow = [[MappingSummaryWindowController alloc] initWithWindowNibName:@"MappingSummaryWindow"];
+        [_SummaryWindow showWindow:self];
+    }
+}
+
 -(void) annotateAllSeries {
     OBOCollectedData *sharedData = [OBOCollectedData sharedManager];
     NSPredicate *takeOnlyMR = [NSPredicate predicateWithFormat:@"modality = %@", @"MR"];
@@ -167,7 +205,6 @@
         subjectName = [self createSubjectNameForStudy:currentStudy];
         
         for (DicomSeries *currentSeries in [[currentStudy imageSeries] filteredArrayUsingPredicate:takeOnlyMR]) {
-
             OBOSeries *decoratedSeries = [[OBOSeries alloc] initWithSeries:currentSeries params:[sharedData.seriesDescription objectForKey:currentSeries.name]];
             [decoratedSeries setValue:subjectName forKey:@"participant"];
             [decoratedSeries setValue:sessionLabel forKey:@"session"];

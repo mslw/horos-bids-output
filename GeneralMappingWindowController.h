@@ -57,6 +57,8 @@
 - (IBAction)saveMapping:(id)sender;
 - (IBAction)showSessionPopover:(id)sender;
 - (IBAction)showDescriptionPopover:(id)sender;
+- (IBAction)storeMappingForLater:(id)sender;
+- (IBAction)useStoredMapping:(id)sender;
 
 - (void) annotateAllSeries;
 - (void) assignFieldMapSuffixes:(NSArray*)fieldMapTriplet;

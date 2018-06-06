@@ -6,7 +6,8 @@ and this project versioning is based on [Semantic Versioning](http://semver.org/
 ## [Unreleased]
 
 ### Added
-- Mapping summary (which series was exported to which file) is saved in a csv file
+- General mapping (sequence name to BIDS meaning) can be stored in json files and reused
+- Mapping summary (which dicom series was exported to which file) is automatically saved in a csv file
 
 ### Changed
 - Dicom files are symlinked rather than copied (thanks @malywladek for the suggestion)
