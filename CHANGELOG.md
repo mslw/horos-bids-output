@@ -9,7 +9,8 @@ and this project versioning is based on [Semantic Versioning](http://semver.org/
 - Mapping summary (which series was exported to which file) is saved in a csv file
 
 ### Changed
-- Dicom files are symlinked rather than copied (thanks @malywladek for the suggestion)  
+- Dicom files are symlinked rather than copied (thanks @malywladek for the suggestion)
+- Bold and fmap jsons have keys sorted alphabetically for better readability (only available on MacOS 10.13 and later, so on older systems the keys will not be sorted)
 - Mapping table scales with the window
 
 ## [0.4.1] - 2018-03-07

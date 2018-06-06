@@ -105,7 +105,12 @@
         NSData *data = [NSData dataWithContentsOfFile:jsonPath];
         NSMutableDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
         [json addEntriesFromDictionary:series.fieldmapParams];
-        data = [NSJSONSerialization dataWithJSONObject:json options:NSJSONWritingPrettyPrinted error:nil];
+        if (@available(macOS 10.13, *)) {
+            data = [NSJSONSerialization dataWithJSONObject:json options:NSJSONWritingPrettyPrinted | NSJSONWritingSortedKeys error:nil];
+        } else {
+            // Fallback on earlier versions
+            data = [NSJSONSerialization dataWithJSONObject:json options:NSJSONWritingPrettyPrinted error:nil];
+        }
         [data writeToFile:jsonPath atomically:YES];
     } else if ([series.suffix containsString:@"magnitude"]) {
         // magnitude 1 & 2: remove json
@@ -117,7 +122,12 @@
         NSData *data = [NSData dataWithContentsOfFile:jsonPath];
         NSMutableDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
         [json setValue:series.task forKey:@"TaskName"];
-        data = [NSJSONSerialization dataWithJSONObject:json options:NSJSONWritingPrettyPrinted error:nil];
+        if (@available(macOS 10.13, *)) {
+            data = [NSJSONSerialization dataWithJSONObject:json options:NSJSONWritingPrettyPrinted | NSJSONWritingSortedKeys error:nil];
+        } else {
+            // Fallback on earlier versions
+            data = [NSJSONSerialization dataWithJSONObject:json options:NSJSONWritingPrettyPrinted error:nil];
+        }
         [data writeToFile:jsonPath atomically:YES];
     }
     
