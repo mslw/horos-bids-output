@@ -82,43 +82,33 @@
                                                     <rect key="frame" x="204" y="1" width="96" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fUd-JR-1s7">
-                                                            <rect key="frame" x="1" y="-5" width="76" height="26"/>
+                                                        <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lxl-s0-zm7">
+                                                            <rect key="frame" x="0.0" y="-5" width="99" height="26"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                            <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="nCm-vA-gXK" id="jPf-Kh-Rtt">
-                                                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                                <font key="font" metaFont="menu"/>
-                                                                <menu key="menu" id="KKL-Jt-QvV">
-                                                                    <items>
-                                                                        <menuItem state="on" id="nCm-vA-gXK"/>
-                                                                        <menuItem title="T1w" id="0Av-9o-xx4"/>
-                                                                        <menuItem title="bold" id="dc3-hf-74i"/>
-                                                                        <menuItem title="(fmap)" id="c3E-O6-Usx">
-                                                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                                                        </menuItem>
-                                                                        <menuItem title="dwi" id="Yae-qp-15s">
-                                                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                                                        </menuItem>
-                                                                        <menuItem title="T2w" id="acE-na-tjw">
-                                                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                                                        </menuItem>
-                                                                        <menuItem title="T1map" id="TxJ-Pm-8Fa">
-                                                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                                                        </menuItem>
-                                                                        <menuItem title="T2map" id="hYm-bi-el3">
-                                                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                                                        </menuItem>
-                                                                        <menuItem title="PD" id="FFn-9Y-N1c">
-                                                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                                                        </menuItem>
-                                                                    </items>
-                                                                </menu>
-                                                            </popUpButtonCell>
+                                                            <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="gVr-Pp-Zio">
+                                                                <font key="font" metaFont="system"/>
+                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                <objectValues>
+                                                                    <string></string>
+                                                                    <string>T1w</string>
+                                                                    <string>bold</string>
+                                                                    <string>(fmap)</string>
+                                                                    <string>dwi</string>
+                                                                    <string>T2w</string>
+                                                                    <string>T1map</string>
+                                                                    <string>T2map</string>
+                                                                    <string>PD</string>
+                                                                </objectValues>
+                                                            </comboBoxCell>
                                                             <connections>
-                                                                <action selector="updateSuffix:" target="xZ5-Nf-8RU" id="g8V-g7-Hah"/>
+                                                                <action selector="itemTextFieldUpdated:" target="xZ5-Nf-8RU" id="lMi-FB-Ime"/>
                                                             </connections>
-                                                        </popUpButton>
+                                                        </comboBox>
                                                     </subviews>
+                                                    <connections>
+                                                        <outlet property="textField" destination="Lxl-s0-zm7" id="4wf-et-lBb"/>
+                                                    </connections>
                                                 </tableCellView>
                                             </prototypeCellViews>
                                         </tableColumn>

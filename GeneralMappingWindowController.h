@@ -52,7 +52,6 @@
 
 @property (nonatomic, strong) NSWindowController *SummaryWindow;
 
-- (IBAction)updateSuffix:(id)sender;
 - (IBAction)itemTextFieldUpdated:(id)sender;
 - (IBAction)saveMapping:(id)sender;
 - (IBAction)showSessionPopover:(id)sender;

@@ -56,26 +56,28 @@
     // suffix - T1w, bold, ... - will also determine anat, func, fmap
     else if ([identifier isEqualToString:@"SuffixCol"]){
         NSTableCellView *cellView = [tableView makeViewWithIdentifier:@"SuffixCell" owner:self];
+        [cellView.textField setStringValue:[[sharedData.seriesDescription valueForKey:currentName] valueForKey:@"suffix"]];  // in case it was changed outside UI - eg by loading or in another function
         return cellView;
     }
     // run
     else if ([identifier isEqualToString:@"RunCol"]){
         NSTableCellView *cellView = [tableView makeViewWithIdentifier:@"RunCell" owner:self];
         [cellView.textField setEditable:TRUE];
+        [cellView.textField setStringValue:[[sharedData.seriesDescription valueForKey:currentName] valueForKey:@"run"]];
         return cellView;
     }
     // task
     else if ([identifier isEqualToString:@"TaskCol"]){
         
-        NSString *currentSuffix = [[sharedData.seriesDescription objectForKey:currentName] objectForKey:@"suffix"];
-        
         NSTableCellView *cellView = [tableView makeViewWithIdentifier:@"TaskCell" owner:self];
-
+        [cellView.textField setStringValue:[[sharedData.seriesDescription valueForKey:currentName] valueForKey:@"task"]];
+        
+        NSString *currentSuffix = [[sharedData.seriesDescription valueForKey:currentName] valueForKey:@"suffix"];
         if ([currentSuffix isEqualToString:@"bold"]) {
             [cellView.textField setEditable:TRUE];
         } else {
             [cellView.textField setEditable:FALSE];
-            [cellView.textField setStringValue:@""];
+//            [cellView.textField setStringValue:@""];  // but this does not affect the underlying data source (old value still stays)
         }
         return cellView;
     }
@@ -83,6 +85,7 @@
     else if ([identifier isEqualToString:@"AcqCol"]) {
         NSTableCellView *cellView = [tableView makeViewWithIdentifier:@"AcqCell" owner:self];
         [cellView.textField setEditable:TRUE];
+        [cellView.textField setStringValue:[[sharedData.seriesDescription valueForKey:currentName] valueForKey:@"acq"]];
         return cellView;
     }
     return nil;
@@ -99,6 +102,19 @@
     NSArray *sequenceNames = [sharedData.seriesDescription allKeys]; // this prob should be class variable
     NSString *currentName = [sequenceNames objectAtIndex:selectedRow];
     
+    if (columnIndex == 1){
+        // suffix
+        [[sharedData.seriesDescription objectForKey:currentName] setValue:newValue forKey:@"suffix"];
+        
+        if (![newValue isEqualToString:@"bold"]) {
+            // only bold sequences can have task name
+            [[sharedData.seriesDescription objectForKey:currentName] setValue:@"" forKey:@"task"];
+        }
+        
+        [self.tableView abortEditing]; // in case editing of a text field was not finished
+        //[self.tableView reloadData];  // so that task name turns editable or not
+        [self.tableView reloadDataForRowIndexes:[NSIndexSet indexSetWithIndex:selectedRow] columnIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 5)]];
+    }
     if (columnIndex == 2){
         // task
         [[sharedData.seriesDescription objectForKey:currentName] setValue:newValue forKey:@"task"];
@@ -112,24 +128,6 @@
         [[sharedData.seriesDescription objectForKey:currentName] setValue:newValue forKey:@"acq"];
     }
     
-}
-
-- (IBAction)updateSuffix:(id)sender {
-    OBOCollectedData *sharedData = [OBOCollectedData sharedManager];
-    
-    NSInteger selectedRow = [self.tableView rowForView:sender];
-    NSString *selectedSuffix = [sender titleOfSelectedItem];  // WOW that worked
-    
-    NSArray *sequenceNames = [sharedData.seriesDescription allKeys];  // may move to class variable
-    NSString *currentName = [sequenceNames objectAtIndex:selectedRow];
-    
-    NSDictionary * currentItem = [sharedData.seriesDescription objectForKey:currentName];
-    [currentItem setValue:selectedSuffix forKey:@"suffix"];
-    
-    // TODO: set run to empty if non-BOLD was chosen - probably has to be done here
-
-    [self.tableView abortEditing]; // in case editing of a text field was not finished
-    [self.tableView reloadData];
 }
 
 -(IBAction)saveMapping:(id)sender{
@@ -183,6 +181,7 @@
         
         // do the same things as save mapping would do
         [sharedData.listOfSeries removeAllObjects];
+        [_tableView reloadData];
         [self annotateAllSeries];
         [self createDatasetDescription];
         _SummaryWindow = [[MappingSummaryWindowController alloc] initWithWindowNibName:@"MappingSummaryWindow"];
