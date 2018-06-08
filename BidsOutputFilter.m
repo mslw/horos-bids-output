@@ -88,6 +88,7 @@
     [descriptionTemplate setValue:@"" forKey:@"session"];
     [descriptionTemplate setValue:@"" forKey:@"task"];
     [descriptionTemplate setValue:@"" forKey:@"run"];
+    [descriptionTemplate setValue:@"" forKey:@"acq"];
     
     // Add series descriptions to the dictionary
     for (NSString *name in uniqueStudyNames) {
