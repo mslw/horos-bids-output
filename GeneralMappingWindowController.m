@@ -176,8 +176,16 @@
     
     if ( [openDlg runModal] == NSOKButton ) {
         NSData *mappingData = [NSData dataWithContentsOfURL:[openDlg URL]];
-        sharedData.seriesDescription = [NSJSONSerialization JSONObjectWithData:mappingData
-                                                                       options:NSJSONReadingMutableContainers error:nil];
+        NSMutableDictionary *storedDict = [NSJSONSerialization JSONObjectWithData:mappingData
+                                                                          options:NSJSONReadingMutableContainers error:nil];
+        
+        // annotate the series we already have  with values that were loaded
+        // can't just replace the entire dictionary because the loaded one may be incomplete
+        for (NSString *seriesName in [sharedData.seriesDescription allKeys]) {
+            if ([storedDict objectForKey:seriesName]) {
+                [[sharedData.seriesDescription objectForKey:seriesName] addEntriesFromDictionary:[storedDict objectForKey:seriesName]];
+            }
+        }
         
         // do the same things as save mapping would do
         [sharedData.listOfSeries removeAllObjects];
