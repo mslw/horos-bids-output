@@ -49,7 +49,7 @@
     [openDlg setCanChooseFiles:YES];
     [openDlg setCanChooseDirectories:NO];
     [openDlg setAllowsMultipleSelection:NO];
-    if ( [openDlg runModal] == NSOKButton ) {
+    if ( [openDlg runModal] == NSModalResponseOK ) {
         converterPath = [[openDlg URL] relativeString];
         converterPath = [converterPath stringByReplacingOccurrencesOfString:@"file://" withString:@""];
         converterPath = [converterPath stringByReplacingOccurrencesOfString:@"%20" withString:@" "];

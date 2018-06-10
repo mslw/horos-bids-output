@@ -160,7 +160,7 @@
     [saveDlg setTitle:@"Store mapping for later"];
     [saveDlg setAllowedFileTypes:@[@"json"]];
     
-    if ( [saveDlg runModal] == NSOKButton ) {
+    if ( [saveDlg runModal] == NSModalResponseOK ) {
         [mappingJson writeToURL:[saveDlg URL] atomically:YES];
     }
     
@@ -174,7 +174,7 @@
     [openDlg setTitle:@"Select mapping to be used"];
     [openDlg setAllowedFileTypes:@[@"json"]];
     
-    if ( [openDlg runModal] == NSOKButton ) {
+    if ( [openDlg runModal] == NSModalResponseOK ) {
         NSData *mappingData = [NSData dataWithContentsOfURL:[openDlg URL]];
         NSMutableDictionary *storedDict = [NSJSONSerialization JSONObjectWithData:mappingData
                                                                           options:NSJSONReadingMutableContainers error:nil];
