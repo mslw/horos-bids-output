@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,7 +12,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="800" height="622"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="800"/>
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="800" height="622"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -260,7 +259,7 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GUZ-aK-Pwb">
+                    <button toolTip="Proceed to summary and export options" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GUZ-aK-Pwb">
                         <rect key="frame" x="598" y="31" width="182" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="roundTextured" title="Save mapping and continue" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MPE-2Y-fqp">
@@ -271,7 +270,7 @@
                             <action selector="saveMapping:" target="xZ5-Nf-8RU" id="L7f-5B-7CA"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fQY-l1-glk">
+                    <button toolTip="Rename subjects and infer session labels" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fQY-l1-glk">
                         <rect key="frame" x="14" y="43" width="182" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="push" title="Subject &amp; session rules" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="z0e-vx-qod">
@@ -282,7 +281,7 @@
                             <action selector="showSessionPopover:" target="xZ5-Nf-8RU" id="NM0-UX-8t7"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5YP-mH-Mvn">
+                    <button toolTip="Specify contents of the (required) dataset_description.json file or choose not to write it." verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5YP-mH-Mvn">
                         <rect key="frame" x="196" y="43" width="159" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="push" title="Dataset description" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zlK-Q2-TCw">
@@ -293,7 +292,7 @@
                             <action selector="showDescriptionPopover:" target="xZ5-Nf-8RU" id="hvP-bJ-PNO"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZsO-Hh-qvS">
+                    <button toolTip="Save the mapping created above to a JSON file for further use" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZsO-Hh-qvS">
                         <rect key="frame" x="387" y="43" width="180" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Store mapping for later" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XAc-pz-Jz0">
@@ -304,7 +303,7 @@
                             <action selector="storeMappingForLater:" target="xZ5-Nf-8RU" id="cQA-AQ-arL"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NJL-BD-1IQ">
+                    <button toolTip="Load mapping stored in a JSON file" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NJL-BD-1IQ">
                         <rect key="frame" x="387" y="10" width="180" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Use stored mapping" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="95a-b1-Akb">
