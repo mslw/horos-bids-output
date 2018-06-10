@@ -13,6 +13,11 @@ and this project versioning is based on [Semantic Versioning](http://semver.org/
 - Dicom files are symlinked rather than copied (thanks @malywladek for the suggestion)
 - Bold and fmap jsons have keys sorted alphabetically for better readability (only available on MacOS 10.13 and later, so on older systems the keys will not be sorted)
 - Mapping table scales with the window
+- A different widget (ComboBox) is used for choosing BIDS suffix. It's scrollable, with most common options at the top
+- Build target changed to MacOS 10.12
+
+### Fixed
+- General mapping window is more closely tied to its data structure. As a result, labels shouldn't swap places any more when there are so many sequences that the table becomes scrollable.
 
 ## [0.4.1] - 2018-03-07
 ### Added
