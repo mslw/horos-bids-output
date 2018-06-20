@@ -76,6 +76,7 @@
     
     // get parameters from the UI
     BOOL compress = ([[self gzCheckBox] state] == NSOnState);
+    BOOL createScans = ([[self scansCheckBox] state] == NSOnState);
     NSString *converterPath = [_converterTextField stringValue];
     NSString *bidsRootPath = [_bidsRootTextField stringValue];
     
@@ -137,7 +138,8 @@
             [OBOExporter exportSeries:currentSeries
                      usingConverterAt:converterPath
                              toFolder:bidsRootPath
-                      withCompression:compress];
+                      withCompression:compress
+                        withScansFile:createScans];
         }
     }
     

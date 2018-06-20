@@ -26,7 +26,9 @@
 
 @interface OBOExporter : NSObject
 
-+(void) exportSeries:(OBOSeries*) series usingConverterAt:(NSString*) converterPath toFolder:(NSString*) bidsRoot withCompression:(BOOL)answer;
++(void) exportSeries:(OBOSeries*) series usingConverterAt:(NSString*) converterPath toFolder:(NSString*) bidsRoot withCompression:(BOOL)answer withScansFile:(BOOL)createScans;
+
++(void) addScansEntryDescribingSeries:(OBOSeries*) series withBidsRoot:(NSString*) bidsRoot;
 
 +(BOOL) createTemporaryDicomDirectory;
 /** Create a temporary folder for dicom files (symlinks) if it didn't exist before

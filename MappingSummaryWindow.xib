@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -11,6 +10,7 @@
                 <outlet property="bidsRootTextField" destination="Da4-IF-kP0" id="xON-4B-Sgj"/>
                 <outlet property="converterTextField" destination="9Y7-yg-sLh" id="Meh-SX-RX4"/>
                 <outlet property="gzCheckBox" destination="eb1-Fd-Maf" id="dcX-DA-mCo"/>
+                <outlet property="scansCheckBox" destination="yHf-Ga-NGk" id="rqP-I4-ygF"/>
                 <outlet property="spinner" destination="Bwr-TH-BwF" id="uYH-KR-c1W"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="HLV-01-hNW"/>
             </connections>
@@ -21,7 +21,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="1000" height="640"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="800"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="1000" height="640"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -120,11 +120,11 @@
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                             <prototypeCellViews>
                                                 <tableCellView identifier="SidCell" id="lNN-WO-PHU">
-                                                    <rect key="frame" x="341" y="1" width="58" height="17"/>
+                                                    <rect key="frame" x="341" y="1" width="59" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tRa-ox-5hK">
-                                                            <rect key="frame" x="0.0" y="0.0" width="58" height="17"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="59" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="gyD-cr-yp1">
                                                                 <font key="font" metaFont="system"/>
@@ -186,11 +186,11 @@
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                             <prototypeCellViews>
                                                 <tableCellView identifier="BidsCell" id="g7h-i9-SX3">
-                                                    <rect key="frame" x="504.5" y="1" width="451" height="17"/>
+                                                    <rect key="frame" x="504.5" y="1" width="452" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AYQ-S1-ZQZ">
-                                                            <rect key="frame" x="0.0" y="0.0" width="451" height="17"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="452" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="JP7-2l-swP">
                                                                 <font key="font" metaFont="system"/>
@@ -214,7 +214,7 @@
                             </subviews>
                         </clipView>
                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="FWm-Or-e0I">
-                            <rect key="frame" x="1" y="8" width="0.0" height="15"/>
+                            <rect key="frame" x="1" y="7" width="0.0" height="16"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="Zaw-WT-oek">
@@ -289,6 +289,14 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yHf-Ga-NGk">
+                        <rect key="frame" x="458" y="21" width="124" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="check" title="Create scans file" bezelStyle="regularSquare" imagePosition="left" inset="2" id="wm9-Ex-Kib">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                    </button>
                 </subviews>
             </view>
             <point key="canvasLocation" x="401" y="348"/>

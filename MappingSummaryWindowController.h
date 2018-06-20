@@ -27,6 +27,7 @@
 @property (weak) IBOutlet NSTextField *bidsRootTextField;
 @property (weak) IBOutlet NSProgressIndicator *spinner;
 @property (weak) IBOutlet NSButton *gzCheckBox;
+@property (weak) IBOutlet NSButton *scansCheckBox;
 
 - (IBAction)changeConverterPath:(id)sender;
 - (IBAction)changeBidsRoot:(id)sender;

@@ -3,6 +3,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project versioning is based on [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+### Added
+- Optional scans.tsv file (containing relative path, scan date and time for all scans within a subject/session) can be optionally created
+
+### Fixed
+- Position of buttons added in 0.5.0 is now properly adjusted when the window is resized
+
 ## [0.5.0] - 2018-06-10
 
 ### Added

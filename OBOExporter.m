@@ -21,9 +21,13 @@
 
 #import "OBOExporter.h"
 
+@interface OBOExporter ()
+
+@end
+
 @implementation OBOExporter
 
-+(void)exportSeries:(OBOSeries*) series usingConverterAt:(NSString *)converterPath toFolder:(NSString *)bidsRoot withCompression:(BOOL)answer {
++(void)exportSeries:(OBOSeries*) series usingConverterAt:(NSString *)converterPath toFolder:(NSString *)bidsRoot withCompression:(BOOL)answer withScansFile:(BOOL)createScans {
     
     NSString *bidsPath = [series getBidsPath];
     NSString *bidsFolder = [bidsPath stringByDeletingLastPathComponent];  // deletes separator as well
@@ -134,6 +138,50 @@
     // remove the symlinks because they will not be needed any more
     [fileManager removeItemAtPath:[NSString pathWithComponents:@[bidsRoot, @".dicom", bidsPath]] error:nil];
     
+    if (createScans) {
+        [self addScansEntryDescribingSeries:series withBidsRoot:bidsRoot];
+    }
+}
+
++(void) addScansEntryDescribingSeries:(OBOSeries*) series withBidsRoot:(NSString*) bidsRoot{
+    NSString *path = [series getBidsPath];
+    NSArray *components = [path pathComponents];
+    
+    NSString *scansFileName = [[NSString alloc] init];
+    NSString *relativePath = [[NSString alloc] init];
+    NSString *scansFilePath = [[NSString alloc] init];
+    
+    // get absolute path to scans file and relative path to the scan
+    if ([series.session length] > 0) {
+        scansFileName = [NSString stringWithFormat:@"%@_%@_scans.tsv", components[0], components[1]];
+        relativePath = [NSString pathWithComponents:[components subarrayWithRange:NSMakeRange(2, [components count] - 2)]];
+        scansFilePath = [NSString pathWithComponents:@[bidsRoot, components[0], components[1], scansFileName]];
+    } else {
+        scansFileName = [NSString stringWithFormat:@"%@_scans.tsv", components[0]];
+        relativePath = [NSString pathWithComponents:[components subarrayWithRange:NSMakeRange(1, [components count] - 1)]];
+        scansFilePath = [NSString pathWithComponents:@[bidsRoot, components[0], scansFileName]];
+    }
+    
+    // get and format the acq_time
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
+    NSString *acqTime = [dateFormatter stringFromDate:[series.series date]];
+    
+    // format the row to be appended
+    NSString *scanRow = [NSString stringWithFormat:@"%@\t%@\n", relativePath, acqTime];
+
+    // append the row to the file (creating it and adding the header if necessary)
+    NSFileHandle *fileHandle = [NSFileHandle fileHandleForWritingAtPath:scansFilePath];
+    if (fileHandle) {
+        [fileHandle seekToEndOfFile];
+        [fileHandle writeData:[scanRow dataUsingEncoding:NSUTF8StringEncoding]];
+        [fileHandle closeFile];
+    } else {
+        NSMutableString *tsvRep = [NSMutableString new];
+        [tsvRep appendString:@"filename\tacq_time\n"];
+        [tsvRep appendString:scanRow];
+        [tsvRep writeToFile:scansFilePath atomically:NO encoding:NSUTF8StringEncoding error:nil];
+    }
 }
 
 +(BOOL) createTemporaryDicomDirectory {
