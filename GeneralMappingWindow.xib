@@ -78,7 +78,7 @@
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                             <prototypeCellViews>
                                                 <tableCellView identifier="SuffixCell" id="rlV-Jn-pbe">
-                                                    <rect key="frame" x="203.5" y="1" width="96" height="17"/>
+                                                    <rect key="frame" x="204" y="1" width="96" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lxl-s0-zm7">
@@ -340,10 +340,8 @@
                 <outlet property="minimumBoldField" destination="ona-NM-yFX" id="Spx-aV-Xpw"/>
                 <outlet property="noDescriptionCheckBox" destination="mz1-P1-aKf" id="xgc-bF-V06"/>
                 <outlet property="referencesAndLinksField" destination="v2f-gR-aV8" id="mGS-yX-8tB"/>
-                <outlet property="sessionLabelTemplate" destination="GZo-qN-gvj" id="rbf-TJ-RPW"/>
                 <outlet property="sessionLabelTemplateField" destination="GZo-qN-gvj" id="wWy-JO-Bkk"/>
                 <outlet property="sessionPopover" destination="ODh-Rz-oTU" id="TMd-D5-0A6"/>
-                <outlet property="studyNamePattern" destination="jMR-Cn-3h0" id="mMI-AJ-iQD"/>
                 <outlet property="studyNameRegexpField" destination="jMR-Cn-3h0" id="99V-aw-rVm"/>
                 <outlet property="subjectLabelTemplateField" destination="IrW-Sj-LMo" id="C5m-1N-iZF"/>
                 <outlet property="tableView" destination="cDh-eS-5PH" id="ddn-wI-6qt"/>
