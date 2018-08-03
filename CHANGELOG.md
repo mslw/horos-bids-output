@@ -6,9 +6,12 @@ and this project versioning is based on [Semantic Versioning](http://semver.org/
 ## [Unreleased]
 ### Added
 - Optional scans.tsv file (containing relative path, scan date and time for all scans within a subject/session) can be optionally created
+- Limited error handling: when dcm2niix exits with non-zero code (fails to convert dicoms for whatever reason), report this in a log file and move on to the next series
+- When the plugin is unable to properly rename a field map file, also report this in a log file and move on to the next series
 
 ### Fixed
 - Position of buttons added in 0.5.0 is now properly adjusted when the window is resized
+- Files with _e2_ph suffix added by dcm2niix (field map phasediff file) are now handled properly (prior to April 2018, dcm2niix versions added only _e2)
 
 ## [0.5.0] - 2018-06-10
 
