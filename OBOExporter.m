@@ -97,19 +97,32 @@
     // fix path for field maps
     // dcm2niix always appends _e2 to the series with longer echo
     // we accounted for that with BIDS "_magnitude2" suffix, so we have to remove _e2
+    // newer dcm2niix versions append _e2_ph instead
     NSString *correctPath;
     NSString *incorrectPath;
+    NSString *incorrectPath2;
+    NSString *incorrectPath3;
     NSString *incorrectSuffix;
+    NSString *incorrectSuffix2;
+    NSString *incorrectSuffix3;
     if ([series.suffix isEqualToString:@"phasediff"] || [series.suffix isEqualToString:@"magnitude1"] || [series.suffix isEqualToString:@"magnitude2"]) {
         
         incorrectSuffix = [series.suffix stringByAppendingString:@"_e2"];
+        incorrectSuffix2 = [series.suffix stringByAppendingString:@"_e2_ph"];  // dcm2niix 20180614 and later recognize the phasediff file
+        incorrectSuffix3 = [series.suffix stringByAppendingString:@"_e1"];     // unseen, but just in case
         
         for (NSString *extension in @[ext, @"json"]) {
             correctPath = [[NSString pathWithComponents:@[outputDirectory, bidsFileName]] stringByAppendingPathExtension:extension];
             incorrectPath = [correctPath stringByReplacingOccurrencesOfString:series.suffix withString:incorrectSuffix];
+            incorrectPath2 = [correctPath stringByReplacingOccurrencesOfString:series.suffix withString:incorrectSuffix2];
+            incorrectPath3 = [correctPath stringByReplacingOccurrencesOfString:series.suffix withString:incorrectSuffix3];
             
             if ([fileManager fileExistsAtPath:incorrectPath]) {
                 [fileManager moveItemAtPath:incorrectPath toPath:correctPath error:nil];
+            } else if ([fileManager fileExistsAtPath:incorrectPath2]) {
+                [fileManager moveItemAtPath:incorrectPath2 toPath:correctPath error:nil];
+            } else if ([fileManager fileExistsAtPath:incorrectPath3]) {
+                [fileManager moveItemAtPath:incorrectPath3 toPath:correctPath error:nil];
             } else if (![fileManager fileExistsAtPath:correctPath]) {
                 // throw an error if file does not exist under expected name
                 if (outError != NULL) {
