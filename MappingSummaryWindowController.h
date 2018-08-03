@@ -34,5 +34,6 @@
 - (IBAction)exportToBids:(id)sender;
 
 -(void)saveSummary;
+-(void)saveErrors: (NSMutableArray*) errorList;
 
 @end

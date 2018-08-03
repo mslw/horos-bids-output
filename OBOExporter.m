@@ -27,7 +27,7 @@
 
 @implementation OBOExporter
 
-+(void)exportSeries:(OBOSeries*) series usingConverterAt:(NSString *)converterPath toFolder:(NSString *)bidsRoot withCompression:(BOOL)answer withScansFile:(BOOL)createScans {
++(BOOL)exportSeries:(OBOSeries*) series usingConverterAt:(NSString *)converterPath toFolder:(NSString *)bidsRoot withCompression:(BOOL)answer withScansFile:(BOOL)createScans error:(NSError **)outError {
     
     NSString *bidsPath = [series getBidsPath];
     NSString *bidsFolder = [bidsPath stringByDeletingLastPathComponent];  // deletes separator as well
@@ -81,6 +81,18 @@
     
     [conversionTask launch];
     [conversionTask waitUntilExit];  // also see docs with example of getting status
+    int status = [conversionTask terminationStatus];
+    
+    // throw an error if dcm2niix exits with status other than 0
+    if (status != 0) {
+        if (outError != NULL) {
+            NSDictionary *uInfo = @{ NSLocalizedDescriptionKey: NSLocalizedString(@"Dcm2niix exited with non-zero exit code", @"")};
+            *outError = [NSError errorWithDomain:@"BidsOutputErrorDomain" code:2 userInfo:uInfo];
+        }
+        // remove the symlinks and exit
+        [fileManager removeItemAtPath:[NSString pathWithComponents:@[bidsRoot, @".dicom", bidsPath]] error:nil];
+        return NO;
+    }
     
     // fix path for field maps
     // dcm2niix always appends _e2 to the series with longer echo
@@ -98,6 +110,15 @@
             
             if ([fileManager fileExistsAtPath:incorrectPath]) {
                 [fileManager moveItemAtPath:incorrectPath toPath:correctPath error:nil];
+            } else if (![fileManager fileExistsAtPath:correctPath]) {
+                // throw an error if file does not exist under expected name
+                if (outError != NULL) {
+                    NSDictionary *uInfo = @{ NSLocalizedDescriptionKey: NSLocalizedString(@"Fieldmap renaming error: file name did not match expectations", @"")};
+                    *outError = [NSError errorWithDomain:@"BidsOutputErrorDomain" code:3 userInfo:uInfo];
+                }
+                // remove the symlinks and exit
+                [fileManager removeItemAtPath:[NSString pathWithComponents:@[bidsRoot, @".dicom", bidsPath]] error:nil];
+                return NO;
             }
         }
     }
@@ -141,6 +162,7 @@
     if (createScans) {
         [self addScansEntryDescribingSeries:series withBidsRoot:bidsRoot];
     }
+    return YES;
 }
 
 +(void) addScansEntryDescribingSeries:(OBOSeries*) series withBidsRoot:(NSString*) bidsRoot{

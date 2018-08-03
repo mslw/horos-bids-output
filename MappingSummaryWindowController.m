@@ -131,22 +131,38 @@
     
     [[self spinner] startAnimation:self];
 
+    // prepare for error handling
+    BOOL convertSuccessful;
+    NSError *conversionError;
+    NSMutableArray *errorList = [[NSMutableArray alloc] init];
+    
     // run the conversion for each file
     OBOCollectedData *sharedData = [OBOCollectedData sharedManager];
     for (OBOSeries *currentSeries in [sharedData listOfSeries]) {
+        conversionError = nil;
         if ( ![currentSeries discard] && [[currentSeries getBidsPath] length] > 0) {
-            [OBOExporter exportSeries:currentSeries
-                     usingConverterAt:converterPath
-                             toFolder:bidsRootPath
-                      withCompression:compress
-                        withScansFile:createScans];
+            convertSuccessful = [OBOExporter exportSeries:currentSeries
+                                         usingConverterAt:converterPath
+                                                 toFolder:bidsRootPath
+                                          withCompression:compress
+                                            withScansFile:createScans
+                                                    error:&conversionError ];
+            if (!convertSuccessful) {
+                // if an error occurs, just store file name and error description (but we could also break out of the loop here)
+                [errorList addObject:@[currentSeries.getBidsPath, conversionError.localizedDescription]];
+            }
         }
     }
-    
+
     [OBOExporter removeTemporaryDicomDirectory];
 
     // save summary table to a csv file
     [self saveSummary];
+    
+    // log errors if found
+    if ([errorList count] > 0) {
+        [self saveErrors:errorList];
+    }
     
     // write dataset_description.json
     NSMutableDictionary *datasetDescription = [sharedData datasetDescription];
@@ -164,6 +180,10 @@
     NSAlert *alert = [[NSAlert alloc] init];
     [alert addButtonWithTitle:@"OK"];
     [alert setMessageText:@"Finished exporting files."];
+    if ([errorList count] > 0) {
+        [alert setAlertStyle:NSAlertStyleWarning];
+        [alert setInformativeText:@"Export finished with errors.\nCheck errors_(datetime).txt file in ~/HorosBidsOutput folder."];
+    }
     [alert runModal];
     
 }
@@ -205,6 +225,30 @@
 
   // write the file
   [csvRep writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
+}
+
+-(void) saveErrors: (NSMutableArray*) errorList {
+        
+    // create file name containing date
+    NSDate *now = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd_HHmmss"];
+    NSString *fileName = [NSString stringWithFormat:@"errors_%@.txt", [dateFormatter stringFromDate:now]];
+    NSString *filePath = [NSString pathWithComponents:@[NSHomeDirectory(), @"HorosBidsOutput", fileName]];
+    
+    // prepare strings for csv content and row
+    NSMutableString * tsvRep = [NSMutableString new];
+    NSString *row;
+    
+    // add contents
+    for (NSArray *entry in errorList) {
+        row = [NSString stringWithFormat:@"%@\t%@\n", [entry objectAtIndex:0], [entry objectAtIndex:1]];
+        [tsvRep appendString:row];
+    }
+    
+    // write the file
+    [tsvRep writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
+
 }
 
 @end

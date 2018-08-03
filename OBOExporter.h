@@ -26,7 +26,7 @@
 
 @interface OBOExporter : NSObject
 
-+(void) exportSeries:(OBOSeries*) series usingConverterAt:(NSString*) converterPath toFolder:(NSString*) bidsRoot withCompression:(BOOL)answer withScansFile:(BOOL)createScans;
++(BOOL) exportSeries:(OBOSeries*) series usingConverterAt:(NSString*) converterPath toFolder:(NSString*) bidsRoot withCompression:(BOOL)answer withScansFile:(BOOL)createScans error:(NSError**)outError;
 
 +(void) addScansEntryDescribingSeries:(OBOSeries*) series withBidsRoot:(NSString*) bidsRoot;
 
