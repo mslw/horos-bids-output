@@ -64,7 +64,7 @@
     [openDlg setCanChooseDirectories:YES];
     [openDlg setCanCreateDirectories:YES];
     [openDlg setAllowsMultipleSelection:NO];
-    if ( [openDlg runModal] == NSOKButton ) {
+    if ( [openDlg runModal] == NSModalResponseOK ) {
         bidsRootPath = [[openDlg URL] relativeString];
         bidsRootPath = [bidsRootPath stringByReplacingOccurrencesOfString:@"file://" withString:@""];
         bidsRootPath = [bidsRootPath stringByReplacingOccurrencesOfString:@"%20" withString:@" "];
@@ -84,7 +84,7 @@
     if ([bidsRootPath length] == 0 || ![[NSFileManager defaultManager] isExecutableFileAtPath:converterPath]){
         NSAlert *warningAlert = [[NSAlert alloc] init];
         [warningAlert addButtonWithTitle:@"OK"];
-        [warningAlert setAlertStyle:NSWarningAlertStyle];
+        [warningAlert setAlertStyle:NSAlertStyleWarning];
         
         if ([bidsRootPath length] == 0){
             [warningAlert setMessageText:@"Empty BIDS root path"];
@@ -105,7 +105,7 @@
     if (!createdDicomDir) {
         // run an NSAlert asking for permission to delete temporary dicom folder and create it again
         NSAlert *warningAlert = [[NSAlert alloc] init];
-        [warningAlert setAlertStyle:NSWarningAlertStyle];
+        [warningAlert setAlertStyle:NSAlertStyleWarning];
         [warningAlert addButtonWithTitle:@"Clear dicom and proceed"];
         [warningAlert addButtonWithTitle:@"Cancel"];
         [warningAlert setMessageText:@"Error when creating temporary dicom directory"];
