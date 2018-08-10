@@ -18,6 +18,12 @@ The dcm2niix executable can be placed anywhere on your computer. However, if an 
 ### Usage
 For usage instructions, see the [project wiki](https://github.com/mslw/osirix-bids-output/wiki).
 
+### Caveats
+1. Please keep in mind that the aim of the plugin is to create the fundamental BIDS structure, and the resulting dataset will most likely require some manual tweaks to become complete. This may include filling in some JSON fields (only the strictly obligatory ones are present) and adding stimulus information.
+2. Field maps are handled only in the case of one phasediff and two magnitude images (based on the Siemens Trio output).
+3. Not all BIDS suffixes are available in the GUI.
+For more details, see the [known limitations](https://github.com/mslw/horos-bids-output/wiki#known-limitations) section of project wiki.
+
 ### About Osirix / Horos
 OsiriX and Horos are DICOM image viewers / database browsers. Horos is based upon OsiriX. The plugin development switched from OsiriX to Horos prior to 0.1 release, but it is likely that the plugin will be compatible with both.
 
