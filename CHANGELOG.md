@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project versioning is based on [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [1.0.0] - 2018-08-10
 ### Added
 - Optional scans.tsv file (containing relative path, scan date and time for all scans within a subject/session) can be optionally created
 - Limited error handling: when dcm2niix exits with non-zero code (fails to convert dicoms for whatever reason), report this in a log file and move on to the next series
