@@ -10,6 +10,10 @@ Download the HorosBidsOutput.horosplugin from the [releases](https://github.com/
 
 Alternatively, the file can be manually placed in: `~/Library/Application Support/Horos/Plugins/`. Regardless of the installation method, the plugin can then be made available to all users through Horos' Plugins Manager.
 
+On MacOS Catalina and above, the plugin will be blocked by the Gatekeeper (_the developer cannot be verified_).
+If you trust the plugin, you can remove the "quarantine" attribute from the Terminal by navigating to the downloaded file and executing `xattr -c HorosBidsOutput.horosplugin`.
+Then, proceed with installation as described above.
+
 ### Dependencies: dcm2niix
 Bids Output Extension works by launching [dcm2niix](https://github.com/rordenlab/dcm2niix), which has to be available. To install dcm2niix, go to [dcm2niix releases page](https://github.com/rordenlab/dcm2niix/releases) and download the executable.
 
