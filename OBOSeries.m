@@ -98,7 +98,7 @@
     NSArray *anatSuffixList = @[@"T1w", @"T2w", @"T1rho", @"T1map", @"T2map", @"T2star", @"FLAIR", @"FLASH",
                                 @"PD", @"PDmap", @"PDT2", @"inplaneT1", @"inplaneT2", @"angio", @"defacemask",
                                 @"SWImagandphase"];
-    NSArray *fmapSuffixList = @[@"phasediff", @"magnitude1", @"magnitude2"];
+    NSArray *fmapSuffixList = @[@"phasediff", @"magnitude1", @"magnitude2", @"epi"];
     NSMutableString *path = [[NSMutableString alloc] init];
     if ([self discard]){
         return path;
@@ -225,6 +225,13 @@
             [path appendString:@"_acq-"];
             [path appendString:self.acq];
         }
+
+	// dir (required for PEpolar field map)
+	if ([self.suffix isEqualToString:@"epi"]) {
+	  // ADD ce (optional) - not yet supported
+	  [path appendString:@"_dir-"];
+	  [path appendString:self.dir];
+	}
         
         // run (optional)
         if ([self.run length] > 0){
