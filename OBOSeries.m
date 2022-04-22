@@ -274,6 +274,92 @@
         
     }
     
+    else if ([self.suffix isEqualToString:@"dir-AP_epi"]) {
+        
+        // folders
+        [path appendString:@"sub-"];
+        [path appendString: [self createSubjectLabel]];
+        [path appendString:@"/"];
+        
+        if ([self.session length] > 0){
+            [path appendString:@"ses-"];
+            [path appendString:self.session];
+            [path appendString:@"/"];
+        }
+        
+        [path appendString:@"fmap/"];
+        
+        // subject
+        [path appendString:@"sub-"];
+        [path appendString:[self createSubjectLabel]];
+        
+        // session (optional)
+        if ([self.session length] > 0){
+            [path appendString:@"_ses-"];
+            [path appendString:self.session];
+        }
+        
+        // acq (optional)
+        if ([self.acq length] > 0){
+            [path appendString:@"_acq-"];
+            [path appendString:self.acq];
+        }
+        
+        // run (optional)
+        if ([self.run length] > 0){
+            [path appendString:@"_run-"];
+            [path appendString:self.run];
+        }
+        
+        // suffix
+        [path appendString:@"_"];
+        [path appendString:self.suffix];
+        
+    }
+    
+    else if ([self.suffix isEqualToString:@"dir-PA_epi"]) {
+        
+        // folders
+        [path appendString:@"sub-"];
+        [path appendString: [self createSubjectLabel]];
+        [path appendString:@"/"];
+        
+        if ([self.session length] > 0){
+            [path appendString:@"ses-"];
+            [path appendString:self.session];
+            [path appendString:@"/"];
+        }
+        
+        [path appendString:@"fmap/"];
+        
+        // subject
+        [path appendString:@"sub-"];
+        [path appendString:[self createSubjectLabel]];
+        
+        // session (optional)
+        if ([self.session length] > 0){
+            [path appendString:@"_ses-"];
+            [path appendString:self.session];
+        }
+        
+        // acq (optional)
+        if ([self.acq length] > 0){
+            [path appendString:@"_acq-"];
+            [path appendString:self.acq];
+        }
+        
+        // run (optional)
+        if ([self.run length] > 0){
+            [path appendString:@"_run-"];
+            [path appendString:self.run];
+        }
+        
+        // suffix
+        [path appendString:@"_"];
+        [path appendString:self.suffix];
+        
+    }
+    
     return path;
 }
 
