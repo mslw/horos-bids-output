@@ -40,6 +40,7 @@
         _session = @"";
         _task = @"";
         _acq = @"";
+	_dir = @"";
         _run = @"";
         
         _discard = NO;
@@ -60,6 +61,7 @@
         _session = @"";
         _task = @"";
         _acq = @"";
+	_dir = @"";
         _run = @"";
         
         _discard = NO;
@@ -80,6 +82,8 @@
         _session = @""; // set after initialisation
         _task = [params valueForKey:@"task"];
         _acq = [params valueForKey:@"acq"];
+	_dir = @"";  // set after initialisation, currently just for for phase-encoding polarity field map
+	//[params valueForKey:@"dir"] ?: @""  // might be the syntax to get with default
         _run = [params valueForKey:@"run"];
         
         _discard = NO;
