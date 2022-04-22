@@ -93,6 +93,8 @@
                                                                     <string>T1w</string>
                                                                     <string>bold</string>
                                                                     <string>(fmap)</string>
+                                                                    <string>dir-AP_epi</string>
+                                                                    <string>dir-PA_epi</string>
                                                                     <string>dwi</string>
                                                                     <string>T2w</string>
                                                                     <string>T1map</string>
