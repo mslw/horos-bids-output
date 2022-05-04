@@ -215,6 +215,12 @@
             OBOSeries *decoratedSeries = [[OBOSeries alloc] initWithSeries:currentSeries params:[sharedData.seriesDescription objectForKey:currentSeries.name]];
             [decoratedSeries setValue:subjectName forKey:@"participant"];
             [decoratedSeries setValue:sessionLabel forKey:@"session"];
+	    if ([[decoratedSeries suffix] hasSuffix:@"_epi"]){
+	        // our GUI allows dir-AP_epi and dir-PA_epi "suffixes", translate them into dir & suffix
+	        [decoratedSeries setValue:[self getDirFromSuffix:[decoratedSeries suffix]] forKey:@"dir"];
+	        [decoratedSeries setValue:@"epi" forKey:@"suffix"];
+	    }
+	    
             [decoratedFromCurrentStudy addObject:decoratedSeries];
             [namesFromCurrentStudy addObject:currentSeries.name];
         }
@@ -419,6 +425,18 @@
     
     return result;
     
+}
+
+-(NSString*) getDirFromSuffix:(NSString *)suffix {
+  // little helper for getting dir label from "dir-(AP|PA)_epi"
+  NSString *result = @"";
+  if ([suffix hasPrefix:@"_dir-AP"]) {
+    result = "AP";
+  }
+  else if ([suffix hasPrefix:@"_dir-PA"]) {
+    result = "PA";
+  }
+  return result;
 }
 
 -(void) createDatasetDescription {
