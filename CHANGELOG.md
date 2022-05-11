@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project versioning is based on [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.0.1] - 2022-05-11
+### Added
+- Enabled blip-up & blip-down fieldmap EPI (dir-AP_epi & dir-PA_epi)
+- Internal: added dir to OBOSeries
+
 ## [1.0.0] - 2018-08-10
 ### Added
 - Optional scans.tsv file (containing relative path, scan date and time for all scans within a subject/session) can be optionally created

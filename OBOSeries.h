@@ -34,6 +34,7 @@
 @property (nonatomic) NSString *session;
 @property (nonatomic) NSString *task;
 @property (nonatomic) NSString *acq;
+@property (nonatomic) NSString *dir;
 @property (nonatomic) NSString *run;
 
 @property (nonatomic, assign) BOOL discard;
