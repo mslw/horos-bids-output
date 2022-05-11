@@ -16,12 +16,12 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
-	<key>NSPrincipalClass</key>
-	<string>BidsOutputFilter</string>
 	<key>MenuTitles</key>
 	<array>
 		<string>BIDS output</string>
 	</array>
+	<key>NSPrincipalClass</key>
+	<string>BidsOutputFilter</string>
 	<key>pluginType</key>
 	<string>Database</string>
 </dict>

@@ -430,11 +430,11 @@
 -(NSString*) getDirFromSuffix:(NSString *)suffix {
   // little helper for getting dir label from "dir-(AP|PA)_epi"
   NSString *result = @"";
-  if ([suffix hasPrefix:@"_dir-AP"]) {
-    result = "AP";
+  if ([suffix hasPrefix:@"dir-AP"]) {
+    result = @"AP";
   }
-  else if ([suffix hasPrefix:@"_dir-PA"]) {
-    result = "PA";
+  else if ([suffix hasPrefix:@"dir-PA"]) {
+    result = @"PA";
   }
   return result;
 }
